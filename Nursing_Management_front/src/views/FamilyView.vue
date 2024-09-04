@@ -54,14 +54,14 @@
             <el-form-item label="手机号:" label-width="18%">
                 <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" />
             </el-form-item>
-            <el-form-item label="家属:" label-width="18%">
-                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="亲人:" label-width="18%">
+                <el-input v-model="customUpdate.cname" autocomplete="off" style="width: 300px" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary">确认</el-button>
+                <el-button type="primary" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -83,6 +83,20 @@ const familyUpdate = ref({
     fgender: '',
     fphone: '',
     cid: ''
+})
+
+//被修改客户的信息
+const customUpdate = ref({
+    cid: '',
+    cname: '',
+    cage: '',
+    cgender: '',
+    cphone: '',
+    centrydate: '',
+    caddress: '',
+    did: '',
+    fid: '',
+    eid: ''
 })
 
 
@@ -111,25 +125,49 @@ function selectByPage(pageNum) {
 function selectByPage2(pageNum) {
     customApi.selectByPage(pageNum)
         .then(resp => {
-            customList.value = resp.data.list;            
+            customList.value = resp.data.list;
         })
 }
 
 //查询所有家属并显示修改对话框
 function showUpdateDialog(fid) {
-    customApi.selectAll()
+    familyApi.selectById(fid)
         .then(resp => {
-            departmentList.value = resp.data;
+            familyUpdate.value = resp.data;
 
-            customApi.selectById(cid)
+            customApi.selectById(resp.data.cid)
                 .then(resp => {
-                    customUpdate.value = resp.data;
-                    console.log(customUpdate);
-                    familyApi.selectById(resp.data.fid)
-                        .then(resp => [
-                            familyUpdate.value = resp.data,
-                            updateDialogShow.value = true,
-                        ])
+                    customUpdate.value = resp.data
+                    updateDialogShow.value = true
+                })
+
+        })
+}
+
+//修改家属
+function update() {
+    familyApi.update(familyUpdate.value)
+        .then(resp => {
+
+            customApi.update(customUpdate.value)
+                .then(resp => {
+                    if (resp.code == 10000) {
+                        ElMessage({
+                            message: resp.msg,
+                            type: 'success',
+                            duration: 1200
+                        });
+
+                        //隐藏
+                        updateDialogShow.value = false;
+                        selectByPage(1);
+                    } else {
+                        ElMessage({
+                            message: resp.msg,
+                            type: 'error',
+                            duration: 1200
+                        });
+                    }
                 })
         })
 }
