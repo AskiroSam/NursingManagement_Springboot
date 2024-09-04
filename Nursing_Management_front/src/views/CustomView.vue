@@ -269,7 +269,7 @@ function showUpdateDialog(cid) {
             customApi.selectById(cid)
                 .then(resp => {
                     customUpdate.value = resp.data;
-                    console.log('Custom Update Data:', customUpdate.value); // Check if data is correct
+                    console.log(customUpdate);
                     familyApi.selectById(resp.data.fid)
                         .then(resp => [
                             familyUpdate.value = resp.data,
@@ -348,23 +348,28 @@ function insert() {
 function update() {
     customApi.update(customUpdate.value)
         .then(resp => {
-            if (resp.code == 10000) {
-                ElMessage({
-                    message: resp.msg,
-                    type: 'success',
-                    duration: 1200
-                });
 
-                //隐藏
-                updateDialogShow.value = false;
-                selectByPage(1);
-            } else {
-                ElMessage({
-                    message: resp.msg,
-                    type: 'error',
-                    duration: 1200
-                });
-            }
+            familyApi.update(familyUpdate.value)
+                .then(resp => {
+                    if (resp.code == 10000) {
+                        ElMessage({
+                            message: resp.msg,
+                            type: 'success',
+                            duration: 1200
+                        });
+
+                        //隐藏
+                        updateDialogShow.value = false;
+                        selectByPage(1);
+                    } else {
+                        ElMessage({
+                            message: resp.msg,
+                            type: 'error',
+                            duration: 1200
+                        });
+                    }
+                })
+
         });
 }
 
