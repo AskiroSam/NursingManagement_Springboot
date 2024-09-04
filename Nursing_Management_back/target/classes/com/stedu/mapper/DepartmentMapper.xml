@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.DepartmentMapper">
+    <insert id="insert" parameterType="department">
+        INSERT INTO `department`(`dname`, `dlocation`) VALUES (#{dname}, #{dlocation})
+    </insert>
+    <update id="update" parameterType="department">
+        UPDATE `department` SET `dname`=#{dname}, `dlocation`=#{dlocation} WHERE `did`=#{did}
+    </update>
+    <update id="updateDepartment" parameterType="department">
+        UPDATE `department` SET `personnum`=#{personnum} WHERE `did`=#{did}
+    </update>
+    <delete id="delete">
+        DELETE FROM `department` WHERE `did`=#{did}
+    </delete>
+    <resultMap id="deptMap1" type="department">
+        <id column="did" property="did" />
+        <result column="dname" property="dname" />
+        <result column="dlocation" property="dlocation" />
+        <result column="personnum" property="personnum" />
+        <collection column="did" property="customList" ofType="custom" select="com.stedu.mapper.CustomMapper.sclectByDid" />
+        <collection column="did" property="staffList" ofType="staff" select="com.stedu.mapper.StaffMapper.selectByDid" />
+    </resultMap>
+    <select id="selectAll" resultMap="deptMap1">
+        SELECT * FROM `department`
+    </select>
+    <select id="selectByDid" resultType="department">
+        SELECT * FROM `department` WHERE `did`=#{did}
+    </select>
+    <select id="selectByDname" resultType="department">
+        SELECT * FROM `department` WHERE `dname`=#{dname}
+    </select>
+</mapper>

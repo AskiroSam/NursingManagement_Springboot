@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.FamilyMapper">
+    <insert id="insert" parameterType="family" useGeneratedKeys="true" keyProperty="fid">
+        INSERT INTO `family`(`fname`, `fage`, `fgender`, `fphone`, `cid`)
+        VALUES (#{fname}, #{fage}, #{fgender}, #{fphone}, #{cid})
+    </insert>
+    <update id="update" parameterType="family">
+        UPDATE `family` SET
+                `fname`=#{fname},
+                `fage`=#{fage},
+                `fgender`=#{fgender},
+                `fphone`=#{fphone},
+                `cid`=#{cid}
+        WHERE `fid`=#{fid}
+    </update>
+    <delete id="delete" parameterType="family">
+        DELETE FROM `family` WHERE `fid`=#{fid}
+    </delete>
+    <select id="selectAll" resultType="family">
+        SELECT * FROM `family`
+    </select>
+    <resultMap id="familyMap" type="family">
+        <result column="cid" property="cid" />
+        <association column="cid" property="custom" javaType="custom" select="com.stedu.mapper.CustomMapper.selectByCid" />
+    </resultMap>
+    <select id="selectByFname" resultMap="familyMap">
+        SELECT * FROM `family`
+        <where>
+            <if test="fname != null and fname.length > 0">
+                `fname` LIKE concat('%', #{fname}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="selectByFid" resultType="family">
+        SELECT * FROM `family` WHERE `fid`=#{fid}
+    </select>
+    <select id="sclectByCid" resultType="family">
+        SELECT * FROM `family` WHERE `cid`=#{cid}
+    </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.CustomMapper">
+    <insert id="insert" parameterType="custom" useGeneratedKeys="true" keyProperty="cid">
+        INSERT INTO `custom`(`cname`, `cage`, `cgender`, `cphone`, `centrydate`, `cstate`, `caddress`, `did`, `fid`, `eid`)
+        VALUES (#{cname}, #{cage}, #{cgender}, #{cphone}, #{centrydate}, #{cstate}, #{caddress}, #{did}, #{fid}, #{eid})
+    </insert>
+    <update id="update" parameterType="custom">
+        UPDATE `custom` SET
+                `cname`=#{cname},
+                `cage`=#{cage},
+                `cgender`=#{cgender},
+                `cphone`=#{cphone},
+                `centrydate`=#{centrydate},
+                `caddress`=#{caddress},
+                `did`=#{did},
+                `fid`=#{fid},
+                `eid`=#{eid}
+        WHERE `cid`=#{cid}
+    </update>
+    <update id="setCstate" useGeneratedKeys="true" keyColumn="cid">
+        UPDATE `custom` SET `cstate`=#{cstate} WHERE `cid`=#{cid}
+    </update>
+    <update id="updateFid">
+        UPDATE `custom` SET `fid`=#{fid} WHERE `cid`=#{cid}
+    </update>
+    <select id="selectAll" resultType="custom">
+        SELECT * FROM `custom`
+    </select>
+    <resultMap id="customMap" type="custom">
+        <result column="did" property="did" />
+        <result column="fid" property="fid" />
+        <result column="eid" property="eid" />
+        <association column="did" property="department" javaType="department" select="com.stedu.mapper.DepartmentMapper.selectByDid" />
+        <association column="fid" property="family" javaType="family" select="com.stedu.mapper.FamilyMapper.selectByFid" />
+        <association column="eid" property="expend" javaType="expend" select="com.stedu.mapper.ExpendMapper.selectByEid" />
+    </resultMap>
+    <select id="selectByCname" resultMap="customMap">
+        SELECT * FROM `custom`
+        <where>
+            <if test="cname != null and cname.length > 0">
+                `cname` LIKE concat('%', #{cname}, '%')
+            </if>
+        </where>
+        ORDER BY `cstate` ASC
+    </select>
+    <select id="selectByCid" resultType="custom">
+        SELECT * FROM `custom` WHERE `cid`=#{cid}
+    </select>
+    <select id="sclectByDid" resultType="custom">
+        SELECT * FROM `custom` WHERE `did`=#{did}
+    </select>
+    <select id="selectByFid" resultType="custom">
+       SELECT * FROM `custom` WHERE `fid`=#{fid}
+    </select>
+    <select id="selectByEid" resultType="custom">
+        SELECT * FROM `custom` WHERE `eid`=#{eid}
+    </select>
+</mapper>
