@@ -75,9 +75,8 @@
                 <el-input v-model="customAdd.caddress" autocomplete="off" style="width: 300px" />
             </el-form-item>
             <el-form-item label="院系:" label-width="18%">
-                <el-select v-model="customAdd.did" placeholder="请选择院系" size="large" style="width: 300px">
-                    <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
-                        :value="department.did" />
+                <el-select v-model="customAdd.did" placeholder="请选择院系" size="large" style="width: 300px" >
+                    <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname" :value="department.did" />
                 </el-select>
             </el-form-item>
             <el-form-item label="家属姓名:" label-width="18%">
@@ -93,9 +92,9 @@
                 <el-input v-model="familyAdd.fphone" autocomplete="off" style="width: 300px" />
             </el-form-item>
             <el-form-item label="护理等级:" label-width="18%">
-                <el-radio-group v-model="expendAdd.eid" style="width: 300px">
-                    <el-radio value="1" size="large">一级</el-radio>
-                    <el-radio value="2" size="large">二级</el-radio>
+                <el-radio-group v-model="customAdd.eid" style="width: 300px">
+                    <el-radio :value="1" size="large">一级</el-radio>
+                    <el-radio :value="2" size="large">二级</el-radio>
                 </el-radio-group>
             </el-form-item>
         </el-form>
@@ -142,6 +141,12 @@
             <el-form-item label="家属:" label-width="18%">
                 <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" />
             </el-form-item>
+            <el-form-item label="护理等级:" label-width="18%">
+            <el-radio-group v-model="customUpdate.eid" style="width: 300px">
+                <el-radio :value="1" size="large">一级</el-radio>
+                <el-radio :value="2" size="large">二级</el-radio>
+            </el-radio-group>
+        </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -157,6 +162,7 @@
 <script setup>
 import customApi from '@/api/customApi';
 import departmentApi from '@/api/departmentApi';
+import expendApi from '@/api/expendApi';
 import familyApi from '@/api/familyApi';
 import { ElLoading, ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
@@ -241,6 +247,7 @@ function selectByPage(pageNum) {
         })
 }
 
+
 //查询所有部门并显示添加对话框
 function showAddDialog() {
     departmentApi.selectAll()
@@ -263,11 +270,11 @@ function showUpdateDialog(cid) {
             customApi.selectById(cid)
                 .then(resp => {
                     customUpdate.value = resp.data;
-
+                    console.log('Custom Update Data:', customUpdate.value); // Check if data is correct
                     familyApi.selectById(resp.data.fid)
                         .then(resp => [                           
-                            familyUpdate.value = resp.data,
-                            updateDialogShow.value = true
+                            familyUpdate.value = resp.data,                                   
+                            updateDialogShow.value = true,                           
                         ])
                 })
         })
@@ -337,6 +344,14 @@ function insert() {
             }        
         })       
 }
+
+// //修改方法
+// function update() {
+//     customApi.update(customUpdate.value)
+//         .then(resp => {
+
+//         })
+// }
 
 
 //删除客户 - 设置客户离院
