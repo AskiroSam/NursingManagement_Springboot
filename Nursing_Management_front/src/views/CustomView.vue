@@ -380,11 +380,11 @@ function update() {
 function deleteCustom(cid) {
     customApi.delete(cid)
         .then(resp => {
-            console.log(resp);
-
             if (resp.code == 10000) {
                 ElMessage.success(resp.msg);
                 selectByPage(1)
+                //刷新部门人数
+                departmentApi.selectAll();
             } else {
                 ElMessage.error(resp.msg);
             }

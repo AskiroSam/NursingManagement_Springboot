@@ -28,7 +28,8 @@
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
                             <el-button size="small" type="success">修改</el-button>
-                            <el-popconfirm title="你确定要删除该员工吗?" confirm-button-text="确认" cancel-button-text="取消">
+                            <el-popconfirm title="你确定要删除该员工吗?" confirm-button-text="确认" cancel-button-text="取消" 
+                            @confirm="delteteStaff(scope.row.sid);">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除</el-button>
                                 </template>
@@ -177,6 +178,21 @@ function insert() {
                     type: 'error',
                     duration: 1200
                 });
+            }
+        })
+}
+
+//删除员工（设置离职）
+function delteteStaff(sid) {
+    staffApi.delete(sid)
+        .then(resp => {
+            if (resp.code == 10000) {
+                ElMessage.success(resp.msg);
+                selectByPage(1)
+                //刷新部门人数
+                departmentApi.selectAll();
+            } else {
+                ElMessage.error(resp.msg);
             }
         })
 }
