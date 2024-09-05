@@ -31,7 +31,7 @@
                 </el-icon>
                 <span>员工管理</span>
               </template>
-              <el-menu-item index="/"><el-icon>
+              <el-menu-item index="/staff"><el-icon>
                   <User />
                 </el-icon>员工列表</el-menu-item>
             </el-sub-menu>

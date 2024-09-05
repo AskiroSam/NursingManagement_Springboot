@@ -1,5 +1,6 @@
 package com.stedu.mapper;
 
+import com.stedu.bean.Family;
 import com.stedu.bean.Staff;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,6 +14,8 @@ public interface StaffMapper {
     int update(Staff s);
 
     List<Staff> selectAll();
+
+    List<Staff> selectBySname(String sname);
 
     Staff selectBySid(Integer sid);
 

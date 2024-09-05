@@ -4,6 +4,7 @@ import DepartmentView from '@/views/DepartmentView.vue'
 import CustomView from '@/views/CustomView.vue'
 import FamilyView from '@/views/FamilyView.vue'
 import IndexView from '@/views/IndexView.vue'
+import StaffView from '@/views/StaffView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,9 @@ const router = createRouter({
         }, {
           path: '/index',
           component: IndexView
+        }, {
+          path: '/staff',
+          component: StaffView
         }
       ]
     },{
