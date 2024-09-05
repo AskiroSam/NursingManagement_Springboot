@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="24">
-            <el-card>
+            <el-card style="opacity: 0.9;">
                 <el-button type="primary" plain style="margin-bottom: 10px;">添加</el-button>
                 <el-table :data="tarvelList" border style="width: 100%">
                     <el-table-column prop="tid" label="ID" align="center" width="60px" />

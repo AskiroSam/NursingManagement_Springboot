@@ -59,7 +59,7 @@
             </el-sub-menu>
           </el-menu>
         </el-aside>
-        <el-main>
+        <el-main style="background-image: url(../../images/1.jpg);">
           <RouterView />
         </el-main>
       </el-container>

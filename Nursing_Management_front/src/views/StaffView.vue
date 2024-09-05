@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="24">
-            <el-card>
+            <el-card style="opacity: 0.9;">
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item>
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>

@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="17">
-            <el-card>
+            <el-card style="opacity: 0.9;">
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item style="float: right;">
                         <el-input v-model="fname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />

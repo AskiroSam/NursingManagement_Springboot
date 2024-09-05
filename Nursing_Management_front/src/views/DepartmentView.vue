@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="14">
-            <el-card>
+            <el-card style="opacity: 0.9;">
                 <el-button type="primary" plain style="margin-bottom: 10px;"
                     @click="addDialogShow = true">添加</el-button>
                 <el-table :data="departmentList" border style="width: 100%">
