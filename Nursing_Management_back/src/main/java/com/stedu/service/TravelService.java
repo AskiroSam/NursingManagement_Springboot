@@ -2,11 +2,13 @@ package com.stedu.service;
 
 
 import com.stedu.bean.Travel;
+import com.stedu.exception.MyException;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface TravelService {
+    boolean delete(Integer tid) throws MyException;
     //查询所有的出行路线
     List<Travel> selectAll();
 

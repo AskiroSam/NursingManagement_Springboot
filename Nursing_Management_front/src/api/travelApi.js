@@ -26,6 +26,10 @@ const travelApi = {
             tid,
             sids
         }) 
+    },
+    //删除路线
+    delete(tid) {
+        return service.delete(`/admin/travel/${tid}`)
     }
 
 

@@ -1,6 +1,8 @@
 package com.stedu.service.impl;
 
+import com.stedu.bean.RespBean;
 import com.stedu.bean.Travel;
+import com.stedu.exception.MyException;
 import com.stedu.mapper.TravelMapper;
 import com.stedu.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,17 @@ import java.util.List;
 public class TravelServiceImpl implements TravelService {
     @Autowired
     private TravelMapper travelMapper;
+
+    @Override
+    public boolean delete(Integer tid) throws MyException {
+        List<Integer> sids = travelMapper.selectSidByTid(tid);
+        List<Integer> cids = travelMapper.selectCidByTid(tid);
+
+        if (sids != null || cids != null) {
+           throw new MyException("路线中还有成员，无法删除");
+        }
+        return travelMapper.delete(tid) == 1;
+    }
 
     @Override
     public List<Travel> selectAll() {

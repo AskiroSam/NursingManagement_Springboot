@@ -2,6 +2,7 @@ package com.stedu.controller;
 
 import com.stedu.bean.RespBean;
 import com.stedu.bean.Travel;
+import com.stedu.exception.MyException;
 import com.stedu.service.CustomService;
 import com.stedu.service.StaffService;
 import com.stedu.service.TravelService;
@@ -113,5 +114,14 @@ public class TravelController {
         }
         travelService.insertTidAndSid(tid, sids);
         return RespBean.ok("分配员工成功");
+    }
+
+    @DeleteMapping("/{tid}")
+    public RespBean delete(@PathVariable("tid") Integer tid) throws MyException {
+        if (travelService.delete(tid)) {
+            return RespBean.ok("删除成功");
+        } else {
+            return RespBean.error("删除失败，请重试");
+        }
     }
 }

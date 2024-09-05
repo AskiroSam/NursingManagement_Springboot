@@ -20,6 +20,8 @@ public interface TravelMapper {
     //删除某条路线和员工的关联关系
     void deleteTidAndSidByTid(Integer tid);
 
+    int delete(Integer tid);
+
     //添加某条路线和客户的关联关系
     void insertTidAndCid(@Param("tid") Integer tid, @Param("cids") Integer[] cids);
 

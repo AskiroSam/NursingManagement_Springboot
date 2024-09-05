@@ -19,6 +19,9 @@
     <delete id="deleteTidAndSidByTid">
         DELETE FROM `travel_staff` WHERE `tid`=#{tid}
     </delete>
+    <delete id="delete">
+        DELETE FROM `travel` WHERE `tid`=#{tid}
+    </delete>
     <select id="selectAll" resultType="travel">
         SELECT * FROM `travel`
     </select>
