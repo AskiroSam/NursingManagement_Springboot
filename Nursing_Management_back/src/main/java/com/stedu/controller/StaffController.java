@@ -22,13 +22,13 @@ public class StaffController {
     private Integer pageSize;
 
     @GetMapping
-    public RespBean selectByPage(Integer pageNum, String cname) {
+    public RespBean selectByPage(Integer pageNum, String sname) {
         if (pageNum == null) {
             pageNum = 1;
         }
 
         PageHelper.startPage(pageNum, pageSize);
-        List<Staff> staffList = staffService.selectBySname(cname);
+        List<Staff> staffList = staffService.selectBySname(sname);
         //List<Custom> customList = customService.selectAll();
 
         PageInfo<Staff> pageInfo = new PageInfo<>(staffList);

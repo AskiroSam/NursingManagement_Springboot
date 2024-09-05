@@ -4,7 +4,7 @@
             <el-card>
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item style="float: right;">
-                        <!-- <el-input v-model="fname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" /> -->
+                        <el-input v-model="sname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />
                     </el-form-item>
                 </el-form>
                 <el-table :data="pageInfo.list" border style="width: 100%">
@@ -66,11 +66,7 @@ const departmentList = ref([]);
 function selectByPage(pageNum) {
     staffApi.selectByPage(pageNum, sname.value)
         .then(resp => {
-            pageInfo.value = resp.data
-
-            departmentList.value = departmentApi.selectAll();
-            console.log(departmentList.value);
-            
+            pageInfo.value = resp.data        
         })
 }
 
