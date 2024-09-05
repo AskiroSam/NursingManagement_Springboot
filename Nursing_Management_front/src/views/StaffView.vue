@@ -169,6 +169,8 @@ function insert() {
                     did: '',
                 };
                 selectByPage(1);
+                //刷新部门人数
+                departmentApi.selectAll();
             } else {
                 ElMessage({
                     message: "提交失败，请重试",
