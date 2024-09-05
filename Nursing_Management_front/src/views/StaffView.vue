@@ -80,7 +80,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addDialogShow = false">取消</el-button>
-                <el-button type="primary">确认</el-button>
+                <el-button type="primary" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -92,6 +92,7 @@
 import { ref } from 'vue';
 import staffApi from '@/api/staffApi';
 import departmentApi from '@/api/departmentApi';
+import { ElLoading, ElMessage } from 'element-plus';
 
 //搜索
 const sname = ref('');
@@ -136,6 +137,45 @@ function showAddDialog() {
         .then(resp => {
             departmentList.value = resp.data;
             addDialogShow.value = true
+        })
+}
+
+//添加方法
+function insert() {
+    const loading = ElLoading.service({
+        lock: true,
+        text: '加载中',
+        background: 'rgba(0, 0, 0, 0.7)',
+    })
+    staffApi.insert(staffAdd.value)
+        .then(resp => {
+            if (resp.code == 10000) {
+                loading.close();
+                ElMessage({
+                    message: "客户和家属信息提交成功",
+                    type: 'success',
+                    duration: 1200
+                });
+
+                //隐藏
+                addDialogShow.value = false;
+                staffAdd.value = {
+                    sno: '',
+                    sname: '',
+                    sage: '',
+                    sgender: '',
+                    sentrydate: '',
+                    ssalary: '',
+                    did: '',
+                };
+                selectByPage(1);
+            } else {
+                ElMessage({
+                    message: "提交失败，请重试",
+                    type: 'error',
+                    duration: 1200
+                });
+            }
         })
 }
 
