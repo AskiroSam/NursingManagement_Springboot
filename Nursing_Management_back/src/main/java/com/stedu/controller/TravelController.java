@@ -31,9 +31,9 @@ public class TravelController {
         return RespBean.ok("", travelList);
     }
 
-    @GetMapping("/allCustom")
+    @GetMapping("/allCustom/{tid}")
     //获取所有客户信息
-    public RespBean allCustom() {
+    public RespBean allCustom(@PathVariable("tid") Integer tid) {
         //{{key: 客户的cid, label: 客户的系部信息 - 客户姓名}}
         List<Map<String, Object>> customMapList = customService.selectByCname(null)
                 .stream()
@@ -45,12 +45,21 @@ public class TravelController {
 
                     return customMap;
                 }).collect(Collectors.toList());
-        return RespBean.ok("", customMapList);
+
+        //获取已经分配完的信息
+        List<Integer> cids = travelService.selectCidByTid(tid);
+
+        //设置返回两个值
+        Map<Object, Object> map = new HashMap<>();
+        map.put("allCustom", customMapList);
+        map.put("selectCids", cids);
+
+        return RespBean.ok("", map);
     }
 
-    @GetMapping("/allStaff")
+    @GetMapping("/allStaff/{tid}")
     //获取所有客户信息
-    public RespBean allStaff() {
+    public RespBean allStaff(@PathVariable("tid") Integer tid) {
         //{{key: 客户的cid, label: 客户的系部信息 - 客户姓名}}
         List<Map<String, Object>> staffMapList = staffService.selectBySname(null)
                 .stream()
@@ -62,7 +71,16 @@ public class TravelController {
 
                     return staffMap;
                 }).collect(Collectors.toList());
-        return RespBean.ok("", staffMapList);
+
+        //获取已经分配完的信息
+        List<Integer> sids = travelService.selectSidByTid(tid);
+
+        //返回两个值
+        Map<Object, Object> map = new HashMap<>();
+        map.put("allStaff", staffMapList);
+        map.put("selectSids", sids);
+
+        return RespBean.ok("", map);
     }
 
     //分配客户

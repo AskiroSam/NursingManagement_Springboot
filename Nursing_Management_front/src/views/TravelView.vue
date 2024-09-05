@@ -32,21 +32,21 @@
     </el-row>
 
     <!-- 分配客户的对话框开始 -->
-    <el-dialog v-model="setCustomDialogShow" title="添加院系">
+    <el-dialog v-model="setCustomDialogShow" title="分配客户">
         <!-- data：数据源  v-model：选中项绑定值 -->
-        <el-transfer v-model="selectCids" :data="allCustom" />
+        <el-transfer v-model="selectCids" :data="allCustom" :titles="['待分配客户', '已分配客户']" @change="maxCustomLength" />
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setCustomDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="insertTidAndCid">确认</el-button>
+                <el-button id="customCommit" type="primary" @click="insertTidAndCid">确认</el-button>
             </div>
         </template>
     </el-dialog>
     <!-- 分配客户的对话框结束 -->
 
     <!-- 分配员工的对话框开始 -->
-    <el-dialog v-model="setStaffDialogShow" title="添加院系">
-        <el-transfer v-model="selectSids" :data="allStaff" />
+    <el-dialog v-model="setStaffDialogShow" title="分配员工">
+        <el-transfer v-model="selectSids" :data="allStaff" :titles="['待分配员工', '已分配员工']" @change="maxStaffLength" />
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setStaffDialogShow = false">取消</el-button>
@@ -85,12 +85,18 @@ const customSelectTid = ref(0);
 //需要分配员工的项目id
 const staffSelectTid = ref(0);
 
+//最大客户分配数量
+const maxCustomNum = 5;
+//最大员工分配数量
+const maxStaffNum = 2;
+
 //查询所有在院客户的信息并显示分配客户的对话框
 function showSetCustomDialog(tid) {
     //查询所有在院客户的信息
-    travelApi.allCustom()
+    travelApi.allCustom(tid)
         .then(resp => {
-            allCustom.value = resp.data;
+            allCustom.value = resp.data.allCustom;
+            selectCids.value = resp.data.selectCids;
             customSelectTid.value = tid;
             setCustomDialogShow.value = true;
         })
@@ -99,9 +105,10 @@ function showSetCustomDialog(tid) {
 //查询所有在职员工的信息并显示分配员工的对话框
 function showSetStaffDialog(tid) {
     //查询所有在院客户的信息
-    travelApi.allStaff()
+    travelApi.allStaff(tid)
         .then(resp => {
-            allStaff.value = resp.data;
+            allStaff.value = resp.data.allStaff;
+            selectSids.value = resp.data.selectSids;
             staffSelectTid.value = tid; 
             setStaffDialogShow.value = true;
         })
@@ -133,6 +140,9 @@ function insertTidAnSid() {
             setStaffDialogShow.value = false;
         })
 }
+
+
+
 
 selectAll();
 </script>

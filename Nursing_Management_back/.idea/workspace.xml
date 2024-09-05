@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +191,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="18030000" />
+      <workItem from="1725492794202" duration="20500000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

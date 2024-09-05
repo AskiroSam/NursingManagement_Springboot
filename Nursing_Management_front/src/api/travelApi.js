@@ -6,12 +6,12 @@ const travelApi = {
         return service.get("/admin/travel");
     },
     //获取所有在院客户
-    allCustom() {
-        return service.get("/admin/travel/allCustom");
+    allCustom(tid) {
+        return service.get(`/admin/travel/allCustom/${tid}`);
     },
     //获取所有在职员工
-    allStaff() {
-        return service.get("/admin/travel/allStaff")
+    allStaff(tid) {
+        return service.get(`/admin/travel/allStaff/${tid}`)
     },
     //分配客户
     insertTidAndCid(tid, cids) {
