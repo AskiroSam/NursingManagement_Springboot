@@ -118,7 +118,7 @@ const customList = ref([]);
 function selectByPage(pageNum) {
     familyApi.selectByPage(pageNum, fname.value)
         .then(resp => {
-            pageInfo.value = resp.data;
+            pageInfo.value = resp.data;                   
         })
 }
 //获取所有用户的信息
