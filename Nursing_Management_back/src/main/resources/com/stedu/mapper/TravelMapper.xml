@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.TravelMapper">
+    <insert id="insertTidAndCid">
+        INSERT INTO `travel_custom`(`tid`, `cid`) VALUES
+        <foreach collection="cids" item="cid" separator=",">
+            (#{tid}, #{cid})
+        </foreach>
+    </insert>
+    <insert id="insertTidAndSid">
+        INSERT INTO `travel_staff`(`tid`, `sid`) VALUES
+        <foreach collection="sids" item="sid" separator=",">
+            (#{tid}, #{sid})
+        </foreach>
+    </insert>
+    <delete id="deleteTidAndCidByTid">
+        DELETE FROM `travel_custom` WHERE `tid`=#{tid}
+    </delete>
+    <delete id="deleteTidAndSidByTid">
+        DELETE FROM `travel_staff` WHERE `tid`=#{tid}
+    </delete>
+    <select id="selectAll" resultType="travel">
+        SELECT * FROM `travel`
+    </select>
+    <select id="selectCidByTid" resultType="java.lang.Integer">
+        SELECT `cid` FROM `travel_custom` WHERE `tid`=#{tid}
+    </select>
+    <select id="selectSidByTid" resultType="java.lang.Integer">
+        SELECT `sid` FROM `travel_staff` WHERE `tid`=#{tid}
+    </select>
+</mapper>
