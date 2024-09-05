@@ -22,7 +22,7 @@
                             <el-button size="small" type="success"
                                 @click="showSetStaffDialog(scope.row.tid)">分配员工</el-button>
                             <el-button size="small" type="success">修改</el-button>
-                            <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消">
+                            <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="deleteByTid(scope.row.tid)">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除路线</el-button>
                                 </template>
@@ -162,7 +162,26 @@ function insertTidAnSid() {
         })
 }
 
-
+//删除路线
+function deleteByTid(tid) {
+    travelApi.delete(tid)
+        .then(resp => {
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+                selectAll();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
+        })
+}
 
 
 //记录进度条
@@ -197,7 +216,6 @@ function getProgressPercentage(travel) {
     // 仅在 `progress` 存在时返回保留两位小数的进度
     return progress ? Math.round(progress.tprogress * 100) / 100 : 0;
 }
-
 
 
 selectAll();

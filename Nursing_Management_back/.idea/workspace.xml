@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成多对多客户表的添加”">
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“定义删除路线方法，并加上非空验证”">
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +188,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="23244000" />
+      <workItem from="1725492794202" duration="26562000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -254,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725535909928</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="“定义删除路线方法，并加上非空验证”">
+      <option name="closed" value="true" />
+      <created>1725552033594</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725552033594</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +290,8 @@
     <MESSAGE value="“完成多对多service层”" />
     <MESSAGE value="“完成多对多Controller层的查询”" />
     <MESSAGE value="“完成多对多客户表的添加”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完成多对多客户表的添加”" />
+    <MESSAGE value="“定义删除路线方法，并加上非空验证”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“定义删除路线方法，并加上非空验证”" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
