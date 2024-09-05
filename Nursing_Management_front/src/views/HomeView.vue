@@ -78,6 +78,7 @@ function toHref(indexPath) {
 </script>
 
 <style scoped>
+/* 去掉下划线，并设置颜色 */
 .el-menu {
   background-color: #000000;
   border-bottom: none !important;

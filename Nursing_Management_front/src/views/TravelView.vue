@@ -129,7 +129,8 @@ function insertTidAndCid() {
 function insertTidAnSid() {
     travelApi.insertTidAndSid(staffSelectTid.value, selectSids.value)
         .then(resp => {
-            console.log(resp);  
+            ElMessage.success(resp.msg);
+            setStaffDialogShow.value = false;
         })
 }
 

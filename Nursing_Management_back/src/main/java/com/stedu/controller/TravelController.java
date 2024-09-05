@@ -65,10 +65,10 @@ public class TravelController {
         return RespBean.ok("", staffMapList);
     }
 
+    //分配客户
     @PostMapping("/tidAndCid")
     public RespBean insertTidAndCid(@RequestBody Map<String, Object> map) {
 
-        System.out.println(map);
         Integer tid = (Integer)map.get("tid");
         //需要将集合转换为数组
         List<Integer> cidsList = (List<Integer>) map.get("cids");
@@ -78,14 +78,22 @@ public class TravelController {
             cids[i] = cid;
         }
         travelService.insertTidAndCid(tid, cids);
-        return RespBean.ok("分配员工成功");
+        return RespBean.ok("分配客户成功");
     }
 
+    //分配员工
     @PostMapping("/tidAnSid")
     public RespBean insertTidAndSid(@RequestBody Map<String, Object> map) {
-        System.out.println(map);
 
-
+        Integer tid = (Integer)map.get("tid");
+        //需要将集合转换为数组
+       List<Integer> sidsList = (List<Integer>) map.get("sids");
+       Integer[] sids = new Integer[sidsList.size()];
+        for (int i = 0; i < sidsList.size(); i++) {
+            int sid = sidsList.get(i);
+            sids[i] = sid;
+        }
+        travelService.insertTidAndSid(tid, sids);
         return RespBean.ok("分配员工成功");
     }
 }

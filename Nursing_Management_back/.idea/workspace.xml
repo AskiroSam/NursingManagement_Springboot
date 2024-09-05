@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成多对多Controller层的查询”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/TravelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成多对多客户表的添加”">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +191,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="15676000" />
+      <workItem from="1725492794202" duration="18030000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -248,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725523379193</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="“完成多对多客户表的添加”">
+      <option name="closed" value="true" />
+      <created>1725535909928</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725535909928</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +284,8 @@
     <MESSAGE value="“添加路线出行多对多映射，员工与路线，客户与路线”" />
     <MESSAGE value="“完成多对多service层”" />
     <MESSAGE value="“完成多对多Controller层的查询”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完成多对多Controller层的查询”" />
+    <MESSAGE value="“完成多对多客户表的添加”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“完成多对多客户表的添加”" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
