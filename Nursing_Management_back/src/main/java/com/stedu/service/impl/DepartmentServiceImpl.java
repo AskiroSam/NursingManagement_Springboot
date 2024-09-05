@@ -29,12 +29,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public boolean delete(Integer did) throws MyException {
-        if (departmentMapper.selectByDid(did) == null) {
-            throw new MyException("该部门不存在，无法删除");
+        //if (departmentMapper.selectByDid(did) == null) {
+        //    throw new MyException("该部门不存在，无法删除");
+        //}
+        Department department = departmentMapper.selectByDid(did);
+        if (department.getPersonnum() != 0) {
+            throw new MyException("该系部下还有客户，无法删除");
         }
-
-        //TODO 判断该部门下是否有员工，有-不允许删除
-
         return departmentMapper.delete(did) == 1;
     }
 
