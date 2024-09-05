@@ -31,7 +31,7 @@
         <result column="did" property="did" />
         <association column="did" property="department" javaType="department" select="com.stedu.mapper.DepartmentMapper.selectByDid" />
     </resultMap>
-    <select id="selectBySname" resultType="staff">
+    <select id="selectBySname" resultMap="staffMap">
         SELECT * FROM `staff`
         <where>
             <if test="sname != null and sname.length > 0">
