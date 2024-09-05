@@ -27,14 +27,24 @@
             <el-sub-menu index="2">
               <template #title>
                 <el-icon>
+                  <Avatar />
+                </el-icon>
+                <span>员工管理</span>
+              </template>
+              <el-menu-item index="/"><el-icon>
+                  <User />
+                </el-icon>员工列表</el-menu-item>
+            </el-sub-menu>
+            <el-sub-menu index="3">
+              <template #title>
+                <el-icon>
                   <OfficeBuilding />
                 </el-icon>
-                <span>院内管理</span>
+                <span>院系管理</span>
               </template>
               <el-menu-item index="/dept"><el-icon>
                   <School />
-                </el-icon>院系管理</el-menu-item>
-              <el-menu-item index="/">区域管理</el-menu-item>
+                </el-icon>院系部门</el-menu-item>
             </el-sub-menu>
           </el-menu>
         </el-aside>
