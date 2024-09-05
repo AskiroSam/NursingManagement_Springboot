@@ -23,5 +23,5 @@ public class Travel {
 
     private Integer tprogress;
 
-    private String tdexcription;
+    private String tdescription;
 }

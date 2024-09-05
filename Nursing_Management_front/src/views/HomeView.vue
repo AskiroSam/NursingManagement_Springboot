@@ -46,6 +46,17 @@
                   <School />
                 </el-icon>院系部门</el-menu-item>
             </el-sub-menu>
+            <el-sub-menu index="4">
+              <template #title>
+                <el-icon>
+                  <PriceTag />
+                </el-icon>
+                <span>服务管理</span>
+              </template>
+              <el-menu-item index="/travel"><el-icon>
+                  <Bicycle />
+                </el-icon>出行管理</el-menu-item>
+            </el-sub-menu>
           </el-menu>
         </el-aside>
         <el-main>

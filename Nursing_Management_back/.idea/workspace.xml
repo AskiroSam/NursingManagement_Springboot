@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“修正了StaffMapper，来获取部门数据”">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成多对多Controller层的查询”">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Travel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Travel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,54 +86,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
-    <configuration name="OlderSystemApplicationTests.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="older_system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.stedu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test02" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OlderSystemApplicationTests.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="older_system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.stedu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test03" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OlderSystemApplicationTests.test04" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="older_system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.stedu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test04" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="OlderSystemApplicationTests.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
@@ -143,6 +97,54 @@
       <option name="PACKAGE_NAME" value="com.stedu" />
       <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
       <option name="METHOD_NAME" value="test05" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OlderSystemApplicationTests.test06" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="older_system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.stedu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.stedu" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
+      <option name="METHOD_NAME" value="test06" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OlderSystemApplicationTests.test07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="older_system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.stedu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.stedu" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
+      <option name="METHOD_NAME" value="test07" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OlderSystemApplicationTests.test08" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="older_system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.stedu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.stedu" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
+      <option name="METHOD_NAME" value="test08" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,10 +167,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.OlderSystemApplication" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test08" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test07" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test06" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test05" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test04" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test03" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test02" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +190,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="5781000" />
+      <workItem from="1725492794202" duration="14583000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -214,7 +216,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725505988236</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="“为系部删除增加验证”">
+      <option name="closed" value="true" />
+      <created>1725517156687</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725517156687</updated>
+    </task>
+    <task id="LOCAL-00005" summary="“添加路线出行多对多映射，员工与路线，客户与路线”">
+      <option name="closed" value="true" />
+      <created>1725521237960</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725521237960</updated>
+    </task>
+    <task id="LOCAL-00006" summary="“完成多对多service层”">
+      <option name="closed" value="true" />
+      <created>1725521864295</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725521864295</updated>
+    </task>
+    <task id="LOCAL-00007" summary="“完成多对多Controller层的查询”">
+      <option name="closed" value="true" />
+      <created>1725523379193</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725523379193</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +271,11 @@
     <MESSAGE value="“首次提交项目”" />
     <MESSAGE value="“新增员工的方法”" />
     <MESSAGE value="“修正了StaffMapper，来获取部门数据”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“修正了StaffMapper，来获取部门数据”" />
+    <MESSAGE value="“为系部删除增加验证”" />
+    <MESSAGE value="“添加路线出行多对多映射，员工与路线，客户与路线”" />
+    <MESSAGE value="“完成多对多service层”" />
+    <MESSAGE value="“完成多对多Controller层的查询”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“完成多对多Controller层的查询”" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
