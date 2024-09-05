@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成多对多Controller层的查询”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Travel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Travel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/TravelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/TravelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +190,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="14583000" />
+      <workItem from="1725492794202" duration="15676000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
