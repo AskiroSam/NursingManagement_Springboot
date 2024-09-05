@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“修正了StaffMapper，来获取部门数据”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +188,7 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="4844000" />
+      <workItem from="1725492794202" duration="5781000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

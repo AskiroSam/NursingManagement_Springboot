@@ -18,7 +18,7 @@
                         <template #default="scope">
                             <el-button size="small" type="success"
                                 @click="showUpdateDialog(scope.row.fid)">修改</el-button>
-                            <el-popconfirm title="你确定要删除改家属吗?" confirm-button-text="确认" cancel-button-text="取消"
+                            <el-popconfirm title="你确定要删除家属吗?" confirm-button-text="确认" cancel-button-text="取消"
                                 @confirm="deleteFamily(scope.row.fid);">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除</el-button>

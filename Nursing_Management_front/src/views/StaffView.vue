@@ -3,6 +3,9 @@
         <el-col :span="24">
             <el-card>
                 <el-form :inline="true" class="demo-form-inline">
+                    <el-form-item>
+                        <el-button plain type="primary" @click="showAddDialog">添加</el-button>
+                    </el-form-item>
                     <el-form-item style="float: right;">
                         <el-input v-model="sname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />
                     </el-form-item>
@@ -25,7 +28,7 @@
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
                             <el-button size="small" type="success">修改</el-button>
-                            <el-popconfirm title="你确定要删除改家属吗?" confirm-button-text="确认" cancel-button-text="取消">
+                            <el-popconfirm title="你确定要删除该员工吗?" confirm-button-text="确认" cancel-button-text="取消">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除</el-button>
                                 </template>
@@ -41,6 +44,48 @@
             </el-card>
         </el-col>
     </el-row>
+
+    <!-- 添加员工的对话框开始 -->
+    <el-dialog v-model="addDialogShow" title="添加员工" width="500">
+        <el-form>
+            <el-form-item label="工号:" label-width="18%">
+                <el-input v-model="staffAdd.sno" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="姓名:" label-width="18%">
+                <el-input v-model="staffAdd.sname" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="年龄:" label-width="18%">
+                <el-input v-model="staffAdd.sage" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="性别:" label-width="18%">
+                <el-radio-group v-model="staffAdd.sgender" style="width: 300px">
+                    <el-radio value="男" size="large">男</el-radio>
+                    <el-radio value="女" size="large">女</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item label="入职时间:" label-width="18%">
+                <el-date-picker v-model="staffAdd.sentrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
+                    value-format="YYYY-MM-DD" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="基本工资:" label-width="18%">
+                <el-input v-model="staffAdd.ssalary" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="院系:" label-width="18%">
+                <el-select v-model="staffAdd.did" placeholder="请选择院系" size="large" style="width: 300px">
+                    <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
+                        :value="department.did" />
+                </el-select>
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="addDialogShow = false">取消</el-button>
+                <el-button type="primary">确认</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 添加客户的对话框结束 -->
+
 </template>
 
 <script setup>
@@ -62,11 +107,35 @@ const staffList = ref([]);
 //部门信息
 const departmentList = ref([]);
 
+//添加对话框显示状态
+const addDialogShow = ref(false);
+
+//添加员工的信息
+const staffAdd = ref({
+    sno: '',
+    sname: '',
+    sage: '',
+    sgender: '',
+    sentrydate: '',
+    ssalary: '',
+    did: '',
+})
+
+
 //分页查询
 function selectByPage(pageNum) {
     staffApi.selectByPage(pageNum, sname.value)
         .then(resp => {
-            pageInfo.value = resp.data        
+            pageInfo.value = resp.data
+        })
+}
+
+//查询所有部门并显示添加对话框
+function showAddDialog() {
+    departmentApi.selectAll()
+        .then(resp => {
+            departmentList.value = resp.data;
+            addDialogShow.value = true
         })
 }
 
