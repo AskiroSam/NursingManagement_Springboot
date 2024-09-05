@@ -6,10 +6,7 @@ import com.stedu.service.CustomService;
 import com.stedu.service.StaffService;
 import com.stedu.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,5 +63,29 @@ public class TravelController {
                     return staffMap;
                 }).collect(Collectors.toList());
         return RespBean.ok("", staffMapList);
+    }
+
+    @PostMapping("/tidAndCid")
+    public RespBean insertTidAndCid(@RequestBody Map<String, Object> map) {
+
+        System.out.println(map);
+        Integer tid = (Integer)map.get("tid");
+        //需要将集合转换为数组
+        List<Integer> cidsList = (List<Integer>) map.get("cids");
+        Integer[] cids = new Integer[cidsList.size()];
+        for (int i = 0; i < cidsList.size(); i++) {
+            int cid = cidsList.get(i);
+            cids[i] = cid;
+        }
+        travelService.insertTidAndCid(tid, cids);
+        return RespBean.ok("分配员工成功");
+    }
+
+    @PostMapping("/tidAnSid")
+    public RespBean insertTidAndSid(@RequestBody Map<String, Object> map) {
+        System.out.println(map);
+
+
+        return RespBean.ok("分配员工成功");
     }
 }

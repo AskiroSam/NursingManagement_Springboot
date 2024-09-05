@@ -38,7 +38,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setCustomDialogShow = false">取消</el-button>
-                <el-button type="primary">确认</el-button>
+                <el-button type="primary" @click="insertTidAndCid">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -50,7 +50,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setStaffDialogShow = false">取消</el-button>
-                <el-button type="primary">确认</el-button>
+                <el-button type="primary" @click="insertTidAnSid">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -60,6 +60,7 @@
 
 <script setup>
 import travelApi from '@/api/travelApi';
+import { ElMessage } from 'element-plus';
 import { ref } from 'vue';
 
 //存放所有路线的数组
@@ -106,12 +107,29 @@ function showSetStaffDialog(tid) {
         })
 }
 
-
 //查询所有路线信息
 function selectAll() {
     travelApi.selectAll()
         .then(resp => {
             tarvelList.value = resp.data;
+        })
+}
+
+//分配客户的方法
+function insertTidAndCid() {
+    travelApi.insertTidAndCid(customSelectTid.value, selectCids.value)
+        .then(resp => {
+            ElMessage.success(resp.msg);
+            setCustomDialogShow.value = false;
+            
+        });
+}
+
+//分配员工的方法
+function insertTidAnSid() {
+    travelApi.insertTidAndSid(staffSelectTid.value, selectSids.value)
+        .then(resp => {
+            console.log(resp);  
         })
 }
 
