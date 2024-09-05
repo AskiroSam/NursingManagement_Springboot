@@ -27,9 +27,10 @@
                     <el-table-column prop="department.dname" label="所在系部" align="center" width="150px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="success">修改</el-button>
-                            <el-popconfirm title="你确定要删除该员工吗?" confirm-button-text="确认" cancel-button-text="取消" 
-                            @confirm="delteteStaff(scope.row.sid);">
+                            <el-button size="small" type="success"
+                                @click="showUpdateDialog(scope.row.sid);">修改</el-button>
+                            <el-popconfirm title="你确定要删除该员工吗?" confirm-button-text="确认" cancel-button-text="取消"
+                                @confirm="delteteStaff(scope.row.sid);">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除</el-button>
                                 </template>
@@ -87,6 +88,47 @@
     </el-dialog>
     <!-- 添加客户的对话框结束 -->
 
+    <!-- 修改员工的对话框开始 -->
+    <el-dialog v-model="updateDialogShow" title="修改员工" width="500">
+        <el-form>
+            <el-form-item label="工号:" label-width="18%">
+                <el-input v-model="staffUpdate.sno" autocomplete="off" style="width: 300px" disabled />
+            </el-form-item>
+            <el-form-item label="姓名:" label-width="18%">
+                <el-input v-model="staffUpdate.sname" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="年龄:" label-width="18%">
+                <el-input v-model="staffUpdate.sage" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="性别:" label-width="18%">
+                <el-radio-group v-model="staffUpdate.sgender" style="width: 300px">
+                    <el-radio value="男" size="large">男</el-radio>
+                    <el-radio value="女" size="large">女</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item label="入职时间:" label-width="18%">
+                <el-date-picker v-model="staffUpdate.sentrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
+                    value-format="YYYY-MM-DD" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="基本工资:" label-width="18%">
+                <el-input v-model="staffUpdate.ssalary" autocomplete="off" style="width: 300px" />
+            </el-form-item>
+            <el-form-item label="院系:" label-width="18%">
+                <el-select v-model="staffUpdate.did" placeholder="请选择院系" size="large" style="width: 300px">
+                    <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
+                        :value="department.did" />
+                </el-select>
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="updateDialogShow = false">取消</el-button>
+                <el-button type="primary" @click="update">确认</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 修改客户的对话框结束 -->
+
 </template>
 
 <script setup>
@@ -111,9 +153,22 @@ const departmentList = ref([]);
 
 //添加对话框显示状态
 const addDialogShow = ref(false);
+//修改对话框显示状态
+const updateDialogShow = ref(false);
 
 //添加员工的信息
 const staffAdd = ref({
+    sno: '',
+    sname: '',
+    sage: '',
+    sgender: '',
+    sentrydate: '',
+    ssalary: '',
+    did: '',
+})
+
+//修改员工的信息
+const staffUpdate = ref({
     sno: '',
     sname: '',
     sage: '',
@@ -139,6 +194,21 @@ function showAddDialog() {
             departmentList.value = resp.data;
             addDialogShow.value = true
         })
+}
+
+//查询所有部门并显示修改对话框
+function showUpdateDialog(sid) {
+    departmentApi.selectAll()
+        .then(resp => {
+            departmentList.value = resp.data;
+
+            staffApi.selectById(sid)
+                .then(resp => {
+                    staffUpdate.value = resp.data;
+                    updateDialogShow.value = true
+                })
+        })
+
 }
 
 //添加方法
@@ -178,6 +248,25 @@ function insert() {
                     type: 'error',
                     duration: 1200
                 });
+            }
+        })
+}
+
+//修改员工
+function update() {
+    staffApi.update(staffUpdate.value)
+        .then(resp => {
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+                //隐藏
+                updateDialogShow.value = false;
+                selectByPage(1);
+                //刷新部门人数
+                departmentApi.selectAll();
             }
         })
 }
