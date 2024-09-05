@@ -10,14 +10,17 @@
                     <el-table-column prop="tend" label="返回时间" align="center" width="90px" />
                     <el-table-column prop="tprogress" label="路线进度" align="center" width="300px">
                         <template #default="score">
-                            <el-progress :percentage="score.row.tprogress" />
+                            <el-progress :text-inside="true" :stroke-width="26"
+                                :percentage="getProgressPercentage(score.row)" />
                         </template>
                     </el-table-column>
                     <el-table-column prop="tdescription" label="路线描述" align="center" width="300px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="success" @click="showSetCustomDialog(scope.row.tid)">分配客户</el-button>
-                            <el-button size="small" type="success" @click="showSetStaffDialog(scope.row.tid)">分配员工</el-button>
+                            <el-button size="small" type="success"
+                                @click="showSetCustomDialog(scope.row.tid)">分配客户</el-button>
+                            <el-button size="small" type="success"
+                                @click="showSetStaffDialog(scope.row.tid)">分配员工</el-button>
                             <el-button size="small" type="success">修改</el-button>
                             <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消">
                                 <template #reference>
@@ -34,7 +37,7 @@
     <!-- 分配客户的对话框开始 -->
     <el-dialog v-model="setCustomDialogShow" title="分配客户">
         <!-- data：数据源  v-model：选中项绑定值 -->
-        <el-transfer v-model="selectCids" :data="allCustom" :titles="['待分配客户', '已分配客户']" @change="maxCustomLength" />
+        <el-transfer v-model="selectCids" :data="allCustom" :titles="['待分配客户', '已分配客户']" />
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setCustomDialogShow = false">取消</el-button>
@@ -46,7 +49,7 @@
 
     <!-- 分配员工的对话框开始 -->
     <el-dialog v-model="setStaffDialogShow" title="分配员工">
-        <el-transfer v-model="selectSids" :data="allStaff" :titles="['待分配员工', '已分配员工']" @change="maxStaffLength" />
+        <el-transfer v-model="selectSids" :data="allStaff" :titles="['待分配员工', '已分配员工']" />
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="setStaffDialogShow = false">取消</el-button>
@@ -61,7 +64,7 @@
 <script setup>
 import travelApi from '@/api/travelApi';
 import { ElMessage } from 'element-plus';
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 //存放所有路线的数组
 const tarvelList = ref([]);
@@ -109,9 +112,19 @@ function showSetStaffDialog(tid) {
         .then(resp => {
             allStaff.value = resp.data.allStaff;
             selectSids.value = resp.data.selectSids;
-            staffSelectTid.value = tid; 
+            staffSelectTid.value = tid;
             setStaffDialogShow.value = true;
         })
+}
+
+//转换时间格式(用于“HH:mm”，来进行进度条)
+function parseTime(timeString) {
+    const [hours, minutes] = timeString.split(':');
+    const now = new Date();
+    now.setHours(parseInt(hours, 10));
+    now.setMinutes(parseInt(minutes, 10));
+    now.setSeconds(0);
+    return now;
 }
 
 //查询所有路线信息
@@ -119,6 +132,14 @@ function selectAll() {
     travelApi.selectAll()
         .then(resp => {
             tarvelList.value = resp.data;
+
+            // 初始化进度（进度条）
+            progressList.value = tarvelList.value.map(travel => ({
+                tid: travel.tid,
+                tstart: parseTime(travel.tstart),
+                tend: parseTime(travel.tend),
+                progress: 0,
+            }));
         })
 }
 
@@ -128,7 +149,7 @@ function insertTidAndCid() {
         .then(resp => {
             ElMessage.success(resp.msg);
             setCustomDialogShow.value = false;
-            
+
         });
 }
 
@@ -141,6 +162,39 @@ function insertTidAnSid() {
         })
 }
 
+
+//记录进度条
+const progressList = ref([]);
+// 计算进度百分比
+function getProgressPercentage(travel) {
+    const progress = progressList.value.find(p => p.tid === travel.tid);
+
+    if (progress) {
+        const now = new Date();
+        const totalDuration = progress.tend - progress.tstart;
+        const elapsedDuration = now - progress.tstart;
+
+        let newProgress = 0;
+        if (elapsedDuration < 0) {
+            newProgress = 0;
+        } else if (elapsedDuration > totalDuration) {
+            newProgress = 100;
+        } else {
+            newProgress = (elapsedDuration / totalDuration) * 100;
+        }
+
+        // 保留两位小数
+        newProgress = Math.round(newProgress * 100) / 100;
+
+        // 仅在需要时更新
+        if (progress.tprogress !== newProgress) {
+            progress.tprogress = newProgress;
+        }
+    }
+
+    // 仅在 `progress` 存在时返回保留两位小数的进度
+    return progress ? Math.round(progress.tprogress * 100) / 100 : 0;
+}
 
 
 
