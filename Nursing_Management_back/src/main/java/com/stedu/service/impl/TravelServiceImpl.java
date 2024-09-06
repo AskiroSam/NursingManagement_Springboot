@@ -46,19 +46,29 @@ public class TravelServiceImpl implements TravelService {
     //出问题后进行回滚
     @Transactional(rollbackFor = Exception.class)
     public void insertTidAndCid(Integer tid, Integer[] cids) {
-        //清空旧关系
-        travelMapper.deleteTidAndCidByTid(tid);
-        //添加新关系
-        travelMapper.insertTidAndCid(tid, cids);
+        if (cids == null || cids.length == 0) {
+            // 清空数据表
+            travelMapper.deleteTidAndCidByTid(tid);
+        } else {
+            // 清空旧关系
+            travelMapper.deleteTidAndCidByTid(tid);
+            // 添加新关系
+            travelMapper.insertTidAndCid(tid, cids);
+        }
     }
 
     @Override
     //出问题后进行回滚
     @Transactional(rollbackFor = Exception.class)
     public void insertTidAndSid(Integer tid, Integer[] sids) {
-        //清空旧关系
-        travelMapper.deleteTidAndSidByTid(tid);
-        //添加新关系
-        travelMapper.insertTidAndSid(tid, sids);
+        if (sids == null || sids.length == 0) {
+            // 清空数据表
+            travelMapper.deleteTidAndSidByTid(tid);
+        } else {
+            //清空旧关系
+            travelMapper.deleteTidAndSidByTid(tid);
+            //添加新关系
+            travelMapper.insertTidAndSid(tid, sids);
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.stedu.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,14 +90,19 @@ public class TravelController {
     public RespBean insertTidAndCid(@RequestBody Map<String, Object> map) {
 
         Integer tid = (Integer)map.get("tid");
-        //需要将集合转换为数组
+        //需要将集合转换为数组(若为空，要进行初始化)
         List<Integer> cidsList = (List<Integer>) map.get("cids");
-        Integer[] cids = new Integer[cidsList.size()];
-        for (int i = 0; i < cidsList.size(); i++) {
-            int cid = cidsList.get(i);
-            cids[i] = cid;
+        if (cidsList == null || cidsList.isEmpty()) {
+            travelService.insertTidAndCid(tid, new Integer[0]);
+        } else {
+            Integer[] cids = new Integer[cidsList.size()];
+            for (int i = 0; i < cidsList.size(); i++) {
+                int cid = cidsList.get(i);
+                cids[i] = cid;
+            }
+            travelService.insertTidAndCid(tid, cids);
         }
-        travelService.insertTidAndCid(tid, cids);
+
         return RespBean.ok("分配客户成功");
     }
 
@@ -105,14 +111,19 @@ public class TravelController {
     public RespBean insertTidAndSid(@RequestBody Map<String, Object> map) {
 
         Integer tid = (Integer)map.get("tid");
-        //需要将集合转换为数组
+        //需要将集合转换为数组(若为空，要进行初始化)
        List<Integer> sidsList = (List<Integer>) map.get("sids");
-       Integer[] sids = new Integer[sidsList.size()];
-        for (int i = 0; i < sidsList.size(); i++) {
-            int sid = sidsList.get(i);
-            sids[i] = sid;
-        }
-        travelService.insertTidAndSid(tid, sids);
+       if (sidsList == null || sidsList.isEmpty()) {
+           travelService.insertTidAndSid(tid, new Integer[0]);
+       } else {
+           Integer[] sids = new Integer[sidsList.size()];
+           for (int i = 0; i < sidsList.size(); i++) {
+               int sid = sidsList.get(i);
+               sids[i] = sid;
+           }
+           travelService.insertTidAndSid(tid, sids);
+       }
+
         return RespBean.ok("分配员工成功");
     }
 
