@@ -12,10 +12,19 @@
       </el-card>
     </el-col>
   </el-row> -->
-  <el-card style="opacity: 0.9; float: left; width: 650px;">
+  <el-card style="opacity: 0.9; height: 210px;">
+    <div class="block text-center">
+    <el-carousel height="150px" indicator-position="none">
+      <el-carousel-item v-for="(item, index) in img" :key="item">
+        <img :src="item" style="width: 100%; height: 100%; object-fit: cover;" />
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+  </el-card>
+  <el-card style="opacity: 0.9; float: left; width: 650px; margin-top: 10px;">
     <div id="chart01"></div>
   </el-card>
-  <el-card style="opacity: 0.9; float: right; width: 650px;">
+  <el-card style="opacity: 0.9; float: right; width: 680px; margin-top: 10px;">
     <div id="chart02"></div>
   </el-card>
 </template>
@@ -23,7 +32,7 @@
 <script setup>
 import adminApi from "@/api/adminApi";
 import * as echarts from "echarts";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 //显示图表
 function chart01() {
@@ -91,6 +100,12 @@ function chart01() {
     });
 }
 
+
+const img = ref({
+  img1: 'images/项目logo.png',
+  img2: 'images/img1.png'
+});
+
 function chart02() {
   adminApi.selectAgeCount()
     .then(resp => {
@@ -109,55 +124,25 @@ function chart02() {
         legend: {
           top: 'bottom'
         },
+        title: {
+          text: '客户年龄分布',
+        },
         series: [
           {
-            
+            name: '年龄分布',
+            type: 'pie',
+            radius: [50, 120],
+            center: ['50%', '50%'],
+            // roseType: 'area',
+            itemStyle: {
+              borderRadius: 0
+            },
+            data: data.map((item, index) => ({
+              value: count[index],
+              name: item
+            }))
           }
-
         ]
-        // title: {
-        //   text: '客户年龄分布',
-        //   textStyle: {
-        //     color: "#000000"
-        //   }
-        // },
-        // tooltip: {},
-        // legend: {
-        //   data: ['人数'],
-        //   right: "10%",
-        //   textStyle: {
-        //     color: "#000000"
-        //   }
-        // },
-        // xAxis: {
-        //   data: data,
-        //   axisLine: {
-        //     show: true,
-        //     lineStyle: {
-        //       color: "#000000"
-        //     }
-        //   },
-        //   axisTick: {
-        //     show: false
-        //   }
-        // },
-        // yAxis: {
-        //   axisLine: {
-        //     show: true,
-        //     lineStyle: {
-        //       color: "#000000"
-        //     }
-        //   }
-        // },
-        // series: [
-        //   {
-        //     name: '人数',
-        //     type: 'bar',
-        //     data: count,
-        //     color: "#893448",
-
-        //   }
-        // ]
       };
 
       // 使用刚指定的配置项和数据显示图表。
@@ -184,4 +169,13 @@ onMounted(() => {
   height: 450px;
   float: right;
 }
+
+.el-carousel__item img {
+  color: #475669;
+  opacity: 1;
+  line-height: 150px;
+  margin: 0;
+  text-align: center;
+}
+
 </style>

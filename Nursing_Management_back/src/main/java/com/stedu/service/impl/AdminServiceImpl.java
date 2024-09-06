@@ -71,23 +71,23 @@ public class AdminServiceImpl implements AdminService {
 
         // 创建每个年龄段的 Map
         Map<String, Object> map56 = new HashMap<>();
-        map56.put("ageRange", "ageCount56");
+        map56.put("ageRange", "50-60");
         map56.put("count", ageCount56);
 
         Map<String, Object> map67 = new HashMap<>();
-        map67.put("ageRange", "ageCount67");
+        map67.put("ageRange", "60-70");
         map67.put("count", ageCount67);
 
         Map<String, Object> map78 = new HashMap<>();
-        map78.put("ageRange", "ageCount78");
+        map78.put("ageRange", "70-80");
         map78.put("count", ageCount78);
 
         Map<String, Object> map89 = new HashMap<>();
-        map89.put("ageRange", "ageCount89");
+        map89.put("ageRange", "80-90");
         map89.put("count", ageCount89);
 
         Map<String, Object> mapOther = new HashMap<>();
-        mapOther.put("ageRange", "Other");
+        mapOther.put("ageRange", "other");
         mapOther.put("count", other);
 
         // 创建包含多个 Map 的列表

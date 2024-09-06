@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善登录验证JWT”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/AdminMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/InfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/InfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/AdminService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/AdminServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +193,7 @@
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
-      <workItem from="1725580081553" duration="32913000" />
+      <workItem from="1725580081553" duration="35977000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
