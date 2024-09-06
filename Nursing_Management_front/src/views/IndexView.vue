@@ -1,47 +1,92 @@
 <template>
-    <el-row>
-        <el-col :span="14">
-            <el-card style="opacity: 0.9;">
-                <div id="chart01" style="width: 600px; height: 450px;"></div>
-            </el-card>
-        </el-col>
-    </el-row>
+  <el-row>
+    <el-col :span="12">
+      <el-card style="opacity: 0.9;">
+        <div id="chart01"></div>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script setup>
+import adminApi from "@/api/adminApi";
 import * as echarts from "echarts";
 import { onMounted } from "vue";
 
 //显示图表
 function chart01() {
-    let chart01 = echarts.init(document.getElementById('chart01'));
+  adminApi.topDepartment()
+    .then(resp => {
+      let data = new Array();
+      let count = new Array();
+      for (let index = 0; index < resp.data.length; index++) {
+        data.push(resp.data[index].dname);
+        count.push(resp.data[index].personnum);
+      }
 
-    let options = {
-    title: {
-      text: "ECharts 入门示例",
-    },
-    tooltip: {},
-    xAxis: {
-      data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-    },
-    yAxis: {},
-    series: [
-      {
-        name: "销量",
-        type: "bar",
-        data: [5, 20, 36, 10, 10, 20],
-      },
-    ],
-  };
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('chart01'));
 
-  // 渲染图表
-  chart01.setOption(options);
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: '系部人数统计',
+          textStyle: {
+            color: "#000000"
+          }
+        },
+        tooltip: {},
+        legend: {
+          data: ['人数'],
+          right: "10%",
+          textStyle: {
+            color: "#000000"
+          }
+        },
+        xAxis: {
+          data: data,
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: "#000000"
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        yAxis: {
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: "#000000"
+            }
+          }
+        },
+        series: [
+          {
+            name: '人数',
+            type: 'bar',
+            data: count,
+            color: "#893448",
+            
+          }
+        ]
+      };
 
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    });
 }
 //等待页面渲染完再掉用方法
 onMounted(() => {
-    chart01();
+  chart01();
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+#chart01 {
+  width: 600px;
+  height: 450px;
+}
+</style>

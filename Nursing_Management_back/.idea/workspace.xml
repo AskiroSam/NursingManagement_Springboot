@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“实现进度条页面刷新”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/TravelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/TravelMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/TravelServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/TravelServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善登录验证JWT”">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +77,8 @@
       <recent name="com.stedu.service,impl" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.stedu" />
+      <recent name="com.stedu.Util" />
       <recent name="com.stedu.bean" />
     </key>
   </component>
@@ -92,7 +90,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
-    <configuration name="OlderSystemApplicationTests.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OlderSystemApplicationTests2.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
         <pattern>
@@ -101,14 +99,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test05" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
+      <option name="METHOD_NAME" value="test01" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OlderSystemApplicationTests.test06" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OlderSystemApplicationTests2.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
         <pattern>
@@ -117,8 +115,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test06" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
+      <option name="METHOD_NAME" value="test02" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,10 +171,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.OlderSystemApplication" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests2.test01" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test08" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test07" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test06" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test05" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +195,7 @@
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
-      <workItem from="1725580081553" duration="19439000" />
+      <workItem from="1725580081553" duration="27901000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -295,7 +293,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725610951860</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="“后端配置JWT”">
+      <option name="closed" value="true" />
+      <created>1725623674898</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1725623674898</updated>
+    </task>
+    <task id="LOCAL-00014" summary="“完善登录验证JWT”">
+      <option name="closed" value="true" />
+      <created>1725623910664</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725623910664</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +341,9 @@
     <MESSAGE value="“修改多对多，解决为空报错问题”" />
     <MESSAGE value="“定于获取进度条的后端方法”" />
     <MESSAGE value="“实现进度条页面刷新”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“实现进度条页面刷新”" />
+    <MESSAGE value="“后端配置JWT”" />
+    <MESSAGE value="“完善登录验证JWT”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“完善登录验证JWT”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

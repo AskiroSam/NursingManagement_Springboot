@@ -16,11 +16,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${my.picdir}")
     private String picdir;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/admin/**");
-    }
+    //@Override
+    //public void addInterceptors(InterceptorRegistry registry) {
+    //    registry.addInterceptor(jwtInterceptor)
+    //            .addPathPatterns("/admin/**");
+    //}
 
     //服务器资源向外界映射
     @Override
