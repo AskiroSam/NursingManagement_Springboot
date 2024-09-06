@@ -219,12 +219,12 @@ function clearProgress() {
             travelApi.getTravelProgress(tid)
                 .then(resp => {                  
                     p.tprogress = resp.progress;
-                    // tarvelList.value.tprogress = resp.progress;
+                    tarvelList.value.tprogress = resp.progress;
 
                     travelApi.clearProgress(p)
                         .then(
                             p.tprogress = 0,
-                            // tarvelList.value.tprogress = 0,                  
+                            tarvelList.value.tprogress = 0,     
                         )
                 })
         }
