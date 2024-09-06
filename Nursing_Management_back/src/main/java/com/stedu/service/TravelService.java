@@ -31,4 +31,8 @@ public interface TravelService {
     // 根据旅行 ID 获取单个路线的进度
     TravelProgressDTO calculateProgress(Travel travel) throws ParseException;
 
+    boolean update(Travel travel);
+
+    boolean clearProgress(Travel travel);
+
 }

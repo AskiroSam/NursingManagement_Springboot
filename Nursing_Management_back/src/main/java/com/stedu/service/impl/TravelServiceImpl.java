@@ -135,6 +135,18 @@ public class TravelServiceImpl implements TravelService {
         TravelProgressDTO progressDTO = new TravelProgressDTO();
         progressDTO.setTid(travel.getTid());
         progressDTO.setProgress(progressPercentage);
+
+
         return progressDTO;
+    }
+
+    @Override
+    public boolean update(Travel travel) {
+        return travelMapper.update(travel) == 1;
+    }
+
+    @Override
+    public boolean clearProgress(Travel travel) {
+        return travelMapper.clearProgress(travel) == 1;
     }
 }

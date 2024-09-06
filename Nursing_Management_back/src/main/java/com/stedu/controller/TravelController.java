@@ -150,4 +150,13 @@ public class TravelController {
 
     }
 
+    @PutMapping
+    public RespBean update(@RequestBody Travel travel) {
+        if (travelService.update(travel)) {
+            return RespBean.ok("修改成功");
+        } else {
+            return RespBean.error("修改失败");
+        }
+    }
+
 }

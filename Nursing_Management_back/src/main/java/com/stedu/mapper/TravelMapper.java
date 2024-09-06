@@ -30,5 +30,9 @@ public interface TravelMapper {
     //添加某条路线和员工的关联关系
     void insertTidAndSid(@Param("tid") Integer tid, @Param("sids") Integer[] sids);
 
+    int update(Travel travel);
+
+    int clearProgress(Travel travel);
+
 
 }
