@@ -158,5 +158,13 @@ public class TravelController {
             return RespBean.error("修改失败");
         }
     }
+    @PutMapping("/progress")
+    public  RespBean clearProgress(@RequestBody Travel travel) {
+        if (travelService.clearProgress(travel)) {
+            return RespBean.ok("更新成功");
+        } else {
+            return RespBean.error("更新失败");
+        }
+    }
 
 }

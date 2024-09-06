@@ -20,6 +20,9 @@
     <update id="update" parameterType="travel">
         UPDATE `travel` SET `tprogress`=#{tprogress} WHERE `tid`=#{tid}
     </update>
+    <update id="clearProgress">
+        UPDATE `travel` SET `tprogress`=0 WHERE `tid`=#{tid}
+    </update>
     <delete id="deleteTidAndCidByTid">
         DELETE FROM `travel_custom` WHERE `tid`=#{tid}
     </delete>

@@ -30,6 +30,18 @@ const travelApi = {
     //删除路线
     delete(tid) {
         return service.delete(`/admin/travel/${tid}`)
+    }, 
+    //进度条进度
+    getTravelProgress(tid) {
+        return service.get(`/admin/travel/progress/${tid}`)
+    },
+    //修改
+    update(travel) {
+        return service.put('/admin/travel', travel);
+    },
+    //更新每日进度条
+    clearProgress(travel) {
+        return service.put('/admin/travel/progress', travel);
     }
 
 

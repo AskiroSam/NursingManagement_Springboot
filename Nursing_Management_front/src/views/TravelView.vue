@@ -147,7 +147,7 @@ function selectAll() {
             tarvelList.value = resp.data;
             progressList.value = resp.data;
 
-            calculateProgress();
+           
         })
 
 }
@@ -212,7 +212,23 @@ function calculateProgress() {
 }
 
 function clearProgress() {
-    
+    progressList.value.forEach(p => {
+        if (p && p.tprogress !== undefined) {           
+            const tid = p.tid;
+
+            travelApi.getTravelProgress(tid)
+                .then(resp => {                  
+                    p.tprogress = resp.progress;
+                    // tarvelList.value.tprogress = resp.progress;
+
+                    travelApi.clearProgress(p)
+                        .then(
+                            p.tprogress = 0,
+                            // tarvelList.value.tprogress = 0,                  
+                        )
+                })
+        }
+    });  
 }
 //进度条结束---------------------------------------
 

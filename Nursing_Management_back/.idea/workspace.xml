@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“定义删除路线方法，并加上非空验证”">
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“实现进度条页面刷新”">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/TravelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/TravelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/TravelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/TravelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/TravelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/TravelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/TravelServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/TravelServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +196,8 @@
       <workItem from="1725378262994" duration="66000" />
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
-      <workItem from="1725492794202" duration="26562000" />
+      <workItem from="1725492794202" duration="28361000" />
+      <workItem from="1725580081553" duration="19439000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -262,7 +271,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725552033594</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="“修改多对多，解决为空报错问题”">
+      <option name="closed" value="true" />
+      <created>1725590112686</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725590112686</updated>
+    </task>
+    <task id="LOCAL-00011" summary="“定于获取进度条的后端方法”">
+      <option name="closed" value="true" />
+      <created>1725604720944</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725604720944</updated>
+    </task>
+    <task id="LOCAL-00012" summary="“实现进度条页面刷新”">
+      <option name="closed" value="true" />
+      <created>1725610951860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725610951860</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +324,20 @@
     <MESSAGE value="“完成多对多Controller层的查询”" />
     <MESSAGE value="“完成多对多客户表的添加”" />
     <MESSAGE value="“定义删除路线方法，并加上非空验证”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“定义删除路线方法，并加上非空验证”" />
+    <MESSAGE value="“修改多对多，解决为空报错问题”" />
+    <MESSAGE value="“定于获取进度条的后端方法”" />
+    <MESSAGE value="“实现进度条页面刷新”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“实现进度条页面刷新”" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException" package="com.mysql.jdbc.exceptions.jdbc4" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
