@@ -7,4 +7,7 @@
     <select id="selectDnameAndCount" resultType="map">
         SELECT * FROM `department` ORDER BY `personnum` DESC
     </select>
+    <select id="selectAgeCount" resultType="map">
+        SELECT * FROM `custom` ORDER BY `cage` DESC;
+    </select>
 </mapper>

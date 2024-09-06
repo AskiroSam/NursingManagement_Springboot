@@ -25,6 +25,12 @@ public class InfoController {
         return RespBean.ok("", mapList);
     }
 
+    @GetMapping("/ageCount")
+    public RespBean selectAgeCount() {
+        List<Map<String, Object>> ageList = adminService.selectAgeCount();
+        return RespBean.ok("", ageList);
+    }
+
     @GetMapping("/adminInfo")
     public RespBean getLoginInfo(HttpSession session) {
         //获取session中存放的已登录用户的信息

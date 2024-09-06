@@ -10,4 +10,6 @@ public interface AdminService {
     Admin login(String username, String password) throws MyException;
 
     List<Map<String, Object>> selectDnameAndCount();
+
+    List<Map<String, Object>> selectAgeCount();
 }

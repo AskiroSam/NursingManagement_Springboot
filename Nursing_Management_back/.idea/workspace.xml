@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善登录验证JWT”">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/InfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/AdminMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/InfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/InfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/AdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/AdminServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +130,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OlderSystemApplicationTests.test07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OlderSystemApplicationTests2.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
         <pattern>
@@ -131,8 +139,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test07" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
+      <option name="METHOD_NAME" value="test03" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -171,10 +179,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.OlderSystemApplication" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests2.test03" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test01" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test08" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test07" />
       </list>
     </recent_temporary>
   </component>
@@ -195,7 +203,7 @@
       <workItem from="1725411448869" duration="20585000" />
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
-      <workItem from="1725580081553" duration="27901000" />
+      <workItem from="1725580081553" duration="32913000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

@@ -13,4 +13,6 @@ public interface AdminMapper {
 
     //查询部门名称和客户人数，按照降序排序，只查询5个
     List<Map<String,Object>> selectDnameAndCount();
+
+    List<Map<String,Object>> selectAgeCount();
 }
