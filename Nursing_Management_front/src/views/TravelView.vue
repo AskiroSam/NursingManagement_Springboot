@@ -3,6 +3,8 @@
         <el-col :span="24">
             <el-card style="opacity: 0.9;">
                 <el-button type="primary" plain style="margin-bottom: 10px;">添加</el-button>
+                <el-button type="primary" style="margin-bottom: 10px; float: right;"
+                    @click="">次日进度更新(在路线全部完成后使用)</el-button>
                 <el-table :data="tarvelList" border style="width: 100%">
                     <el-table-column prop="tid" label="ID" align="center" width="60px" />
                     <el-table-column prop="tlocation" label="目的地" align="center" width="100px" />
@@ -11,7 +13,7 @@
                     <el-table-column prop="tprogress" label="路线进度" align="center" width="300px">
                         <template #default="score">
                             <el-progress :text-inside="true" :stroke-width="26"
-                                :percentage="getProgressPercentage(score.row)" />
+                                :percentage="score.row.tprogress" />
                         </template>
                     </el-table-column>
                     <el-table-column prop="tdescription" label="路线描述" align="center" width="300px" />
@@ -22,7 +24,8 @@
                             <el-button size="small" type="success"
                                 @click="showSetStaffDialog(scope.row.tid)">分配员工</el-button>
                             <el-button size="small" type="success">修改</el-button>
-                            <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消" @confirm="deleteByTid(scope.row.tid)">
+                            <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消"
+                                @confirm="deleteByTid(scope.row.tid)">
                                 <template #reference>
                                     <el-button size="small" type="danger">删除路线</el-button>
                                 </template>
@@ -93,6 +96,7 @@ const maxCustomNum = 5;
 //最大员工分配数量
 const maxStaffNum = 2;
 
+
 //查询所有在院客户的信息并显示分配客户的对话框
 function showSetCustomDialog(tid) {
     //查询所有在院客户的信息
@@ -128,20 +132,24 @@ function parseTime(timeString) {
 }
 
 //查询所有路线信息
-function selectAll() {
+function selectAll() { 
     travelApi.selectAll()
         .then(resp => {
+
             tarvelList.value = resp.data;
 
-            // 初始化进度（进度条）
-            progressList.value = tarvelList.value.map(travel => ({
-                tid: travel.tid,
-                tstart: parseTime(travel.tstart),
-                tend: parseTime(travel.tend),
-                progress: 0,
-            }));
+            // // 初始化进度（进度条）
+            // progressList.value = tarvelList.value.map(travel => ({
+            //     tid: travel.tid,
+            //     tstart: parseTime(travel.tstart),
+            //     tend: parseTime(travel.tend),
+            //     progress: 0,
+            //     tprogress: 0,
+            // }));
+
         })
 }
+
 
 //分配客户的方法
 function insertTidAndCid() {
@@ -183,40 +191,48 @@ function deleteByTid(tid) {
         })
 }
 
+//进度条开始-------------------------
 
-//记录进度条
-const progressList = ref([]);
-// 计算进度百分比
-function getProgressPercentage(travel) {
-    const progress = progressList.value.find(p => p.tid === travel.tid);
+// //记录进度条
+// const progressList = ref([]);
 
-    if (progress) {
-        const now = new Date();
-        const totalDuration = progress.tend - progress.tstart;
-        const elapsedDuration = now - progress.tstart;
 
-        let newProgress = 0;
-        if (elapsedDuration < 0) {
-            newProgress = 0;
-        } else if (elapsedDuration > totalDuration) {
-            newProgress = 100;
-        } else {
-            newProgress = (elapsedDuration / totalDuration) * 100;
-        }
+// // 计算进度百分比
+// function getProgressPercentage(travel) {
+//     console.log(travel);
+    
+//     const progress = progressList.value.find(p => p.tid === travel.tid);
 
-        // 保留两位小数
-        newProgress = Math.round(newProgress * 100) / 100;
+//     if (progress) {
+//         const now = new Date();
+//         const totalDuration = progress.tend - progress.tstart;
+//         const elapsedDuration = now - progress.tstart;
 
-        // 仅在需要时更新
-        if (progress.tprogress !== newProgress) {
-            progress.tprogress = newProgress;
-        }
-    }
+//         let newProgress = 0;
+//         if (elapsedDuration < 0) {
+//             newProgress = 0;
+//         } else if (elapsedDuration > totalDuration) {
+//             newProgress = 100;
+//         } else {
+//             newProgress = (elapsedDuration / totalDuration) * 100;
+//         }
 
-    // 仅在 `progress` 存在时返回保留两位小数的进度
-    return progress ? Math.round(progress.tprogress * 100) / 100 : 0;
-}
+//         // 保留两位小数
+//         newProgress = Math.round(newProgress * 100) / 100;
 
+//         // 仅在需要时更新
+//         if (progress.tprogress !== newProgress) {
+//             progress.tprogress = newProgress;
+//         }
+//     }
+
+//     // 仅在 `progress` 存在时返回保留两位小数的进度
+//     return progress ? Math.round(progress.tprogress * 100) / 100 : 0;
+
+// }
+
+
+//进度条结束---------------------------------------
 
 selectAll();
 </script>

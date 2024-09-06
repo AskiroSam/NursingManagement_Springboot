@@ -2,6 +2,7 @@ package com.stedu.controller;
 
 import com.stedu.bean.RespBean;
 import com.stedu.bean.Travel;
+import com.stedu.bean.TravelProgressDTO;
 import com.stedu.exception.MyException;
 import com.stedu.service.CustomService;
 import com.stedu.service.StaffService;
@@ -9,6 +10,7 @@ import com.stedu.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,6 +129,7 @@ public class TravelController {
         return RespBean.ok("分配员工成功");
     }
 
+    //删除线路
     @DeleteMapping("/{tid}")
     public RespBean delete(@PathVariable("tid") Integer tid) throws MyException {
         if (travelService.delete(tid)) {
@@ -135,4 +138,16 @@ public class TravelController {
             return RespBean.error("删除失败，请重试");
         }
     }
+
+    //进度条
+    @GetMapping("/progress/{tid}")
+    public TravelProgressDTO getTravelProgress(@PathVariable("tid") Integer tid) throws ParseException {
+        //Travel对象
+        Travel travel = travelService.selectByTid(tid);
+
+        // 计算进度
+        return travelService.calculateProgress(travel);
+
+    }
+
 }

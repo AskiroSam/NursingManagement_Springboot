@@ -2,16 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stedu.mapper.TravelMapper">
     <insert id="insertTidAndCid">
-        INSERT INTO `travel_custom`(`tid`, `cid`) VALUES
-        <foreach collection="cids" item="cid" separator=",">
-            (#{tid}, #{cid})
-        </foreach>
+        <if test="cids != null and cids.length > 0">
+            INSERT INTO `travel_custom` (`tid`, `cid`) VALUES
+            <foreach collection="cids" item="cid" separator=",">
+                (#{tid}, #{cid})
+            </foreach>
+        </if>
     </insert>
     <insert id="insertTidAndSid">
-        INSERT INTO `travel_staff`(`tid`, `sid`) VALUES
-        <foreach collection="sids" item="sid" separator=",">
-            (#{tid}, #{sid})
-        </foreach>
+        <if test="sids != null and sids.length > 0">
+            INSERT INTO `travel_staff` (`tid`, `sid`) VALUES
+            <foreach collection="sids" item="sid" separator=",">
+                (#{tid}, #{sid})
+            </foreach>
+        </if>
     </insert>
     <delete id="deleteTidAndCidByTid">
         DELETE FROM `travel_custom` WHERE `tid`=#{tid}
@@ -30,5 +34,8 @@
     </select>
     <select id="selectSidByTid" resultType="java.lang.Integer">
         SELECT `sid` FROM `travel_staff` WHERE `tid`=#{tid}
+    </select>
+    <select id="selectByTid" resultType="travel">
+        SELECT * FROM `travel` WHERE `tid`=#{tid}
     </select>
 </mapper>

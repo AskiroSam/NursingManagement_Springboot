@@ -9,6 +9,8 @@ public interface TravelMapper {
     //查询所有的出行路线
     List<Travel> selectAll();
 
+    Travel selectByTid(Integer tid);
+
     //获取某条路线的所有客户的cid
     List<Integer> selectCidByTid(Integer tid);
     //获取某条路线的所有员工的sid
@@ -27,4 +29,6 @@ public interface TravelMapper {
 
     //添加某条路线和员工的关联关系
     void insertTidAndSid(@Param("tid") Integer tid, @Param("sids") Integer[] sids);
+
+
 }
