@@ -1,6 +1,10 @@
 import service from ".";
 
 const travelApi = {
+    //添加
+    insert(travel) {
+        return service.post('/admin/travel', travel);
+    },
     //查询所有
     selectAll() {
         return service.get("/admin/travel");

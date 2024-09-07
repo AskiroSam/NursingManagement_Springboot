@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface TravelService {
 
-    boolean insert(Travel t) throws MyException;
+    boolean insert(Travel travel) throws MyException;
     boolean delete(Integer tid) throws MyException;
 
     Travel selectByTid(Integer tid);

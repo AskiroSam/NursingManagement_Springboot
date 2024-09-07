@@ -31,7 +31,7 @@ public class TravelServiceImpl implements TravelService {
         List<Integer> sids = travelMapper.selectSidByTid(tid);
         List<Integer> cids = travelMapper.selectCidByTid(tid);
 
-        if (sids != null || cids != null) {
+        if (!sids.isEmpty() || !cids.isEmpty()) {
            throw new MyException("路线中还有成员，无法删除");
         }
         return travelMapper.delete(tid) == 1;

@@ -35,11 +35,18 @@ public class TravelController {
 
     @PostMapping
     public RespBean insert(@RequestBody Travel travel) throws MyException {
+
         String tlocation = travel.getTlocation();
-        String tstart = travel.getTstart() + "";
-        String tend = travel.getTend() + "";
-        if (StrUtil.isEmpty(tlocation) || StrUtil.isEmpty(tstart) || StrUtil.isEmpty(tend)) {
-            throw new MyException("重要信息不能为空，请重新输入");
+        if (StrUtil.isEmpty(tlocation)) {
+            throw new MyException("路线不能为空，请重新输入");
+        }
+
+        if (travel.getTend() == null) {
+            throw new MyException("开始时间不能为空，请重新输入");
+        }
+
+        if (travel.getTend() == null) {
+            throw new MyException("结束时间不能为空，请重新输入");
         }
 
         if (travelService.insert(travel)) {

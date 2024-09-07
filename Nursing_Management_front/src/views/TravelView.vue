@@ -2,7 +2,8 @@
     <el-row>
         <el-col :span="24">
             <el-card style="opacity: 0.9;">
-                <el-button type="primary" plain style="margin-bottom: 10px;">添加</el-button>
+                <el-button type="primary" plain style="margin-bottom: 10px;"
+                    @click="addTravelShow = true">添加</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
                     @click="calculateProgress">刷新路线进度(在规定时间内显示)</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
@@ -63,11 +64,38 @@
     </el-dialog>
     <!-- 分配员工的对话框结束 -->
 
+    <!-- 添加路线的对话框开始 -->
+    <el-dialog v-model="addTravelShow" title="添加路线" width="500">
+        <el-form>
+            <el-form-item label="目的地：" label-width="18%">
+                <el-input v-model="travelAdd.tlocation" autocomplete="off" style="width: 300px;" />
+            </el-form-item>
+            <el-form-item label="出发时间：" label-width="18%">
+                <el-time-select v-model="travelAdd.tstart" style="width: 300px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" />
+            </el-form-item>
+            <el-form-item label="返回时间：" label-width="18%">
+                <el-time-select v-model="travelAdd.tend" style="width: 300px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" />
+            </el-form-item>
+            <el-form-item label="路线描述：" label-width="18%">
+                <el-input v-model="travelAdd.tdescription" autocomplete="off" placeholder="若不填写，则为空" style="width: 300px;" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="addTravelShow = false">取消</el-button>
+                <el-button type="primary" @click="insert">确认</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 添加路线的对话框结束 -->
+
 </template>
 
 <script setup>
 import travelApi from '@/api/travelApi';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage } from 'element-plus';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 //存放所有路线的数组
@@ -81,6 +109,9 @@ const allCustom = ref([]);
 const setStaffDialogShow = ref(false);
 //所有在职员工的信息
 const allStaff = ref([]);
+
+//添加路线对话框
+const addTravelShow = ref(false);
 
 //被选中的客户的cid
 const selectCids = ref([]);
@@ -102,6 +133,14 @@ const progressList = ref({
     tid: '',
     tprogress: ''
 });
+
+//被添加路线的信息
+const travelAdd = ref({
+    tlocation: '',
+    tstart: '',
+    tend: '',
+    tdescription: ''
+})
 
 //修改信息
 //被添加客户信息
@@ -147,7 +186,7 @@ function selectAll() {
             tarvelList.value = resp.data;
             progressList.value = resp.data;
 
-           
+
         })
 
 }
@@ -161,6 +200,43 @@ function insertTidAndCid() {
             setCustomDialogShow.value = false;
 
         });
+}
+
+//添加路线方法
+function insert() {
+    const loading = ElLoading.service({
+        lock: true,
+        text: '加载中',
+        background: 'rgba(0, 0, 0, 0.7)',
+    })
+    console.log(travelAdd.value);
+    travelApi.insert(travelAdd.value)    
+        .then(resp => {
+            loading.close();
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+
+                addTravelShow.value = false;
+                travelAdd.value = {
+                    tlocation: '',
+                    tstart: '',
+                    tend: '',
+                    tdescription: ''
+                }
+                selectAll();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
+        });
+
 }
 
 //分配员工的方法
@@ -196,11 +272,11 @@ function deleteByTid(tid) {
 //进度条开始-------------------------
 function calculateProgress() {
     progressList.value.forEach(p => {
-        if (p && p.tprogress !== undefined) {           
+        if (p && p.tprogress !== undefined) {
             const tid = p.tid;
 
             travelApi.getTravelProgress(tid)
-                .then(resp => {                  
+                .then(resp => {
                     p.tprogress = resp.progress;
                     tarvelList.value.tprogress = resp.progress;
 
@@ -208,27 +284,27 @@ function calculateProgress() {
 
                 })
         }
-    });  
+    });
 }
-
+//清除进度
 function clearProgress() {
     progressList.value.forEach(p => {
-        if (p && p.tprogress !== undefined) {           
+        if (p && p.tprogress !== undefined) {
             const tid = p.tid;
 
             travelApi.getTravelProgress(tid)
-                .then(resp => {                  
+                .then(resp => {
                     p.tprogress = resp.progress;
                     tarvelList.value.tprogress = resp.progress;
 
                     travelApi.clearProgress(p)
                         .then(
                             p.tprogress = 0,
-                            tarvelList.value.tprogress = 0,     
+                            tarvelList.value.tprogress = 0,
                         )
                 })
         }
-    });  
+    });
 }
 //进度条结束---------------------------------------
 
