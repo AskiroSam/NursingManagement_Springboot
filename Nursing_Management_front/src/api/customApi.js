@@ -23,11 +23,13 @@ const customApi = {
         });
     },
     //查询所有
-    selectByPage(pageNum, cname) {
+    selectByPage(pageNum, cname, cgender, caddress) {
         return service.get('/admin/custom', {
             params: {
                 pageNum,
-                cname
+                cname,
+                cgender,
+                caddress
             }
         });
     },

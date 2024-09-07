@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“后端头像上传”">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/IndexView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“多条件模糊查询后端”">
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/stedu/OlderSystemApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/customApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/customApi.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +91,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
+  <component name="RunManager" selected="JUnit.OlderSystemApplicationTests.test04">
     <configuration name="OlderSystemApplicationTests2.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
@@ -138,7 +140,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OlderSystemApplicationTests.test08" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OlderSystemApplicationTests.test04" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
         <pattern>
@@ -148,7 +150,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.stedu" />
       <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
-      <option name="METHOD_NAME" value="test08" />
+      <option name="METHOD_NAME" value="test04" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test04" />
         <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test01" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test03" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests.test08" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +198,7 @@
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
-      <workItem from="1725670622757" duration="25392000" />
+      <workItem from="1725670622757" duration="27354000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -358,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725689992509</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="“多条件模糊查询后端”">
+      <option name="closed" value="true" />
+      <created>1725715912815</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725715912815</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +408,8 @@
     <MESSAGE value="“完善添加的非空校验”" />
     <MESSAGE value="“添加修改路线controller”" />
     <MESSAGE value="“后端头像上传”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“后端头像上传”" />
+    <MESSAGE value="“多条件模糊查询后端”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“多条件模糊查询后端”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -7,12 +7,17 @@
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
                     </el-form-item>
                     <el-form-item style="float: right;">
-                        <el-input v-model="cname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />
-                        <el-input v-model="cgender" placeholder="请输入要搜索的性别" @input="selectByPage(1)" />
-                        <el-input v-model="caddress" placeholder="请输入要搜索的城市" @input="selectByPage(1)" />
+                        <el-button :icon="Search" circle style="margin-right: 5px;"/>
+                        <el-input v-model="cname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;">
+                        </el-input>
+                        <el-input v-model="cgender" placeholder="请输入要搜索的性别" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;" />
+                        <el-input v-model="caddress" placeholder="请输入要搜索的城市" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;" />
                     </el-form-item>
                 </el-form>
-                <el-table :data="pageInfo.list" border style="width: 100%">
+                <el-table :data="pageInfo.list" border style="width: 100%;">
                     <el-table-column prop="cid" label="ID" align="center" width="50px" />
                     <el-table-column prop="cname" label="姓名" align="center" />
                     <el-table-column prop="cage" label="年龄" align="center" width="60px" />
@@ -169,6 +174,16 @@ import expendApi from '@/api/expendApi';
 import familyApi from '@/api/familyApi';
 import { ElLoading, ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
+//图标
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue'
+
 
 //搜索
 const cname = ref('');
@@ -228,7 +243,6 @@ const familyUpdate = ref({
     cid: ''
 })
 
-
 //所有部门
 const departmentList = ref([]);
 //所有家属
@@ -238,9 +252,28 @@ const addDialogShow = ref(false);
 //删除对话框显示状态
 const updateDialogShow = ref(false);
 
+const shadowGroup = ref([
+    {
+        name: 'Basic Shadow',
+        type: '',
+    },
+    {
+        name: 'Light Shadow',
+        type: 'light',
+    },
+    {
+        name: 'Lighter Shadow',
+        type: 'lighter',
+    },
+    {
+        name: 'Dark Shadow',
+        type: 'dark',
+    },
+])
+
 //分页查询
 function selectByPage(pageNum) {
-    customApi.selectByPage(pageNum, cname.value)
+    customApi.selectByPage(pageNum, cname.value, cgender.value, caddress.value)
         .then(resp => {
             pageInfo.value = resp.data;
         })
