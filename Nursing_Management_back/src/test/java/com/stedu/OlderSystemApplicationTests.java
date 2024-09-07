@@ -2,8 +2,10 @@ package com.stedu;
 
 import com.stedu.bean.Custom;
 import com.stedu.bean.Department;
+import com.stedu.bean.Staff;
 import com.stedu.mapper.CustomMapper;
 import com.stedu.mapper.DepartmentMapper;
+import com.stedu.mapper.StaffMapper;
 import com.stedu.mapper.TravelMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ class OlderSystemApplicationTests {
     private DepartmentMapper departmentMapper;
     @Autowired
     private TravelMapper travelMapper;
+    @Autowired
+    private StaffMapper staffMapper;
 
     @Test
     public void test01() {
@@ -41,8 +45,8 @@ class OlderSystemApplicationTests {
 
     @Test
     public void test04() {
-        List<Custom> customs = customMapper.selectByPage(null, "女", "青岛");
-        System.out.println(customs);
+        List<Staff> staffs = staffMapper.selectByPage(null, null, "3500");
+        System.out.println(staffs);
     }
 
     @Test

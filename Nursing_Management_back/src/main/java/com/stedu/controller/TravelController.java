@@ -88,7 +88,7 @@ public class TravelController {
     //获取所有客户信息
     public RespBean allStaff(@PathVariable("tid") Integer tid) {
         //{{key: 客户的cid, label: 客户的系部信息 - 客户姓名}}
-        List<Map<String, Object>> staffMapList = staffService.selectBySname(null)
+        List<Map<String, Object>> staffMapList = staffService.selectByPage(null, null, null)
                 .stream()
                 .filter(e -> e.getSstate() == 1)
                 .map(e -> {

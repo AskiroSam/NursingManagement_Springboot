@@ -14,8 +14,8 @@ public class StaffServiceImpl implements StaffService {
     private StaffMapper staffMapper;
 
     @Override
-    public List<Staff> selectBySname(String sname) {
-        return staffMapper.selectBySname(sname);
+    public List<Staff> selectByPage(String sname, String sgender, String ssalary) {
+        return staffMapper.selectByPage(sname, sgender, ssalary);
     }
 
     @Override

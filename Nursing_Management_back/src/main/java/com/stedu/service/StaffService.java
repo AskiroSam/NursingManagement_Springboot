@@ -6,7 +6,7 @@ import com.stedu.bean.Staff;
 import java.util.List;
 
 public interface StaffService {
-    List<Staff> selectBySname(String sname);
+    List<Staff> selectByPage(String sname, String sgender, String ssalary);
 
     List<Staff> selectAll();
 
