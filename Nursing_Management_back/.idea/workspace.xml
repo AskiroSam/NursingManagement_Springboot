@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善登录验证JWT”">
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“添加修改路线controller”">
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/api/travelApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +193,7 @@
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
-      <workItem from="1725670622757" duration="614000" />
+      <workItem from="1725670622757" duration="12187000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -306,7 +307,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725623910664</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="“新增路线添加方法”">
+      <option name="closed" value="true" />
+      <created>1725675957244</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725675957244</updated>
+    </task>
+    <task id="LOCAL-00016" summary="“添加和删除路线的非空校验”">
+      <option name="closed" value="true" />
+      <created>1725680985133</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1725680985133</updated>
+    </task>
+    <task id="LOCAL-00017" summary="“完善添加的非空校验”">
+      <option name="closed" value="true" />
+      <created>1725683881181</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1725683881181</updated>
+    </task>
+    <task id="LOCAL-00018" summary="“添加修改路线controller”">
+      <option name="closed" value="true" />
+      <created>1725685614539</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725685614539</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +373,11 @@
     <MESSAGE value="“实现进度条页面刷新”" />
     <MESSAGE value="“后端配置JWT”" />
     <MESSAGE value="“完善登录验证JWT”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完善登录验证JWT”" />
+    <MESSAGE value="“新增路线添加方法”" />
+    <MESSAGE value="“添加和删除路线的非空校验”" />
+    <MESSAGE value="“完善添加的非空校验”" />
+    <MESSAGE value="“添加修改路线controller”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“添加修改路线controller”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -164,6 +164,11 @@ function chart02() {
             itemStyle: {
               borderRadius: 0
             },
+            label: {
+              show: true, // 显示标签
+              position: 'outside', // 标签位置，'inside' 表示内部
+              formatter: '{c} ({d}%)' // 标签格式，{b} 为扇区名称，{c} 为数据值，{d} 为百分比
+            },
             data: data.map((item, index) => ({
               value: count[index],
               name: item

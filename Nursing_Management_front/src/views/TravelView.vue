@@ -95,11 +95,13 @@
             <el-form-item label="目的地：" label-width="18%">
                 <el-input v-model="travelUpdate.tlocation" autocomplete="off" />
             </el-form-item>
-            <el-form-item label="开始时间：" label-width="18%">
-                <el-input v-model="travelUpdate.tstart" autocomplete="off" />
+            <el-form-item label="出发时间：" label-width="18%">
+                <el-time-select v-model="travelUpdate.tstart" style="width: 300px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" />
             </el-form-item>
-            <el-form-item label="结束时间：" label-width="18%">
-                <el-input v-model="travelUpdate.tend" autocomplete="off" />
+            <el-form-item label="返回时间：" label-width="18%">
+                <el-time-select v-model="travelUpdate.tend" style="width: 300px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" />
             </el-form-item>
             <el-form-item label="路线描述：" label-width="18%">
                 <el-input v-model="travelUpdate.tdescription" autocomplete="off" />
@@ -180,9 +182,9 @@ const travelUpdate = ref({
 
 //修改方法模态款
 function selectByTid(tid) {
-    travelApi.selectById(tid)
+    travelApi.selectByTid(tid)
         .then(resp => {
-            departmentUpdate.value = resp.data;
+            travelUpdate.value = resp.data;
             //显示对话框
             updateDialogShow.value = true;
         })
@@ -271,6 +273,30 @@ function insert() {
             }
         });
 
+}
+
+//修改路线方法
+function update() {
+    travelApi.update(travelUpdate.value)
+        .then(resp => {
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+
+                //隐藏
+                updateDialogShow.value = false;
+                selectAll();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
+        })
 }
 
 //分配员工的方法

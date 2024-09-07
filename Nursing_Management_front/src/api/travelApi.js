@@ -46,6 +46,10 @@ const travelApi = {
     //更新每日进度条
     clearProgress(travel) {
         return service.put('/admin/travel/progress', travel);
+    },
+    //根据ID查找travel
+    selectByTid(tid) {
+        return service.get(`/admin/travel/${tid}`);
     }
 
 
