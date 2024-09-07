@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“后端头像上传”">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/TravelView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/060f1c16e7334d1fa3a2c621d6c1b7da_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/14b6a420ce1945bb9dac4ec3b5d9913d_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/32693f6a257048ed83612f0f569c830f_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/39c9d4b82c8d4e2394d02ef6e0215bfc_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/5762979e5dff4424ab9f806c82358f43_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/6ef70e6c35f74388bf88cf7fbf1f981e_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/755094b6023e4786842d9fd90fd19169_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/aa33d41887a1439dbbeddaff05bad223_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/ae6865b77acd4f5b8565edf47daee117_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/c30548687a62443fb355396ebf625bd3_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/d954186f642f45c1b00f1fe45cb9cedb_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/d9b025cce2ca40639aadc18b9e733946_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/fdbc6e4d5947402ea85620564f12e917_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/feaddc37acd9473682b5a5c39830ed83_3e64cfa4a45ce005980f6c0140ed03c6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/bean/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/StaffMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/StaffMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/bean/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/bean/Staff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +215,7 @@
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
-      <workItem from="1725670622757" duration="16742000" />
+      <workItem from="1725670622757" duration="18653000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

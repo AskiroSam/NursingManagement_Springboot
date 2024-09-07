@@ -33,4 +33,6 @@ public class Staff {
     private Integer did;
     //部门信息
     private Department department;
+
+    private String savatar;
 }

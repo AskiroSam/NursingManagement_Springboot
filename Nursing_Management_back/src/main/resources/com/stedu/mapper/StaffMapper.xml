@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stedu.mapper.StaffMapper">
     <insert id="insert" parameterType="staff">
-        INSERT INTO `staff`(`sno`, `sname`, `sage`, `sgender`, `sentrydate`, `ssalary`, `sstate`, `did`)
-        VALUES (#{sno}, #{sname}, #{sage}, #{sgender}, #{sentrydate}, #{ssalary}, #{sstate}, #{did})
+        INSERT INTO `staff`(`sno`, `sname`, `sage`, `sgender`, `sentrydate`, `ssalary`, `sstate`, `did`, `savatar`)
+        VALUES (#{sno}, #{sname}, #{sage}, #{sgender}, #{sentrydate}, #{ssalary}, #{sstate}, #{did}, #{savatar})
     </insert>
     <update id="update" parameterType="staff">
         UPDATE `staff` SET
@@ -12,7 +12,8 @@
                 `sgender`=#{sgender},
                 `sentrydate`=#{sentrydate},
                 `ssalary`=#{ssalary},
-                `did`=#{did}
+                `did`=#{did},
+                `savatar`=#{savatar}
         WHERE `sid`=#{sid}
     </update>
     <update id="setEstate">

@@ -13,9 +13,14 @@
                 <el-table :data="pageInfo.list" border style="width: 100%">
                     <el-table-column prop="sid" label="ID" align="center" width="60px" />
                     <el-table-column prop="sno" label="工号" align="center" width="120px" />
+                    <el-table-column prop="savatar" label="头像" align="center">
+                        <template #default="scope">
+                            <el-avatar :size="50" :src="`http://localhost:8080/upload/` + scope.row.savatar" style="text-align: center;" />
+                        </template>
+                    </el-table-column>
                     <el-table-column prop="sname" label="姓名" align="center" width="70px" />
                     <el-table-column prop="sage" label="年龄" align="center" width="70px" />
-                    <el-table-column prop="sgender" label="性别" align="center" width="200px" />
+                    <el-table-column prop="sgender" label="性别" align="center" width="100px" />
                     <el-table-column prop="sentrydate" label="入职日期" align="center" width="150px" />
                     <el-table-column prop="ssalary" label="基本工资" align="center" width="150px" />
                     <el-table-column prop="sstate" label="在职状态" align="center" width="150px">
@@ -181,6 +186,7 @@ const staffAdd = ref({
     sentrydate: '',
     ssalary: '',
     did: '',
+    savatar: ''
 })
 
 //修改员工的信息
@@ -192,6 +198,7 @@ const staffUpdate = ref({
     sentrydate: '',
     ssalary: '',
     did: '',
+    savatar: ''
 })
 
 
@@ -240,10 +247,15 @@ function beforeAvatarUpload(rawFile) {
 }
 //成功上传之后的回调
 function handleAvatarSuccess(resp, uploadFile) {    
-    if (resp.code == 10000) {
+    if (resp.code == 10000) {   
         ElMessage.success(resp.msg);
         imageUrl.value = "http://localhost:8080/upload/" + resp.data;
+        staffAdd.value.savatar = resp.data;
     }
+    console.log(staffAdd.value.savatar);
+    
+
+    
     
 }
 
@@ -259,11 +271,11 @@ function insert() {
             if (resp.code == 10000) {
                 loading.close();
                 ElMessage({
-                    message: "客户和家属信息提交成功",
+                    message: "员工添加成功",
                     type: 'success',
                     duration: 1200
                 });
-
+                
                 //隐藏
                 addDialogShow.value = false;
                 staffAdd.value = {
@@ -274,7 +286,9 @@ function insert() {
                     sentrydate: '',
                     ssalary: '',
                     did: '',
+                    savatar: ''
                 };
+                imageUrl.value = '';
                 selectByPage(1);
                 //刷新部门人数
                 departmentApi.selectAll();
