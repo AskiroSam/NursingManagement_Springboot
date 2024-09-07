@@ -1,32 +1,38 @@
 <template>
-  <!-- <el-row>
-    <el-col :span="12">
-      
-    </el-col>
-  </el-row>
-
-  <el-row>
-    <el-col :span="12">
-      <el-card style="opacity: 0.9;">
-        <div id="chart02"></div>
-      </el-card>
-    </el-col>
-  </el-row> -->
-  <el-card style="opacity: 0.9; height: 210px;">
+  <el-card style="opacity: 0.9; height: 190px;">
     <div class="block text-center">
-    <el-carousel height="150px" indicator-position="none">
-      <el-carousel-item v-for="(item, index) in img" :key="item">
-        <img :src="item" style="width: 100%; height: 100%; object-fit: cover;" />
-      </el-carousel-item>
-    </el-carousel>
-  </div>
+      <el-carousel height="150px" indicator-position="none">
+        <el-carousel-item v-for="(item, index) in img" :key="item">
+          <img :src="item" style="width: 100%; height: 100%; object-fit: cover;" />
+        </el-carousel-item>
+      </el-carousel>
+    </div>
   </el-card>
-  <el-card style="opacity: 0.9; float: left; width: 650px; margin-top: 10px;">
+
+  <el-card style="opacity: 0.9; height: 210px; width: 650px; margin-top: 10px;">
+    <el-timeline style="max-width: 600px; float: left;">
+      <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp" :color="activity.color">
+        {{ activity.content }}
+      </el-timeline-item>
+    </el-timeline>
+    <div style="float: right;">
+      <el-alert title="客户管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px;" />
+      <el-alert title="员工管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px; margin-top: 5px;" />
+      <el-alert title="院系管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px; margin-top: 5px;" />
+      <el-alert title="服务管理系统正常工作......" :closable="false"  type="success" center show-icon style="width: 400px; margin-top: 5px;" />
+    </div>
+  </el-card>
+
+
+  <el-card style="opacity: 0.9; float: left; width: 650px; height: 280px; margin-top: 10px;">
     <div id="chart01"></div>
   </el-card>
-  <el-card style="opacity: 0.9; float: right; width: 680px; margin-top: 10px;">
+
+
+  <el-card style="opacity: 0.9; float: right; width: 690px; height: 500px; margin-top: -210px;">
     <div id="chart02"></div>
   </el-card>
+
 </template>
 
 <script setup>
@@ -100,6 +106,27 @@ function chart01() {
     });
 }
 
+const activities = [
+  {
+    content: 'System start',
+    timestamp: '2024-05-16',
+    size: 'large',
+    type: 'primary',
+    color: 'red',
+  },
+  {
+    content: 'System work',
+    timestamp: '2024-06-18',
+    color: '#0bbd87',
+    hollow: true,
+  },
+  {
+    content: 'System update',
+    timestamp: '2024-09-7',
+    color: '#000000',
+  },
+]
+
 
 const img = ref({
   img1: 'images/项目logo.png',
@@ -160,7 +187,7 @@ onMounted(() => {
 <style scoped>
 #chart01 {
   width: 600px;
-  height: 450px;
+  height: 300px;
   float: left;
 }
 
@@ -177,5 +204,6 @@ onMounted(() => {
   margin: 0;
   text-align: center;
 }
+
 
 </style>

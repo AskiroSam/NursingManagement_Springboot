@@ -4,7 +4,7 @@
             <el-card style="opacity: 0.9;">
                 <el-button type="primary" plain style="margin-bottom: 10px;">添加</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
-                    @click="calculateProgress">刷新路线进度</el-button>
+                    @click="calculateProgress">刷新路线进度(在规定时间内显示)</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
                     @click="clearProgress">次日进度更新(在路线全部完成后使用)</el-button>
                 <el-table :data="tarvelList" border style="width: 100%">
