@@ -18,7 +18,7 @@
         </if>
     </insert>
     <insert id="insert">
-        INSERT INTO `travel`(`tlocation`, `tstart`, `tend`, `tdescription`) VALUES (#{tlocation}, #{tstart}, #{tend}, #{tdescription})
+        INSERT INTO `travel`(`tlocation`, `tstart`, `tend`, `tprogress`, `tdescription`) VALUES (#{tlocation}, #{tstart}, #{tend}, #{tprogress}, #{tdescription})
     </insert>
     <update id="update" parameterType="travel">
         UPDATE `travel` SET `tprogress`=#{tprogress} WHERE `tid`=#{tid}

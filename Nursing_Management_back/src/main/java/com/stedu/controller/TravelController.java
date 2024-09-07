@@ -41,11 +41,12 @@ public class TravelController {
             throw new MyException("路线不能为空，请重新输入");
         }
 
-        if (travel.getTend() == null) {
+        if (travel.getTstart() == null) {
             throw new MyException("开始时间不能为空，请重新输入");
         }
 
         if (travel.getTend() == null) {
+            travel.setTprogress(0);
             throw new MyException("结束时间不能为空，请重新输入");
         }
 

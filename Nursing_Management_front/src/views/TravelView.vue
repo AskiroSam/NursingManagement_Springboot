@@ -139,6 +139,7 @@ const travelAdd = ref({
     tlocation: '',
     tstart: '',
     tend: '',
+    tprogress: '0',
     tdescription: ''
 })
 
@@ -208,8 +209,7 @@ function insert() {
         lock: true,
         text: '加载中',
         background: 'rgba(0, 0, 0, 0.7)',
-    })
-    console.log(travelAdd.value);
+    })    
     travelApi.insert(travelAdd.value)    
         .then(resp => {
             loading.close();
