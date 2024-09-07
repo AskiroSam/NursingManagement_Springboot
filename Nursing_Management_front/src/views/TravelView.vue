@@ -5,7 +5,7 @@
                 <el-button type="primary" plain style="margin-bottom: 10px;"
                     @click="addTravelShow = true">添加</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
-                    @click="calculateProgress">刷新路线进度(在规定时间内显示)</el-button>
+                    @click="calculateProgress">刷新路线进度(在规定时间内每分钟更新)</el-button>
                 <el-table :data="tarvelList" border style="width: 100%">
                     <el-table-column prop="tid" label="ID" align="center" width="60px" />
                     <el-table-column prop="tlocation" label="目的地" align="center" width="100px" />

@@ -78,6 +78,19 @@
                         :value="department.did" />
                 </el-select>
             </el-form-item>
+            <el-form-item label="头像:" label-width="18%">
+                <el-upload class="avatar-uploader" 
+                    action="http://localhost:8080/admin/upload" 
+                    name="pic"
+                    :show-file-list="false" 
+                    :on-success="handleAvatarSuccess"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                    <el-icon v-else class="avatar-uploader-icon">
+                        <Plus />
+                    </el-icon>
+                </el-upload>
+            </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -156,6 +169,9 @@ const addDialogShow = ref(false);
 //修改对话框显示状态
 const updateDialogShow = ref(false);
 
+//上传图片的地址
+const imageUrl = ref("");    
+
 //添加员工的信息
 const staffAdd = ref({
     sno: '',
@@ -209,6 +225,26 @@ function showUpdateDialog(sid) {
                 })
         })
 
+}
+
+//上传图片之前的回调
+function beforeAvatarUpload(rawFile) {
+    if (rawFile.type !== 'image/jpeg') {
+        ElMessage.error('图片仅支持jpg格式')
+        return false
+    } else if (rawFile.size / 1024 / 1024 > 2) {
+        ElMessage.error('图片不能超过2M')
+        return false
+    }
+    return true
+}
+//成功上传之后的回调
+function handleAvatarSuccess(resp, uploadFile) {    
+    if (resp.code == 10000) {
+        ElMessage.success(resp.msg);
+        imageUrl.value = "http://localhost:8080/upload/" + resp.data;
+    }
+    
 }
 
 //添加方法
@@ -289,4 +325,21 @@ function delteteStaff(sid) {
 selectByPage(1);
 </script>
 
-<style scoped></style>
+<style scoped>
+.avatar-uploader,
+.avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+    border: 1px dotted #dcdfe6;
+    border-radius: 5px;
+}
+
+.el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
+}
+</style>
