@@ -5,6 +5,17 @@
         <div>
           <img src="https://s21.ax1x.com/2024/09/05/pAZMVB9.png" style="width: 250px; margin-top: 12px;"></img>
         </div>
+        <el-button type="danger" round style="float: right; margin-top: -35px;"
+          @click="deleteDialog = true">退出登录</el-button>
+        <el-dialog v-model="deleteDialog" title="确认退出？" width="500" style="background-color: #ffffff; opacity: 0.9;">
+          <template #footer>
+            <div class="dialog-footer">
+              <el-button @click="deleteDialog = false">取消</el-button>
+              <el-button type="primary" @click="logout">确认</el-button>
+            </div>
+          </template>
+        </el-dialog>
+        <el-button type="info" title="请联系我" :icon="Message" circle style="float: right; margin-top: -35px; margin-right: 100px;" />
       </el-header>
       <el-container>
         <el-aside>
@@ -69,12 +80,41 @@
 
 <script setup>
 import router from '@/router';
+import { ElMessage } from 'element-plus';
+import { ref } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
+
+//退出对话框
+const deleteDialog = ref(false);
+
+//退出
+function logout() {
+  ElMessage.success({
+    message: '退出成功',
+    duration: 1200,
+    onClose: () => { //提示信息消失时间回调
+      //删除sessionStorage中的token
+      sessionStorage.removeItem('token');
+      //跳转到登录页
+      router.push('/login');
+    }
+  })
+}
 
 //跳转
 function toHref(indexPath) {
   router.push(indexPath);
 }
+
+//图标
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
@@ -88,5 +128,4 @@ function toHref(indexPath) {
 .el-header {
   background-color: #000000;
 }
-
 </style>
