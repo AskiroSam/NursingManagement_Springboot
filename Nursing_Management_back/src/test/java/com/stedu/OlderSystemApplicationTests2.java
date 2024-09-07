@@ -29,7 +29,7 @@ class OlderSystemApplicationTests2 {
     @Test
     public void test02() {
         //解析JWT   JwtUtils.parseJwtToMap（）
-        Map<String, Object> map = JwtUtils.parseJwtToMap("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImFnZSI6MjAsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzI1NjI1MDgxfQ.g3mO-LsjfqLN3ZCehJTdk66i27FDQxmu_NkcBapiA2g");
+        Map<String, Object> map = JwtUtils.parseJwtToMap("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImFnZSI6MjAsInVzZXJuYW1lIjoiYWRtaW4ifSwiZXhwIjoxNzI1NzA2Mjc5fQ.B31AWILoFoF9BRDOk2sDSzwjGPO6z7YCCEQ0jc9wvFg");
         System.out.println(map.get("username"));
         System.out.println(map.get("age"));
     }

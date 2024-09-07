@@ -6,16 +6,22 @@ import FamilyView from '@/views/FamilyView.vue'
 import IndexView from '@/views/IndexView.vue'
 import StaffView from '@/views/StaffView.vue'
 import TravelView from '@/views/TravelView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: LoginView
+    }, {
       path: '/',
       name: 'home',
       component: HomeView,
-      // 重定向到首页
+      // redirect重定向(父路由即首页)
       redirect: '/index',
+      // children表示子路由
       children: [
         {
           path: '/dept',
@@ -47,5 +53,38 @@ const router = createRouter({
     }
   ]
 })
+
+// //导航守卫
+// router.beforeEach((to, from) => {
+//   //to - 要访问的位置
+//   //from - 起始位置
+//   if (to.path == '/login') {
+//     return true;
+//   } else {
+//     //判断sessionStorage中是否有token
+//     if (!sessionStorage.getItem('token')) {
+//       return "/login";
+//     } else {
+//       return true;
+//     }
+//   }
+// })
+
+//导航守卫
+router.beforeEach((to, from) => {
+  //to - 要访问的位置
+  //from - 起始位置
+  if (to.path == '/login') {
+    return true;
+  // } else {
+  //   //判断sessionStorage中是否有token
+  //   if (!sessionStorage.getItem('token')) {
+  //     return "/login";
+  //   } else {
+  //     return true;
+  //   }
+  }
+})
+
 
 export default router
