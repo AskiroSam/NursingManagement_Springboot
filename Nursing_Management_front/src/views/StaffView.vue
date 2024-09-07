@@ -184,7 +184,7 @@ const pageInfo = ref({
 // 导出Excel
 function exportData() {
     // 根据搜索条件构建 URL
-    const url = `http://localhost:8080/excel/exportStaff?cname=${sname.value}&cgender=${sgender.value}&caddress=${ssalary.value}`;
+    const url = `http://localhost:8080/excel/exportStaff?sname=${sname.value}&sgender=${sgender.value}&ssalary=${ssalary.value}`;
     
     axios.get(url, {
         responseType: 'blob', // 确保响应类型为 blob
@@ -194,7 +194,7 @@ function exportData() {
     })
     .then(response => {
         // 创建一个下载链接并触发下载
-        const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedostaff.spreadsheetml.sheet' });
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.setAttribute('download', 'staff.xlsx'); // 指定下载文件名
