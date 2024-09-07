@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,6 +97,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 
         return departments;
+    }
+
+    //Excel
+    @Override
+    public Map<Integer, String> getDepartmentMap() {
+        List<Department> departments = departmentMapper.selectAll();
+        return departments.stream()
+                .collect(Collectors.toMap(Department::getDid, Department::getDname));
     }
 
 }

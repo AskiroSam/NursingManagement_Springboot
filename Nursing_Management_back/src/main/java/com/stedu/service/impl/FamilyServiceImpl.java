@@ -1,6 +1,7 @@
 package com.stedu.service.impl;
 
 import com.stedu.bean.Custom;
+import com.stedu.bean.Department;
 import com.stedu.bean.Family;
 import com.stedu.exception.MyException;
 import com.stedu.mapper.CustomMapper;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class FamilyServiceImpl implements FamilyService {
@@ -50,5 +53,13 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public Family selectByFid(Integer fid) {
         return familyMapper.selectByFid(fid);
+    }
+
+    //Excel
+    @Override
+    public Map<Integer, String> getFamilyMap() {
+        List<Family> familys = familyMapper.selectAll();
+        return familys.stream()
+                .collect(Collectors.toMap(Family::getFid, Family::getFname));
     }
 }

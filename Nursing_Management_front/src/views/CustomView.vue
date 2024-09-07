@@ -5,7 +5,7 @@
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item>
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
-                        <el-button type="warning" plain @click="exportData">批量导出</el-button>
+                        <el-button type="warning" plain @click="exportData">Excel导出</el-button>
                     </el-form-item>
                     <el-form-item style="float: right;">
                         <el-button :icon="Search" circle style="margin-right: 5px;"/>
@@ -201,7 +201,7 @@ const pageInfo = ref({
 // 导出Excel
 function exportData() {
     // 根据搜索条件构建 URL
-    const url = `http://localhost:8080/excel/export?cname=${cname.value}&cgender=${cgender.value}&caddress=${caddress.value}`;
+    const url = `http://localhost:8080/excel/exportCustom?cname=${cname.value}&cgender=${cgender.value}&caddress=${caddress.value}`;
     
     axios.get(url, {
         responseType: 'blob', // 确保响应类型为 blob
