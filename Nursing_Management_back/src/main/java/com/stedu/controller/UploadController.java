@@ -25,8 +25,15 @@ public class UploadController {
         String filename = pic.getOriginalFilename();
         //随机名字
         filename = UUID.randomUUID().toString().replace("-", "") + "_" + filename;
-        //保存到服务器
-        pic.transferTo(new File(picdir + filename));
+        ////保存到服务器
+        //pic.transferTo(new File(picdir + filename));
+
+        // 获取项目根目录的相对路径
+        String projectRootPath = System.getProperty("user.dir");
+        File uploadDir = new File(projectRootPath, picdir);
+        File dest = new File(uploadDir, filename);
+        pic.transferTo(dest);
+
         return RespBean.ok("上传成功", filename);
     }
 }
