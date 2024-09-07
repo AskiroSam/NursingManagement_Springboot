@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“后端头像上传”">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/images/背景1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/LoginView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +91,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.OlderSystemApplicationTests2.test02">
+  <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
     <configuration name="OlderSystemApplicationTests2.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
@@ -170,9 +172,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test01" />
-        <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test03" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test08" />
       </list>
@@ -196,7 +198,7 @@
       <workItem from="1725451008521" duration="3202000" />
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
-      <workItem from="1725670622757" duration="19861000" />
+      <workItem from="1725670622757" duration="24205000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

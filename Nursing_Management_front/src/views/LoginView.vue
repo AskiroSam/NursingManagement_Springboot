@@ -2,14 +2,18 @@
     <div class="container">
         <h1 style="margin-bottom: 30px; margin-right: 5px;  opacity: 0.8">用户登录</h1>
         <el-form rel="form" label-width="60px">
-            <el-form-item label="用户名" :style="{ width: '450px', height: 'auto'}">
-                <el-input type="text" v-model="admin.username"  :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }"></el-input>
+            <el-form-item label="用户名" :style="{ width: '450px', height: 'auto' }">
+                <el-input type="text" v-model="admin.username"
+                    :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }"></el-input>
             </el-form-item>
-            <el-form-item label="密码" :style="{ width: '450px', height: 'auto'}">
-                <el-input type="password" v-model="admin.password"  :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }"></el-input>
+            <el-form-item label="密码" :style="{ width: '450px', height: 'auto' }">
+                <el-input type="password" v-model="admin.password"
+                    :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }"></el-input>
             </el-form-item>
             <el-form-item style="text-align: center; width: 700px; margin-top: 30px; margin-left: 150px;">
-                <el-button type="primary" style="background-color: black; width: 300px; border: 1px solid black; margin-left: -120px;" @click=login>登录</el-button>
+                <el-button type="primary"
+                    style="background-color: black; width: 300px; border: 1px solid black; margin-left: -120px;"
+                    @click=login>登录</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -31,8 +35,25 @@ const admin = ref({
 
 //登录
 function login() {
-    //跳转到后台首页
-    router.push('/index');
+    adminApi.login(admin.value)
+        .then(resp => {            
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200,
+                    onClose: () => {
+                        //保存JWT到sessionStorage
+                        sessionStorage.setItem('token', resp.data);                        
+                        //跳转到后台首页
+                        router.push('/index');
+                    }
+                });
+            } else {
+                ElMessage.error(resp.msg);
+            }
+        });
+
 }
 </script>
 
@@ -52,35 +73,11 @@ function login() {
     transform: translate(-50%, -50%);
 }
 
-/* input {
-    border: 0;
-    width: 60%;
-    font-size: 15px;
-    color: #fff;
-    background: transparent;
-    border-bottom: 2px solid #fff;
-    padding: 5px 10px;
-    outline: none;
-    margin-top: 10px;
-}
 
-button {
-    margin-top: 50px;
-    width: 60%;
-    height: 30px;
-    border-radius: 10px;
-    border: 0;
-    color: #fff;
-    text-align: center;
-    line-height: 30px;
-    font-size: 15px;
-    background-image: linear-gradient(to right, #30cfd0, #330867);
-} */
-
-.el-input {
+/* .el-input {
     background-color: red;
     color: red;
-}
+} */
 
 
 .app {

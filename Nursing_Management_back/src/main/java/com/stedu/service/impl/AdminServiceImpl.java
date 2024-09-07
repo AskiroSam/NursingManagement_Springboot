@@ -101,39 +101,4 @@ public class AdminServiceImpl implements AdminService {
         return resultList;
     }
 
-    //年龄分布图表
-    //@Override
-    //public List<Map<String, Object>> selectAgeCount() {
-    //    List<Integer> ages = adminMapper.selectAgeCount();
-    //    Integer ageCount56 = 0;
-    //    Integer ageCount67 = 0;
-    //    Integer ageCount78 = 0;
-    //    Integer ageCount89 = 0;
-    //    Integer other = 0;
-    //    for (Integer age : ages) {
-    //        if (age >= 50 && age <=60) {
-    //            ageCount56++;
-    //        } else if (age > 60 && age <= 70) {
-    //            ageCount67++;
-    //        } else if (age > 70 && age <= 80) {
-    //            ageCount78++;
-    //        } else if (age >80 && age <= 90) {
-    //            ageCount89++;
-    //        } else {
-    //            other++;
-    //        }
-    //    }
-    //
-    //    Map<String, Object> ageMap = new HashMap<>();
-    //    ageMap.put("ageCount56", ageCount56);
-    //    ageMap.put("ageCount67", ageCount67);
-    //    ageMap.put("ageCount78", ageCount78);
-    //    ageMap.put("ageCount89", ageCount89);
-    //    ageMap.put("other", other);
-    //
-    //    List<Map<String, Object>> ageList = new ArrayList<>();
-    //    ageList.add(ageMap);
-    //
-    //    return ageList;
-    //}
 }
