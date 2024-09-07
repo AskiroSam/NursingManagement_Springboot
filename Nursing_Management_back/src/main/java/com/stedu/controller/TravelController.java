@@ -190,4 +190,10 @@ public class TravelController {
         }
     }
 
+    @GetMapping("/{tid}")
+    public RespBean selectByTid(@PathVariable("tid") Integer tid) {
+        Travel travel = travelService.selectByTid(tid);
+        return RespBean.ok("", travel);
+    }
+
 }

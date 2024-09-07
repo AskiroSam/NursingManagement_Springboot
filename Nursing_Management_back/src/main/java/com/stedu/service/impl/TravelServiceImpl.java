@@ -150,6 +150,11 @@ public class TravelServiceImpl implements TravelService {
         return travelMapper.update(travel) == 1;
     }
 
+    //@Override
+    //public boolean updateTravel(Travel travel) {
+    //    return travelMapper.updateTravel(travel) == 1;
+    //}
+
     @Override
     public boolean clearProgress(Travel travel) {
         return travelMapper.clearProgress(travel) == 1;

@@ -6,8 +6,6 @@
                     @click="addTravelShow = true">添加</el-button>
                 <el-button type="primary" style="margin-bottom: 10px; float: right;"
                     @click="calculateProgress">刷新路线进度(在规定时间内显示)</el-button>
-                <el-button type="primary" style="margin-bottom: 10px; float: right;"
-                    @click="clearProgress">次日进度更新(在路线全部完成后使用)</el-button>
                 <el-table :data="tarvelList" border style="width: 100%">
                     <el-table-column prop="tid" label="ID" align="center" width="60px" />
                     <el-table-column prop="tlocation" label="目的地" align="center" width="100px" />
@@ -25,7 +23,7 @@
                                 @click="showSetCustomDialog(scope.row.tid)">分配客户</el-button>
                             <el-button size="small" type="success"
                                 @click="showSetStaffDialog(scope.row.tid)">分配员工</el-button>
-                            <el-button size="small" type="success">修改</el-button>
+                            <el-button size="small" type="success" @click="selectByTid(scope.row.tid)">修改</el-button>
                             <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消"
                                 @confirm="deleteByTid(scope.row.tid)">
                                 <template #reference>
@@ -91,6 +89,31 @@
     </el-dialog>
     <!-- 添加路线的对话框结束 -->
 
+    <!-- 修改路线的对话框开始 -->
+    <el-dialog v-model="updateDialogShow" title="添加院系" width="500">
+        <el-form>
+            <el-form-item label="目的地：" label-width="18%">
+                <el-input v-model="travelUpdate.tlocation" autocomplete="off" />
+            </el-form-item>
+            <el-form-item label="开始时间：" label-width="18%">
+                <el-input v-model="travelUpdate.tstart" autocomplete="off" />
+            </el-form-item>
+            <el-form-item label="结束时间：" label-width="18%">
+                <el-input v-model="travelUpdate.tend" autocomplete="off" />
+            </el-form-item>
+            <el-form-item label="路线描述：" label-width="18%">
+                <el-input v-model="travelUpdate.tdescription" autocomplete="off" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="updateDialogShow = false">取消</el-button>
+                <el-button type="primary" @click="update">确认</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 修改路线的对话框结束 -->
+
 </template>
 
 <script setup>
@@ -112,6 +135,8 @@ const allStaff = ref([]);
 
 //添加路线对话框
 const addTravelShow = ref(false);
+//修改路线对话框
+const updateDialogShow = ref(false);
 
 //被选中的客户的cid
 const selectCids = ref([]);
@@ -143,8 +168,8 @@ const travelAdd = ref({
     tdescription: ''
 })
 
-//修改信息
-//被添加客户信息
+
+//被添加路线信息
 const travelUpdate = ref({
     tlocation: '',
     tstart: '',
@@ -153,6 +178,15 @@ const travelUpdate = ref({
     tdescription: ''
 });
 
+//修改方法模态款
+function selectByTid(tid) {
+    travelApi.selectById(tid)
+        .then(resp => {
+            departmentUpdate.value = resp.data;
+            //显示对话框
+            updateDialogShow.value = true;
+        })
+}
 
 //查询所有在院客户的信息并显示分配客户的对话框
 function showSetCustomDialog(tid) {
@@ -282,26 +316,6 @@ function calculateProgress() {
 
                     travelApi.update(p);
 
-                })
-        }
-    });
-}
-//清除进度
-function clearProgress() {
-    progressList.value.forEach(p => {
-        if (p && p.tprogress !== undefined) {
-            const tid = p.tid;
-
-            travelApi.getTravelProgress(tid)
-                .then(resp => {
-                    p.tprogress = resp.progress;
-                    tarvelList.value.tprogress = resp.progress;
-
-                    travelApi.clearProgress(p)
-                        .then(
-                            p.tprogress = 0,
-                            tarvelList.value.tprogress = 0,
-                        )
                 })
         }
     });

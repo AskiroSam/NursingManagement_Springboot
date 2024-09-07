@@ -36,6 +36,8 @@ public interface TravelService {
 
     boolean update(Travel travel);
 
+    //boolean updateTravel(Travel travel);
+
     boolean clearProgress(Travel travel);
 
 }
