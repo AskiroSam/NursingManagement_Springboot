@@ -15,7 +15,8 @@
             </div>
           </template>
         </el-dialog>
-        <el-button type="info" title="请联系我" :icon="Message" circle style="float: right; margin-top: -35px; margin-right: 100px;" />
+        <el-button type="info" title="请联系我" :icon="Message" circle
+          style="float: right; margin-top: -35px; margin-right: 100px;" @click="EmailShow = true" />
       </el-header>
       <el-container>
         <el-aside>
@@ -68,14 +69,32 @@
                   <Bicycle />
                 </el-icon>出行管理</el-menu-item>
             </el-sub-menu>
+            <el-menu-item index="/index">
+              <template #title>
+                <el-icon>
+                  <House />
+                </el-icon>
+                <span>返回首页</span>
+              </template>
+            </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main style="background-image: url(../../images/1.jpg);">
+        <el-main style="background-image: url(../../images/1.jpg); background-size: cover;">
           <RouterView />
         </el-main>
       </el-container>
     </el-container>
   </div>
+
+  <!-- 联系我对话框开始 -->
+  <el-dialog v-model="EmailShow" title="联系方式" width="330">
+    <div>
+      <img src="../../images/二维码.jpg" style="width: 300px;">
+    </div>
+  </el-dialog>
+  <!-- 联系我对话框结束 -->
+
+
 </template>
 
 <script setup>
@@ -86,6 +105,8 @@ import { RouterView, RouterLink } from 'vue-router';
 
 //退出对话框
 const deleteDialog = ref(false);
+//联系我对话框
+const EmailShow = ref(false);
 
 //退出
 function logout() {

@@ -9,27 +9,24 @@
     </div>
   </el-card>
 
-  <el-card style="opacity: 0.9; height: 210px; width: 650px; margin-top: 10px;">
+  <el-card style="opacity: 0.9; height: 180px; width: 650px; margin-top: 10px;">
     <el-timeline style="max-width: 600px; float: left;">
       <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp" :color="activity.color">
         {{ activity.content }}
       </el-timeline-item>
     </el-timeline>
     <div style="float: right;">
-      <el-alert title="客户管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px;" />
-      <el-alert title="员工管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px; margin-top: 5px;" />
-      <el-alert title="院系管理系统正常工作......" :closable="false" type="success" center show-icon style="width: 400px; margin-top: 5px;" />
-      <el-alert title="服务管理系统正常工作......" :closable="false"  type="success" center show-icon style="width: 400px; margin-top: 5px;" />
+      <el-alert title="系统正常工作中......" :closable="false" type="success" center show-icon style="width: 400px; height: 100px; border-radius: 10px;" />
     </div>
   </el-card>
 
 
-  <el-card style="opacity: 0.9; float: left; width: 650px; height: 280px; margin-top: 10px;">
+  <el-card style="opacity: 0.9; float: left; width: 650px; height: 290px; margin-top: 10px;">
     <div id="chart01"></div>
   </el-card>
 
 
-  <el-card style="opacity: 0.9; float: right; width: 690px; height: 500px; margin-top: -210px;">
+  <el-card style="opacity: 0.9; float: right; width: 690px; height: 480px; margin-top: -180px;">
     <div id="chart02"></div>
   </el-card>
 

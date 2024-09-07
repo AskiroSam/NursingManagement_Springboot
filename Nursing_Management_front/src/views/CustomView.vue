@@ -8,6 +8,8 @@
                     </el-form-item>
                     <el-form-item style="float: right;">
                         <el-input v-model="cname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />
+                        <el-input v-model="cgender" placeholder="请输入要搜索的性别" @input="selectByPage(1)" />
+                        <el-input v-model="caddress" placeholder="请输入要搜索的城市" @input="selectByPage(1)" />
                     </el-form-item>
                 </el-form>
                 <el-table :data="pageInfo.list" border style="width: 100%">
@@ -170,6 +172,9 @@ import { reactive, ref } from 'vue';
 
 //搜索
 const cname = ref('');
+const cgender = ref('');
+const caddress = ref('');
+
 //分页信息
 const pageInfo = ref({
     total: 0,
