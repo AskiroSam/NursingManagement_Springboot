@@ -5,6 +5,7 @@
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item>
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
+                        <el-button type="warning" plain @click="exportData">批量导出</el-button>
                     </el-form-item>
                     <el-form-item style="float: right;">
                         <el-button :icon="Search" circle style="margin-right: 5px;"/>
@@ -174,6 +175,7 @@ import expendApi from '@/api/expendApi';
 import familyApi from '@/api/familyApi';
 import { ElLoading, ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
+import axios from 'axios';
 //图标
 import {
   Check,
@@ -195,6 +197,36 @@ const pageInfo = ref({
     total: 0,
     pageInfo: 0
 });
+
+// 导出Excel
+function exportData() {
+    // 根据搜索条件构建 URL
+    const url = `http://localhost:8080/excel/export?cname=${cname.value}&cgender=${cgender.value}&caddress=${caddress.value}`;
+    
+    axios.get(url, {
+        responseType: 'blob', // 确保响应类型为 blob
+        headers: {
+            'token': 'your_token_here' // 替换成实际的 token
+        }
+    })
+    .then(response => {
+        // 创建一个下载链接并触发下载
+        const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute('download', 'customs.xlsx'); // 指定下载文件名
+        document.body.appendChild(link);
+        link.click();
+        
+        // 清理临时链接
+        document.body.removeChild(link);
+    })
+    .catch(error => {
+        // 错误处理
+        ElMessage.error('导出 Excel 失败，请稍后再试');
+        console.error('导出 Excel 失败:', error);
+    });
+}
 
 //被添加客户信息
 const customAdd = ref({

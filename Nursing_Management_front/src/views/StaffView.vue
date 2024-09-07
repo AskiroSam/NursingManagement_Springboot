@@ -7,7 +7,14 @@
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
                     </el-form-item>
                     <el-form-item style="float: right;">
-                        <el-input v-model="sname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)" />
+                        <el-button :icon="Search" circle style="margin-right: 5px;" />
+                        <el-input v-model="sname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;">
+                        </el-input>
+                        <el-input v-model="sgender" placeholder="请输入要搜索的性别" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;" />
+                        <el-input v-model="ssalary" placeholder="请输入要搜索的薪资" @input="selectByPage(1)"
+                            style="width: 200px; margin-right: 20px;" />
                     </el-form-item>
                 </el-form>
                 <el-table :data="pageInfo.list" border style="width: 100%">
@@ -15,7 +22,8 @@
                     <el-table-column prop="sno" label="工号" align="center" width="120px" />
                     <el-table-column prop="savatar" label="头像" align="center">
                         <template #default="scope">
-                            <el-avatar :size="50" :src="`http://localhost:8080/upload/` + scope.row.savatar" style="text-align: center;" />
+                            <el-avatar :size="50" :src="`http://localhost:8080/upload/` + scope.row.savatar"
+                                style="text-align: center;" />
                         </template>
                     </el-table-column>
                     <el-table-column prop="sname" label="姓名" align="center" width="70px" />
@@ -84,12 +92,8 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="头像:" label-width="18%">
-                <el-upload class="avatar-uploader" 
-                    action="http://localhost:8080/admin/upload" 
-                    name="pic"
-                    :show-file-list="false" 
-                    :on-success="handleAvatarSuccess"
-                    :before-upload="beforeAvatarUpload">
+                <el-upload class="avatar-uploader" action="http://localhost:8080/admin/upload" name="pic"
+                    :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                     <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                     <el-icon v-else class="avatar-uploader-icon">
                         <Plus />
@@ -154,9 +158,20 @@ import { ref } from 'vue';
 import staffApi from '@/api/staffApi';
 import departmentApi from '@/api/departmentApi';
 import { ElLoading, ElMessage } from 'element-plus';
+//图标
+import {
+    Check,
+    Delete,
+    Edit,
+    Message,
+    Search,
+    Star,
+} from '@element-plus/icons-vue'
 
 //搜索
 const sname = ref('');
+const sgender = ref('');
+const ssalary = ref('');
 
 //分页信息
 const pageInfo = ref({
@@ -175,7 +190,7 @@ const addDialogShow = ref(false);
 const updateDialogShow = ref(false);
 
 //上传图片的地址
-const imageUrl = ref("");    
+const imageUrl = ref("");
 
 //添加员工的信息
 const staffAdd = ref({
@@ -204,7 +219,7 @@ const staffUpdate = ref({
 
 //分页查询
 function selectByPage(pageNum) {
-    staffApi.selectByPage(pageNum, sname.value)
+    staffApi.selectByPage(pageNum, sname.value, sgender.value, ssalary.value)
         .then(resp => {
             pageInfo.value = resp.data
         })
@@ -246,17 +261,17 @@ function beforeAvatarUpload(rawFile) {
     return true
 }
 //成功上传之后的回调
-function handleAvatarSuccess(resp, uploadFile) {    
-    if (resp.code == 10000) {   
+function handleAvatarSuccess(resp, uploadFile) {
+    if (resp.code == 10000) {
         ElMessage.success(resp.msg);
         imageUrl.value = "http://localhost:8080/upload/" + resp.data;
         staffAdd.value.savatar = resp.data;
     }
     console.log(staffAdd.value.savatar);
-    
 
-    
-    
+
+
+
 }
 
 //添加方法
@@ -275,7 +290,7 @@ function insert() {
                     type: 'success',
                     duration: 1200
                 });
-                
+
                 //隐藏
                 addDialogShow.value = false;
                 staffAdd.value = {

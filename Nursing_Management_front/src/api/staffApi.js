@@ -14,11 +14,13 @@ const staffApi = {
         return service.put('/admin/staff', staff);
     },
     //查询所有
-    selectByPage(pageNum, sname) {
+    selectByPage(pageNum, sname, sgender, ssalary) {
         return service.get('/admin/staff', {
             params: {
                 pageNum,
-                sname
+                sname,
+                sgender,
+                ssalary
             }
         });
     },
