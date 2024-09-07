@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface TravelMapper {
+
+    int insert(Travel travel);
     //查询所有的出行路线
     List<Travel> selectAll();
 

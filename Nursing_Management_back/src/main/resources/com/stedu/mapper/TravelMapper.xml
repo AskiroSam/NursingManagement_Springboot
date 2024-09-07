@@ -17,6 +17,9 @@
             </foreach>
         </if>
     </insert>
+    <insert id="insert">
+        INSERT INTO `travel`(`tlocation`, `tstart`, `tend`, `tdescription`) VALUES (#{tlocation}, #{tstart}, #{tend}, #{tdescription})
+    </insert>
     <update id="update" parameterType="travel">
         UPDATE `travel` SET `tprogress`=#{tprogress} WHERE `tid`=#{tid}
     </update>

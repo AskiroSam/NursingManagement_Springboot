@@ -22,6 +22,11 @@ public class TravelServiceImpl implements TravelService {
     private TravelMapper travelMapper;
 
     @Override
+    public boolean insert(Travel travel) throws MyException {
+        return travelMapper.insert(travel) == 1;
+    }
+
+    @Override
     public boolean delete(Integer tid) throws MyException {
         List<Integer> sids = travelMapper.selectSidByTid(tid);
         List<Integer> cids = travelMapper.selectCidByTid(tid);

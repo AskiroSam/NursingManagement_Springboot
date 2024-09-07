@@ -1,5 +1,6 @@
 package com.stedu.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.stedu.bean.RespBean;
 import com.stedu.bean.Travel;
 import com.stedu.bean.TravelProgressDTO;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin
@@ -34,6 +32,23 @@ public class TravelController {
         List<Travel> travelList = travelService.selectAll();
         return RespBean.ok("", travelList);
     }
+
+    @PostMapping
+    public RespBean insert(@RequestBody Travel travel) throws MyException {
+        String tlocation = travel.getTlocation();
+        String tstart = travel.getTstart() + "";
+        String tend = travel.getTend() + "";
+        if (StrUtil.isEmpty(tlocation) || StrUtil.isEmpty(tstart) || StrUtil.isEmpty(tend)) {
+            throw new MyException("重要信息不能为空，请重新输入");
+        }
+
+        if (travelService.insert(travel)) {
+            return RespBean.ok("添加成功");
+        } else {
+            return RespBean.error("添加失败");
+        }
+    }
+
 
     @GetMapping("/allCustom/{tid}")
     //获取所有客户信息

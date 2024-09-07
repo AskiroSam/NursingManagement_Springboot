@@ -1,6 +1,7 @@
 package com.stedu.service;
 
 
+import com.stedu.bean.Department;
 import com.stedu.bean.Travel;
 import com.stedu.bean.TravelProgressDTO;
 import com.stedu.exception.MyException;
@@ -10,6 +11,8 @@ import java.text.ParseException;
 import java.util.List;
 
 public interface TravelService {
+
+    boolean insert(Travel t) throws MyException;
     boolean delete(Integer tid) throws MyException;
 
     Travel selectByTid(Integer tid);
