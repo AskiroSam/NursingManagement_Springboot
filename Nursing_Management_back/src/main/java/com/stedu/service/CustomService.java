@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CustomService {
-    List<Custom> selectByCname(String cname);
+    List<Custom> selectByPage(String cname, String cgender, String caddress);
 
     List<Custom> selectAll();
 

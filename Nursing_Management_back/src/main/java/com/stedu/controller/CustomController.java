@@ -28,14 +28,13 @@ public class CustomController {
     private Integer pageSize;
 
     @GetMapping
-    public RespBean selectByPage(Integer pageNum, String cname) {
+    public RespBean selectByPage(Integer pageNum, String cname, String cgender, String caddress) {
         if (pageNum == null) {
             pageNum = 1;
         }
 
         PageHelper.startPage(pageNum, pageSize);
-        List<Custom> customList = customService.selectByCname(cname);
-        //List<Custom> customList = customService.selectAll();
+        List<Custom> customList = customService.selectByPage(cname, cgender, caddress);
         System.out.println(customList);
 
         PageInfo<Custom> pageInfo = new PageInfo<>(customList);

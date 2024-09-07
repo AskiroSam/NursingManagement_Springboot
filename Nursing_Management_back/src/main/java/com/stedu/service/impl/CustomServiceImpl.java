@@ -14,8 +14,8 @@ public class CustomServiceImpl implements CustomService {
     private CustomMapper customMapper;
 
     @Override
-    public List<Custom> selectByCname(String cname) {
-        return customMapper.selectByCname(cname);
+    public List<Custom> selectByPage(String cname, String cgender, String caddress) {
+        return customMapper.selectByPage(cname, cgender, caddress);
     }
 
     @Override

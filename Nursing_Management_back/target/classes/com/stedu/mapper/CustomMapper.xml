@@ -35,11 +35,17 @@
         <association column="fid" property="family" javaType="family" select="com.stedu.mapper.FamilyMapper.selectByFid" />
         <association column="eid" property="expend" javaType="expend" select="com.stedu.mapper.ExpendMapper.selectByEid" />
     </resultMap>
-    <select id="selectByCname" resultMap="customMap">
+    <select id="selectByPage" resultMap="customMap">
         SELECT * FROM `custom`
         <where>
             <if test="cname != null and cname.length > 0">
-                `cname` LIKE concat('%', #{cname}, '%')
+                AND `cname` LIKE concat('%', #{cname}, '%')
+            </if>
+            <if test="cgender != null and cgender.length > 0">
+                AND `cgender` LIKE concat('%', #{cgender}, '%')
+            </if>
+            <if test="caddress != null and caddress.length > 0">
+                AND `caddress` LIKE concat('%', #{caddress}, '%')
             </if>
         </where>
         ORDER BY `cstate` ASC

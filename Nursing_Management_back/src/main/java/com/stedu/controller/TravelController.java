@@ -62,13 +62,13 @@ public class TravelController {
     //获取所有客户信息
     public RespBean allCustom(@PathVariable("tid") Integer tid) {
         //{{key: 客户的cid, label: 客户的系部信息 - 客户姓名}}
-        List<Map<String, Object>> customMapList = customService.selectByCname(null)
+        List<Map<String, Object>> customMapList = customService.selectByPage(null, null, null)
                 .stream()
                 .filter(e -> e.getCstate() == 1)
                 .map(e -> {
                     Map<String, Object> customMap = new HashMap<>();
                     customMap.put("key", e.getCid());
-                    customMap.put("label", e.getDepartment().getDname() + "-" + e.getCname());
+                    customMap.put("label", e.getDepartment().getDname() + "-" + e.getCname() + "-" + e.getCgender() + "-" + e.getCaddress());
 
                     return customMap;
                 }).collect(Collectors.toList());

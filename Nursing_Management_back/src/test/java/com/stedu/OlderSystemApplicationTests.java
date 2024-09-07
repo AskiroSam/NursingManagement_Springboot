@@ -41,7 +41,7 @@ class OlderSystemApplicationTests {
 
     @Test
     public void test04() {
-        List<Custom> customs = customMapper.selectByCname("李姥姥");
+        List<Custom> customs = customMapper.selectByPage(null, "女", "青岛");
         System.out.println(customs);
     }
 

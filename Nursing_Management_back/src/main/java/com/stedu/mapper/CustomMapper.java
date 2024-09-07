@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CustomMapper {
     List<Custom> selectAll();
-    List<Custom> selectByCname(String cname);
+    List<Custom> selectByPage(@Param("cname") String cname,@Param("cgender") String cgender, @Param("caddress") String caddress);
 
     Custom selectByCid(Integer cid);
 
