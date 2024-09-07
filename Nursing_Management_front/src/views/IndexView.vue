@@ -130,7 +130,7 @@ const activities = [
 
 const img = ref({
   img1: 'images/项目logo.png',
-  img2: 'images/img1.png'
+  img2: 'images/img2.png'
 });
 
 function chart02() {
