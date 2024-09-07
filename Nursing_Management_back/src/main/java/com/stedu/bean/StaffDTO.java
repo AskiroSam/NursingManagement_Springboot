@@ -19,4 +19,5 @@ public class StaffDTO {
     private String ssalary;
     private Integer sstate;
     private String department;
+    private String savatar;
 }

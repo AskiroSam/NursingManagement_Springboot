@@ -117,6 +117,7 @@ public class excelPortController {
             dto.setSentrydate(custom.getSentrydate());
             dto.setSsalary(String.valueOf(custom.getSsalary()));
             dto.setSstate(custom.getSstate());
+            dto.setSavatar(custom.getSavatar());
             dto.setDepartment(departmentMap.getOrDefault(custom.getDid(), "未知"));
             //dto.setFamily(familyMap.getOrDefault(custom.getFid(), "未知"));
             //dto.setExpend(expendMap.getOrDefault(custom.getEid(), "未知"));
