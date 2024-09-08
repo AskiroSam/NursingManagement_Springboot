@@ -126,7 +126,7 @@ const activities = [
 
 
 const img = ref({
-  img1: 'images/项目logo.png',
+  img1: 'images/项目logo2.png',
   img2: 'images/img2.png'
 });
 
