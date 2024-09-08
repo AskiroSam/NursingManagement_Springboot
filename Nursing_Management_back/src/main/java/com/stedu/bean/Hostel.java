@@ -13,4 +13,6 @@ public class Hostel {
     private String hno;
 
     private Integer did;
+
+
 }

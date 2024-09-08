@@ -66,7 +66,8 @@
     <el-dialog v-model="addTravelShow" title="添加路线" width="500" style="width: 600px;">
         <el-form :model="travelAdd" :rules="state.rules" ref="addFormRef">
             <el-form-item label="目的地：" label-width="18%" prop="tlocation">
-                <el-input v-model="travelAdd.tlocation" autocomplete="off" style="width: 400px;" @input="handleAddNull" />
+                <el-input v-model="travelAdd.tlocation" autocomplete="off" style="width: 400px;"
+                    @input="handleAddNull" />
             </el-form-item>
             <el-form-item label="出发时间：" label-width="18%" prop="tstart">
                 <el-time-select v-model="travelAdd.tstart" style="width: 400px" start="06:00" step="00:15" end="23:30"
@@ -77,7 +78,8 @@
                     placeholder="请选择时间" @change="handleAddNull" />
             </el-form-item>
             <el-form-item label="路线描述：" label-width="18%" prop="tdescription">
-                <el-input v-model="travelAdd.tdescription" autocomplete="off" placeholder="若不填写，则为空" style="width: 400px;" @input="handleAddNull" />
+                <el-input v-model="travelAdd.tdescription" autocomplete="off" placeholder="若不填写，则为空"
+                    style="width: 400px;" @input="handleAddNull" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -96,8 +98,8 @@
                 <el-input v-model="travelUpdate.tlocation" autocomplete="off" />
             </el-form-item>
             <el-form-item label="出发时间：" label-width="18%">
-                <el-time-select v-model="travelUpdate.tstart" style="width: 300px" start="06:00" step="00:15" end="23:30"
-                    placeholder="请选择时间" />
+                <el-time-select v-model="travelUpdate.tstart" style="width: 300px" start="06:00" step="00:15"
+                    end="23:30" placeholder="请选择时间" />
             </el-form-item>
             <el-form-item label="返回时间：" label-width="18%">
                 <el-time-select v-model="travelUpdate.tend" style="width: 300px" start="06:00" step="00:15" end="23:30"
@@ -151,7 +153,7 @@ const customSelectTid = ref(0);
 const staffSelectTid = ref(0);
 
 //最大客户分配数量
-const maxCustomNum = 5;
+const maxCustomNum = 2;
 //最大员工分配数量
 const maxStaffNum = 2;
 
@@ -180,6 +182,9 @@ const travelUpdate = ref({
     tdescription: ''
 });
 
+// ---------------------------------------------------
+
+// ---------------------------------------------------
 
 // ---------非空校验开始------------------
 //添加的确认按钮状态
@@ -221,7 +226,7 @@ const handleUpdateNull = async () => {
 
     // 验证表单
     await formEl.validate((valid, fields) => {
-        if (valid) {       
+        if (valid) {
             updateButtonDisabled.value = false;
         } else {
             updateButtonDisabled.value = true;
@@ -284,9 +289,12 @@ function selectAll() {
 function insertTidAndCid() {
     travelApi.insertTidAndCid(customSelectTid.value, selectCids.value)
         .then(resp => {
-            ElMessage.success(resp.msg);
-            setCustomDialogShow.value = false;
-
+            if (resp.code == 10000) {
+                ElMessage.success(resp.msg);
+                setCustomDialogShow.value = false;
+            } else {
+                ElMessage.error(resp.msg);
+            }
         });
 }
 
@@ -296,8 +304,8 @@ function insert() {
         lock: true,
         text: '加载中',
         background: 'rgba(0, 0, 0, 0.7)',
-    })    
-    travelApi.insert(travelAdd.value)    
+    })
+    travelApi.insert(travelAdd.value)
         .then(resp => {
             loading.close();
             if (resp.code == 10000) {
@@ -354,8 +362,13 @@ function update() {
 function insertTidAnSid() {
     travelApi.insertTidAndSid(staffSelectTid.value, selectSids.value)
         .then(resp => {
-            ElMessage.success(resp.msg);
-            setStaffDialogShow.value = false;
+            if (resp.code == 10000) {
+                ElMessage.success(resp.msg);
+                setStaffDialogShow.value = false;
+            } else {
+                ElMessage.error(resp.msg);
+            }
+           
         })
 }
 
