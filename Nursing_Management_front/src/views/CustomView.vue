@@ -8,7 +8,7 @@
                         <el-button type="warning" plain @click="exportData">Excel导出</el-button>
                     </el-form-item>
                     <el-form-item style="float: right;">
-                        <el-button :icon="Search" circle style="margin-right: 5px;"/>
+                        <el-button :icon="Search" circle style="margin-right: 5px;" />
                         <el-input v-model="cname" placeholder="请输入要搜索的姓名" @input="selectByPage(1)"
                             style="width: 200px; margin-right: 20px;">
                         </el-input>
@@ -59,46 +59,50 @@
 
     <!-- 添加客户的对话框开始 -->
     <el-dialog v-model="addDialogShow" title="添加客户" width="500">
-        <el-form>
-            <el-form-item label="姓名:" label-width="18%">
-                <el-input v-model="customAdd.cname" autocomplete="off" style="width: 300px" />
+        <el-form :model="customAdd" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="姓名:" label-width="18%" prop="cname">
+                <el-input v-model="customAdd.cname" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="年龄:" label-width="18%">
-                <el-input v-model="customAdd.cage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="年龄:" label-width="18%" prop="cage">
+                <el-input v-model="customAdd.cage" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="性别:" label-width="18%">
-                <el-radio-group v-model="customAdd.cgender" style="width: 300px">
+            <el-form-item label="性别:" label-width="18%" prop="cgender">
+                <el-radio-group v-model="customAdd.cgender" style="width: 300px" @input="handleAddNull">
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="手机号:" label-width="18%">
-                <el-input v-model="customAdd.cphone" autocomplete="off" style="width: 300px" />
+            <el-form-item label="手机号:" label-width="18%" prop="cphone">
+                <el-input v-model="customAdd.cphone" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="入院时间:" label-width="18%">
+            <el-form-item label="入院时间:" label-width="18%" prop="centrydate">
                 <el-date-picker v-model="customAdd.centrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
-                    value-format="YYYY-MM-DD" style="width: 300px" />
+                    value-format="YYYY-MM-DD" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="家庭住址:" label-width="18%">
-                <el-input v-model="customAdd.caddress" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家庭住址:" label-width="18%" prop="caddress">
+                <el-input v-model="customAdd.caddress" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="院系:" label-width="18%">
+            <el-form-item label="院系:" label-width="18%" prop="did">
                 <el-select v-model="customAdd.did" placeholder="请选择院系" size="large" style="width: 300px">
                     <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
-                        :value="department.did" :disabled="isDisabled(department)" />
+                        :value="department.did" :disabled="isDisabled(department)" @click="handleAddNull" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="家属姓名:" label-width="18%">
-                <el-input v-model="familyAdd.fname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家属姓名:" label-width="18%" prop="fname" :error="errors.fname">
+                <el-input v-model="familyAdd.fname" autocomplete="off" style="width: 300px"
+                    @blur="handleAddFamilyNull" />
             </el-form-item>
-            <el-form-item label="家属年龄:" label-width="18%">
-                <el-input v-model="familyAdd.fage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家属年龄:" label-width="18%" prop="fage" :error="errors.fage">
+                <el-input v-model="familyAdd.fage" autocomplete="off" style="width: 300px"
+                    @blur="handleAddFamilyNull" />
             </el-form-item>
-            <el-form-item label="家属性别:" label-width="18%">
-                <el-input v-model="familyAdd.fgender" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家属性别:" label-width="18%" prop="fgender" :error="errors.fgender">
+                <el-input v-model="familyAdd.fgender" autocomplete="off" style="width: 300px"
+                    @blur="handleAddFamilyNull" />
             </el-form-item>
-            <el-form-item label="家属手机:" label-width="18%">
-                <el-input v-model="familyAdd.fphone" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家属手机:" label-width="18%" prop="fphone" :error="errors.fphone">
+                <el-input v-model="familyAdd.fphone" autocomplete="off" style="width: 300px"
+                    @blur="handleAddFamilyNull" />
             </el-form-item>
             <el-form-item label="护理等级:" label-width="18%">
                 <el-radio-group v-model="customAdd.eid" style="width: 300px">
@@ -110,7 +114,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="insert">确认</el-button>
+                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -178,12 +182,12 @@ import { reactive, ref } from 'vue';
 import axios from 'axios';
 //图标
 import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
+    Check,
+    Delete,
+    Edit,
+    Message,
+    Search,
+    Star,
 } from '@element-plus/icons-vue'
 
 
@@ -202,30 +206,30 @@ const pageInfo = ref({
 function exportData() {
     // 根据搜索条件构建 URL
     const url = `http://localhost:8080/excel/exportCustom?cname=${cname.value}&cgender=${cgender.value}&caddress=${caddress.value}`;
-    
+
     axios.get(url, {
         responseType: 'blob', // 确保响应类型为 blob
         headers: {
             'token': 'your_token_here' // 替换成实际的 token
         }
     })
-    .then(response => {
-        // 创建一个下载链接并触发下载
-        const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.setAttribute('download', 'customs.xlsx'); // 指定下载文件名
-        document.body.appendChild(link);
-        link.click();
-        
-        // 清理临时链接
-        document.body.removeChild(link);
-    })
-    .catch(error => {
-        // 错误处理
-        ElMessage.error('导出 Excel 失败，请稍后再试');
-        console.error('导出 Excel 失败:', error);
-    });
+        .then(response => {
+            // 创建一个下载链接并触发下载
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'customs.xlsx'); // 指定下载文件名
+            document.body.appendChild(link);
+            link.click();
+
+            // 清理临时链接
+            document.body.removeChild(link);
+        })
+        .catch(error => {
+            // 错误处理
+            ElMessage.error('导出 Excel 失败，请稍后再试');
+            console.error('导出 Excel 失败:', error);
+        });
 }
 
 //被添加客户信息
@@ -238,7 +242,7 @@ const customAdd = ref({
     caddress: '',
     did: '',
     fid: '',
-    eid: ''
+    eid: 1
 });
 
 //被添加家属的信息
@@ -302,6 +306,117 @@ const shadowGroup = ref([
         type: 'dark',
     },
 ])
+
+
+// ---------非空校验开始------------------
+//添加的确认按钮状态
+const addButtonDisabled = ref(true);
+//修改的确认按钮状态
+const updateButtonDisabled = ref(false);
+// 定义表单引用
+const addFormRef = ref(null);
+const updateFormRef = ref(null);
+
+const errors = reactive({
+    fname: '',
+    fage: '',
+    fgender: '',
+    fphone: '',
+});
+//验证规则
+const state = reactive({
+    rules: {
+        cname: [
+            { required: true, message: '请输入名称', trigger: 'blur' },
+        ],
+        cage: [
+            { required: true, message: '请输入年龄', trigger: 'blur' },
+        ],
+        cgender: [
+            { required: true, message: '请输入性别', trigger: 'blur' },
+        ],
+        cphone: [
+            { required: true, message: '请输入手机号', trigger: 'blur' },
+        ],
+        centrydate: [
+            { required: true, message: '请输入入院日期', trigger: 'blur' },
+        ],
+        caddress: [
+            { required: true, message: '请输入家庭住址', trigger: 'blur' },
+        ],
+        did: [
+            { required: true, message: '请选择院系', trigger: 'blur' },
+        ],
+
+    }
+});
+// 处理添加数据的方法
+const handleAddNull = async () => {
+    const formEl = addFormRef.value; // 获取 el-form 实例
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            // addButtonDisabled.value = false;
+        } else {
+            addButtonDisabled.value = true;
+        }
+    });
+};
+// 处理修改数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例  
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            updateButtonDisabled.value = false;
+        } else {
+            updateButtonDisabled.value = true;
+        }
+    });
+};
+//家属信息验证
+function handleAddFamilyNull() {
+    errors.fname = '';
+    errors.fage = '';
+    errors.fgender = '';
+    errors.fphone = '';
+    // 标记是否存在任何验证错误
+    let hasErrors = false;
+
+    // 验证家属姓名
+    if (familyAdd.value.fname.trim() === '') {
+        errors.fname = '家属姓名不能为空';
+        hasErrors = true;
+    }
+
+    // 验证家属年龄
+    if (familyAdd.value.fage.trim() === '') {
+        errors.fage = '家属年龄不能为空';
+        hasErrors = true;
+    }
+
+    // 验证家属性别
+    if (familyAdd.value.fgender.trim() === '') {
+        errors.fgender = '家属性别不能为空';
+        hasErrors = true;
+    }
+
+    // 验证家属手机
+    if (familyAdd.value.fphone.trim() === '') {
+        errors.fphone = '家属手机不能为空';
+        hasErrors = true;
+    }
+
+    // 更新按钮的禁用状态
+    addButtonDisabled.value = hasErrors;
+}
+// ---------非空校验结束------------------
+
+
 
 //分页查询
 function selectByPage(pageNum) {
