@@ -118,7 +118,7 @@ const customList = ref([]);
 function selectByPage(pageNum) {
     familyApi.selectByPage(pageNum, fname.value)
         .then(resp => {
-            pageInfo.value = resp.data;                   
+            pageInfo.value = resp.data;
         })
 }
 //获取所有用户的信息
@@ -148,27 +148,36 @@ function showUpdateDialog(fid) {
 function update() {
     familyApi.update(familyUpdate.value)
         .then(resp => {
+            if (resp.code == 10000) {
+                customApi.update(customUpdate.value)
+                    .then(resp => {
+                        if (resp.code == 10000) {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'success',
+                                duration: 1200
+                            });
 
-            customApi.update(customUpdate.value)
-                .then(resp => {
-                    if (resp.code == 10000) {
-                        ElMessage({
-                            message: resp.msg,
-                            type: 'success',
-                            duration: 1200
-                        });
+                            //隐藏
+                            updateDialogShow.value = false;
+                            selectByPage(1);
+                        } else {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'error',
+                                duration: 1200
+                            });
+                        }
+                    })
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
 
-                        //隐藏
-                        updateDialogShow.value = false;
-                        selectByPage(1);
-                    } else {
-                        ElMessage({
-                            message: resp.msg,
-                            type: 'error',
-                            duration: 1200
-                        });
-                    }
-                })
+
         })
 }
 

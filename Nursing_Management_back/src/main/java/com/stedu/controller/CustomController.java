@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.stedu.bean.Custom;
 import com.stedu.bean.RespBean;
+import com.stedu.exception.MyException;
 import com.stedu.service.CustomService;
 import com.stedu.service.FamilyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class CustomController {
     }
 
     @PostMapping
-    public RespBean insert(@RequestBody Custom custom) {
+    public RespBean insert(@RequestBody Custom custom) throws MyException {
         boolean result = customService.insert(custom);
         //校准家属表
         if (result) {

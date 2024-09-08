@@ -1,6 +1,7 @@
 package com.stedu.service.impl;
 
 import com.stedu.bean.Custom;
+import com.stedu.exception.MyException;
 import com.stedu.mapper.CustomMapper;
 import com.stedu.service.CustomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public boolean insert(Custom c) {
+    public boolean insert(Custom c) throws MyException {
         c.setCstate(1);
+        // 验证手机号是否为11位
+        if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
+            throw new MyException("手机号必须是11位数字");
+        }
         return customMapper.insert(c) == 1;
     }
 

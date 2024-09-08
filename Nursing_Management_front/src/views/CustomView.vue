@@ -409,13 +409,19 @@ function handleAddFamilyNull() {
     if (familyAdd.value.fphone.trim() === '') {
         errors.fphone = '家属手机不能为空';
         hasErrors = true;
+    } else if (!/^\d{11}$/.test(familyAdd.value.fphone.trim())) {
+        ElMessage({
+            message: '手机号必须是11位数字',
+            type: 'error',
+            duration: 1200,
+        })
+        hasErrors = true;
     }
 
     // 更新按钮的禁用状态
     addButtonDisabled.value = hasErrors;
 }
 // ---------非空校验结束------------------
-
 
 
 //分页查询
@@ -473,6 +479,7 @@ function insert() {
     })
     customApi.insert(customAdd.value)
         .then(resp => {
+            loading.close();
             if (resp.code == 10000) {
                 const newCid = resp.data.cid;
                 familyAdd.value.cid = newCid;
@@ -485,7 +492,6 @@ function insert() {
                             customApi.updateFid(newCid, newFid)
                                 .then(resp => {
                                     if (resp.code == 10000) {
-                                        loading.close();
                                         ElMessage({
                                             message: "客户和家属信息提交成功",
                                             type: 'success',
@@ -518,7 +524,7 @@ function insert() {
                                         departmentApi.selectAll();
                                     } else {
                                         ElMessage({
-                                            message: "提交失败，请重试",
+                                            message: resp.msg,
                                             type: 'error',
                                             duration: 1200
                                         });
@@ -527,6 +533,12 @@ function insert() {
 
                         }
                     })
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
             }
         })
 }

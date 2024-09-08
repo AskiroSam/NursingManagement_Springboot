@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“修改Excel的导入导出”">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“家属修改数据校验”">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/CustomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/CustomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/CustomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/CustomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/CustomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/CustomServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/CustomServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,27 +56,27 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/work/JAVA/项目/Nursing_Management",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "settings.json.schema.catalog",
-    "ts.external.directory.path": "E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/work/JAVA/项目/Nursing_Management&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema.catalog&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.stedu.service.impl" />
@@ -196,6 +203,7 @@
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
+      <workItem from="1725764006925" duration="4544000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -397,7 +405,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725728562394</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="“家属修改数据校验”">
+      <option name="closed" value="true" />
+      <created>1725783972161</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1725783972161</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +457,8 @@
     <MESSAGE value="“员工多条件模糊查询后端”" />
     <MESSAGE value="“实现Excel的导入导出”" />
     <MESSAGE value="“修改Excel的导入导出”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“修改Excel的导入导出”" />
+    <MESSAGE value="“家属修改数据校验”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“家属修改数据校验”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
