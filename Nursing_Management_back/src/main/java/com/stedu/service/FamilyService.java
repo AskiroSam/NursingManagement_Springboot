@@ -13,7 +13,7 @@ public interface FamilyService {
 
     boolean insert(Family f);
 
-    boolean update(Family f);
+    boolean update(Family f) throws MyException;
 
     boolean delete(Integer fid) throws MyException;
 

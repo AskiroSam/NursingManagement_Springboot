@@ -60,7 +60,7 @@ public class FamilyController {
     }
 
     @PutMapping
-    public RespBean update(@RequestBody Family family) {
+    public RespBean update(@RequestBody Family family) throws MyException {
         familyService.update(family);
         return RespBean.ok("修改成功");
     }

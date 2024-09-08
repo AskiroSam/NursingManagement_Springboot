@@ -37,7 +37,11 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Override
-    public boolean update(Family f) {
+    public boolean update(Family f) throws MyException {
+        // 验证手机号是否为11位
+        if (f.getFphone() == null ||!f.getFphone().matches("\\d{11}")) {
+            throw new MyException("手机号必须是11位数字");
+        }
         return familyMapper.update(f) == 1;
     }
 
