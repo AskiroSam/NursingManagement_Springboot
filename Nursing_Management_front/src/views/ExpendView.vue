@@ -24,12 +24,13 @@
                     <el-table-column prop="pnumber" label="员工总数" align="center" />
                     <el-table-column prop="pout" label="需支付总工资" align="center" />
                     <el-table-column label="操作" align="center">
-                        <el-badge is-dot class="item">
-                            <el-button title="发布" class="share-button" :icon="Share" 
-                            type="primary"
-                            @click="putShow" 
-                            style="height: 30px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
-                        </el-badge>
+                        <template #default="scope">
+                            <el-badge class="item">
+                                <el-button title="发布" class="share-button" :icon="Share" type="primary"
+                                    @click="putShow(scope.row.pid)"
+                                    style="height: 30px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
+                            </el-badge>
+                        </template>
                     </el-table-column>
                 </el-table>
             </el-card>
@@ -53,6 +54,23 @@
     </el-dialog>
     <!-- 修改费用的对话框结束 -->
 
+    <!-- 发布的对话框开始 -->
+    <el-dialog v-model="putOutShow" title="发布" width="500">
+        <el-form :model="expendUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="需支付的总工资" label-width="25%">
+                <el-input v-model="payoutSee.pout" autocomplete="off" @input="handleUpdateNull" disabled />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="putOutShow = false">取消</el-button>
+                <el-button type="primary" @click="push">发布</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 发布的对话框结束 -->
+
+
 </template>
 
 <script setup>
@@ -68,6 +86,8 @@ const expendList = ref([]);
 const payoutList = ref([]);
 //修改模态款显示状态
 const updateDialogShow = ref(false);
+//发布模态框的显示状态
+const putOutShow = ref(false);
 
 //被修改费用的信息
 const expendUpdate = ref({
@@ -77,6 +97,11 @@ const expendUpdate = ref({
     enumber: '',
     eincome: ''
 });
+const payoutSee = ref({
+    pid: '',
+    pnunmber: '',
+    pout: ''
+})
 
 //修改方法模态款
 function selectByEid(eid) {
@@ -88,6 +113,13 @@ function selectByEid(eid) {
         })
 }
 //发布模态框
+function putShow(pid) {
+    payoutApi.selectById(pid)
+        .then(resp => {
+            payoutSee.value = resp.data;
+            putOutShow.value = true;
+        })
+}
 
 
 function selectAll() {
@@ -124,8 +156,20 @@ function update() {
                     type: 'error',
                     duration: 1200
                 });
+
             }
         })
+}
+
+//发布方法
+function push() {
+    ElMessage({
+        message: '发布成功',
+        type: 'success',
+        duration: 1200
+    });
+    putOutShow.value = false;
+
 }
 
 // ---------非空校验开始------------------
@@ -188,8 +232,9 @@ selectAll();
     border-radius: 4px;
     min-height: 36px;
 }
+
 .item {
-  margin-top: 10px;
-  margin-right: 40px;
+    margin-top: 10px;
+    margin-right: 40px;
 }
 </style>
