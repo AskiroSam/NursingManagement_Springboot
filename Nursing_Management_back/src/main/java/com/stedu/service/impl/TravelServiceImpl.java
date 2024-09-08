@@ -21,6 +21,10 @@ public class TravelServiceImpl implements TravelService {
     @Autowired
     private TravelMapper travelMapper;
 
+    // 最大分配数量
+    private static final int MAX_ALLOCATION_CUSTOM = 5;
+    private static final int MAX_ALLOCATION_STAFF = 2;
+
     @Override
     public boolean insert(Travel travel) throws MyException {
         return travelMapper.insert(travel) == 1;
@@ -60,11 +64,14 @@ public class TravelServiceImpl implements TravelService {
     @Override
     //出问题后进行回滚
     @Transactional(rollbackFor = Exception.class)
-    public void insertTidAndCid(Integer tid, Integer[] cids) {
+    public void insertTidAndCid(Integer tid, Integer[] cids) throws MyException {
         if (cids == null || cids.length == 0) {
             // 清空数据表
             travelMapper.deleteTidAndCidByTid(tid);
         } else {
+            if (cids.length > MAX_ALLOCATION_CUSTOM) {
+                throw new MyException("分配数量超过最大限制");
+            }
             // 清空旧关系
             travelMapper.deleteTidAndCidByTid(tid);
             // 添加新关系
@@ -75,11 +82,14 @@ public class TravelServiceImpl implements TravelService {
     @Override
     //出问题后进行回滚
     @Transactional(rollbackFor = Exception.class)
-    public void insertTidAndSid(Integer tid, Integer[] sids) {
+    public void insertTidAndSid(Integer tid, Integer[] sids) throws MyException {
         if (sids == null || sids.length == 0) {
             // 清空数据表
             travelMapper.deleteTidAndSidByTid(tid);
         } else {
+            if (sids.length > MAX_ALLOCATION_STAFF) {
+                throw new MyException("分配数量超过最大限制");
+            }
             //清空旧关系
             travelMapper.deleteTidAndSidByTid(tid);
             //添加新关系

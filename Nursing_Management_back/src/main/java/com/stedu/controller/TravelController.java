@@ -112,7 +112,7 @@ public class TravelController {
 
     //分配客户
     @PostMapping("/tidAndCid")
-    public RespBean insertTidAndCid(@RequestBody Map<String, Object> map) {
+    public RespBean insertTidAndCid(@RequestBody Map<String, Object> map) throws MyException {
 
         Integer tid = (Integer)map.get("tid");
         //需要将集合转换为数组(若为空，要进行初始化)
@@ -133,7 +133,7 @@ public class TravelController {
 
     //分配员工
     @PostMapping("/tidAnSid")
-    public RespBean insertTidAndSid(@RequestBody Map<String, Object> map) {
+    public RespBean insertTidAndSid(@RequestBody Map<String, Object> map) throws MyException {
 
         Integer tid = (Integer)map.get("tid");
         //需要将集合转换为数组(若为空，要进行初始化)

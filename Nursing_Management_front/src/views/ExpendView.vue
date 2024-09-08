@@ -1,22 +1,41 @@
 <template>
+
+    <el-row style="justify-content: center;">
+        <el-col :span="15">
+            <div
+                style="background-color: white; border: 1px solid whi; border-radius: 50%; height: 150px; opacity: 0.9;">
+                <el-countdown format="DD [days] HH:mm:ss" :value="value2">
+                    <template #title>
+                        <div style="display: inline-flex; align-items: center; margin-top: 20px;">
+                            <el-icon style="margin-right: 4px;" :size="12">
+                                <Calendar />
+                            </el-icon>
+                            到下个月还有：
+                        </div>
+                        <div class="countdown-footer">{{ value2.format('YYYY-MM-DD') }}</div>
+                    </template>
+                </el-countdown>
+            </div>
+        </el-col>
+    </el-row>
+
     <el-row :gutter="20" justify="space-between">
         <el-col :span="12">
             <el-card style="opacity: 0.9;" shadow="always">
                 <div style="text-align: center; margin-bottom: 15px; opacity: 0.7;">护理收入</div>
-                <el-table :data="expendList" border style="width: 100%">
+                <el-table :data="expendList" border style="width: 100%;">
                     <el-table-column prop="egrade" label="护理等级" align="center" />
                     <el-table-column prop="esalary" label="等级费用" align="center" />
                     <el-table-column prop="enumber" label="人数" align="center" width="100px" />
                     <el-table-column prop="eincome" label="总收入" align="center" width="100px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="warning" @click="selectByEid(scope.row.eid)">费用变更</el-button>
+                            <el-button size="small" type="warning" style="height: 35px;" @click="selectByEid(scope.row.eid)">费用变更</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
             </el-card>
         </el-col>
-
         <el-col :span="12">
             <el-card style="opacity: 0.9;" shadow="always">
                 <div style="text-align: center; margin-bottom: 15px; opacity: 0.7;">员工支出</div>
@@ -28,15 +47,15 @@
                             <el-badge class="item">
                                 <el-button title="发布" class="share-button" :icon="Share" type="primary"
                                     @click="putShow(scope.row.pid)"
-                                    style="height: 30px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
+                                    style="height: 50px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
                             </el-badge>
                         </template>
                     </el-table-column>
                 </el-table>
             </el-card>
         </el-col>
-
     </el-row>
+
 
     <!-- 修改费用的对话框开始 -->
     <el-dialog v-model="updateDialogShow" title="修改费用" width="500">
@@ -79,6 +98,19 @@ import payoutApi from '@/api/payoutApi';
 import { Share } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 import { reactive, ref, watch } from 'vue';
+import dayjs from 'dayjs'
+import { Calendar } from '@element-plus/icons-vue'
+
+// --------------------------------------------------
+const value = ref(Date.now() + 1000 * 60 * 60 * 7)
+const value1 = ref(Date.now() + 1000 * 60 * 60 * 24 * 2)
+const value2 = ref(dayjs().add(1, 'month').startOf('month'))
+function reset() {
+    value1.value = Date.now() + 1000 * 60 * 60 * 24 * 2
+}
+// -------------------------------------------------------
+
+
 
 //保存护理费用
 const expendList = ref([]);
@@ -236,5 +268,13 @@ selectAll();
 .item {
     margin-top: 10px;
     margin-right: 40px;
+}
+
+.el-col {
+    text-align: center;
+}
+
+.countdown-footer {
+    margin-top: 8px;
 }
 </style>

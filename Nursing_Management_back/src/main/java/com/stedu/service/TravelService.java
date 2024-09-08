@@ -26,10 +26,10 @@ public interface TravelService {
     List<Integer> selectSidByTid(Integer tid);
 
     ////添加某条路线和客户的关联关系
-    void insertTidAndCid(Integer tid, Integer[] cids);
+    void insertTidAndCid(Integer tid, Integer[] cids) throws MyException;
 
     //添加某条路线和员工的关联关系
-    void insertTidAndSid(Integer tid, Integer[] sids);
+    void insertTidAndSid(Integer tid, Integer[] sids) throws MyException;
 
     // 根据旅行 ID 获取单个路线的进度
     TravelProgressDTO calculateProgress(Travel travel) throws ParseException;
