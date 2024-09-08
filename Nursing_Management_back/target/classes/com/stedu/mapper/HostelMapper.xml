@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.HostelMapper">
+    <insert id="insert">
+        INSERT INTO `hostel`(`hno`, `did`) VALUES (#{hno}, #{did})
+    </insert>
+    <insert id="insertHidAndCid">
+        <if test="cids != null and cids.length > 0">
+            INSERT INTO `hostel_custom` (`hid`, `cid`) VALUES
+            <foreach collection="cids" item="cid" separator=",">
+                (#{hid}, #{cid})
+            </foreach>
+        </if>
+    </insert>
+    <update id="update">
+        UPDATE `hostel` SET `hno`=#{hno}, `did`=#{did} WHERE `hid`=#{hid}
+    </update>
+    <delete id="deleteCidAndHidByHid">
+        DELETE FROM `hostel_custom` WHERE `hid`=#{hid}
+    </delete>
+    <delete id="delete">
+        DELETE FROM `hostel` WHERE `hid`=#{hid}
+    </delete>
+    <select id="selectAll" resultType="hostel">
+        SELECT * FROM `hostel`
+    </select>
+    <select id="selectByHid" resultType="hostel">
+        SELECT * FROM `hostel` WHERE `hid`=#{hid}
+    </select>
+    <select id="selectCidByHid" resultType="java.lang.Integer">
+        SELECT `cid` FROM `hostel_custom` WHERE `hid`=#{hid}
+    </select>
+
+</mapper>

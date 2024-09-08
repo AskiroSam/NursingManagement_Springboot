@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“计算员工的人数和工资和”">
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/StaffMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/ExpendView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/ExpendView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“编写宿舍多对多后端”">
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,23 +88,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
-    <configuration name="OlderSystemApplicationTests2.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="older_system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.stedu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
-      <option name="METHOD_NAME" value="test01" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.OlderSystemApplicationTests.test10">
     <configuration name="OlderSystemApplicationTests2.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
@@ -118,22 +100,6 @@
       <option name="PACKAGE_NAME" value="com.stedu" />
       <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
       <option name="METHOD_NAME" value="test02" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OlderSystemApplicationTests2.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="older_system" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.stedu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.stedu" />
-      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests2" />
-      <option name="METHOD_NAME" value="test03" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,6 +121,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OlderSystemApplicationTests.test09" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="older_system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.stedu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.stedu" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
+      <option name="METHOD_NAME" value="test09" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OlderSystemApplicationTests.test10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="older_system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.stedu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.stedu" />
+      <option name="MAIN_CLASS_NAME" value="com.stedu.OlderSystemApplicationTests" />
+      <option name="METHOD_NAME" value="test10" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OlderSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="older_system" />
@@ -171,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test10" />
+        <item itemvalue="JUnit.OlderSystemApplicationTests.test09" />
         <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test04" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests2.test01" />
-        <item itemvalue="JUnit.OlderSystemApplicationTests2.test03" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +196,7 @@
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
-      <workItem from="1725764006925" duration="20477000" />
+      <workItem from="1725764006925" duration="27514000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -440,7 +438,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725801498297</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="“设置路线最大可分配数量”">
+      <option name="closed" value="true" />
+      <created>1725809760702</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1725809760702</updated>
+    </task>
+    <task id="LOCAL-00032" summary="“编写宿舍多对多后端”">
+      <option name="closed" value="true" />
+      <created>1725813716770</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1725813716770</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,8 +475,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“修正了StaffMapper，来获取部门数据”" />
-    <MESSAGE value="“为系部删除增加验证”" />
     <MESSAGE value="“添加路线出行多对多映射，员工与路线，客户与路线”" />
     <MESSAGE value="“完成多对多service层”" />
     <MESSAGE value="“完成多对多Controller层的查询”" />
@@ -486,7 +498,9 @@
     <MESSAGE value="“员工参数校验”" />
     <MESSAGE value="“计算出每个等级的总费用和人数”" />
     <MESSAGE value="“计算员工的人数和工资和”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“计算员工的人数和工资和”" />
+    <MESSAGE value="“设置路线最大可分配数量”" />
+    <MESSAGE value="“编写宿舍多对多后端”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“编写宿舍多对多后端”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

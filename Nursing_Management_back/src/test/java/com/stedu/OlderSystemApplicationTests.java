@@ -3,10 +3,7 @@ package com.stedu;
 import com.stedu.bean.Custom;
 import com.stedu.bean.Department;
 import com.stedu.bean.Staff;
-import com.stedu.mapper.CustomMapper;
-import com.stedu.mapper.DepartmentMapper;
-import com.stedu.mapper.StaffMapper;
-import com.stedu.mapper.TravelMapper;
+import com.stedu.mapper.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +20,8 @@ class OlderSystemApplicationTests {
     private TravelMapper travelMapper;
     @Autowired
     private StaffMapper staffMapper;
+    @Autowired
+    private HostelMapper hostelMapper;
 
     @Test
     public void test01() {
@@ -70,6 +69,17 @@ class OlderSystemApplicationTests {
     @Test
     public void test08() {
         travelMapper.deleteTidAndSidByTid(2);
+    }
+
+    @Test
+    public void test09() {
+        Integer[] cids = {1, 2, 3};
+        hostelMapper.insertHidAndCid(2, cids);
+    }
+
+    @Test
+    public void test10() {
+        hostelMapper.deleteCidAndHidByHid(2);
     }
 
 }
