@@ -7,6 +7,7 @@ import IndexView from '@/views/IndexView.vue'
 import StaffView from '@/views/StaffView.vue'
 import TravelView from '@/views/TravelView.vue'
 import LoginView from '@/views/LoginView.vue'
+import TestView from '@/views/TestView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -27,18 +27,18 @@
 
     <!-- 添加院系的对话框开始 -->
     <el-dialog v-model="addDialogShow" title="添加院系" width="500">
-        <el-form>
-            <el-form-item label="院系名称" label-width="18%">
-                <el-input v-model="departmentAdd.dname" autocomplete="off" />
+        <el-form :model="departmentAdd" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="院系名称" label-width="18%" prop="dname">
+                <el-input v-model="departmentAdd.dname" autocomplete="off" @input="handleInsert" />
             </el-form-item>
-            <el-form-item label="院系位置" label-width="18%">
+            <el-form-item label="院系位置" label-width="18%" prop="dlocation" @input="handleInsert">
                 <el-input v-model="departmentAdd.dlocation" autocomplete="off" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="insert">确认</el-button>
+                <el-button type="primary" :disabled="isButtonDisabled" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -68,7 +68,7 @@
 <script setup>
 import departmentApi from '@/api/departmentApi';
 import { ElMessage } from 'element-plus';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { ElLoading } from 'element-plus'
 
 
@@ -91,6 +91,36 @@ const departmentUpdate = ref({
     dname: '',
     dlocation: ''
 });
+
+//添加的确认按钮状态
+const isButtonDisabled = ref(true);
+// 定义表单引用
+const addFormRef = ref(null);
+//验证规则
+const state = reactive({
+    rules: {
+        dname: [
+            { required: true, message: '请输入院系名称', trigger: 'blur' },
+        ],
+        dlocation: [
+            { required: true, message: '请输入部门地址', trigger: 'blur' },
+        ]
+    }
+});
+// 处理插入数据的方法
+const handleInsert = async () => {
+    const formEl = addFormRef.value; // 获取 el-form 实例
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            isButtonDisabled.value = false;
+        } else {
+            isButtonDisabled.value = true;
+        }
+    });
+};
 
 //添加方法
 function insert() {
@@ -126,6 +156,7 @@ function insert() {
             }
         });
 }
+
 
 //修改方法模态款
 function selectByDid(did) {
