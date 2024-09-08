@@ -16,29 +16,24 @@
                 </el-table>
             </el-card>
         </el-col>
-        <!-- <el-col :span="12">
+
+        <el-col :span="12">
             <el-card style="opacity: 0.9;" shadow="always">
-                <el-button type="primary" plain style="margin-bottom: 10px;"
-                    @click="addDialogShow = true">添加</el-button>
-                <el-table :data="departmentList" border style="width: 100%">
-                    <el-table-column prop="did" label="院系ID" align="center" width="100px" />
-                    <el-table-column prop="dname" label="系部名称" align="center" />
-                    <el-table-column prop="dlocation" label="系部位置" align="center" />
-                    <el-table-column prop="personnum" label="系部人数" align="center" width="100px" />
+                <div style="text-align: center; margin-bottom: 15px; opacity: 0.7;">员工支出</div>
+                <el-table :data="expendList" border style="width: 100%">
+                    <el-table-column prop="egrade" label="护理等级" align="center" />
+                    <el-table-column prop="esalary" label="等级费用" align="center" />
+                    <el-table-column prop="enumber" label="人数" align="center" width="100px" />
+                    <el-table-column prop="eincome" label="总收入" align="center" width="100px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="success" @click="selectByDid(scope.row.did)">修改</el-button>
-                            <el-popconfirm title="你确定要删除吗?" confirm-button-text="确认" cancel-button-text="取消"
-                                @confirm="deleteByDid(scope.row.did)">
-                                <template #reference>
-                                    <el-button size="small" type="danger">删除</el-button>
-                                </template>
-                            </el-popconfirm>
+                            <el-button size="small" type="warning" @click="selectByEid(scope.row.eid)">费用变更</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
             </el-card>
-        </el-col> -->
+        </el-col>
+        
     </el-row>
 
     <!-- 修改费用的对话框开始 -->
@@ -61,6 +56,7 @@
 
 <script setup>
 import expendApi from '@/api/expendApi';
+import { ElMessage } from 'element-plus';
 import { reactive, ref, watch } from 'vue';
 
 //保存护理费用
@@ -81,13 +77,12 @@ const expendUpdate = ref({
 function selectByEid(eid) {
     expendApi.selectById(eid)
         .then(resp => {
-            console.log(resp);
-
             expendUpdate.value = resp.data;
             //显示对话框
-            updateDialogShow.value = true;
+            updateDialogShow.value = true;          
         })
 }
+
 
 function selectAll() {
     expendApi.selectAll()
@@ -96,9 +91,30 @@ function selectAll() {
         })
 }
 
+//修改方法
 function update() {
     expendApi.update(expendUpdate.value)
-        .then()
+        .then(resp => {
+            console.log(expendUpdate.value);
+            
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+
+                //隐藏
+                updateDialogShow.value = false;
+                selectAll();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
+        })
 }
 
 // ---------非空校验开始------------------
@@ -133,7 +149,9 @@ const handleUpdateNull = async () => {
 watch(updateDialogShow, (newValue) => {
   if (!newValue) {
     // 当对话框关闭时，刷新页面
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // 1000 毫秒（1秒）的延时
   }
 });
 // ---------非空校验结束------------------

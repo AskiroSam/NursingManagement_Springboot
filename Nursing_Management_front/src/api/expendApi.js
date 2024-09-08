@@ -10,8 +10,8 @@ const expendApi = {
         return service.get('/admin/expend');
     },
     //更新
-    update() {
-        return service.put('/admin/expend');
+    update(expend) {
+        return service.put('/admin/expend', expend);
     }
 };
 
