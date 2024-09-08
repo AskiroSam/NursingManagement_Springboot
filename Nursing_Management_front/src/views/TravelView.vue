@@ -63,27 +63,27 @@
     <!-- 分配员工的对话框结束 -->
 
     <!-- 添加路线的对话框开始 -->
-    <el-dialog v-model="addTravelShow" title="添加路线" width="500">
-        <el-form>
-            <el-form-item label="目的地：" label-width="18%">
-                <el-input v-model="travelAdd.tlocation" autocomplete="off" style="width: 300px;" />
+    <el-dialog v-model="addTravelShow" title="添加路线" width="500" style="width: 600px;">
+        <el-form :model="travelAdd" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="目的地：" label-width="18%" prop="tlocation">
+                <el-input v-model="travelAdd.tlocation" autocomplete="off" style="width: 400px;" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="出发时间：" label-width="18%">
-                <el-time-select v-model="travelAdd.tstart" style="width: 300px" start="06:00" step="00:15" end="23:30"
-                    placeholder="请选择时间" />
+            <el-form-item label="出发时间：" label-width="18%" prop="tstart">
+                <el-time-select v-model="travelAdd.tstart" style="width: 400px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" @change="handleAddNull" />
             </el-form-item>
-            <el-form-item label="返回时间：" label-width="18%">
-                <el-time-select v-model="travelAdd.tend" style="width: 300px" start="06:00" step="00:15" end="23:30"
-                    placeholder="请选择时间" />
+            <el-form-item label="返回时间：" label-width="18%" prop="tend">
+                <el-time-select v-model="travelAdd.tend" style="width: 400px" start="06:00" step="00:15" end="23:30"
+                    placeholder="请选择时间" @change="handleAddNull" />
             </el-form-item>
-            <el-form-item label="路线描述：" label-width="18%">
-                <el-input v-model="travelAdd.tdescription" autocomplete="off" placeholder="若不填写，则为空" style="width: 300px;" />
+            <el-form-item label="路线描述：" label-width="18%" prop="tdescription">
+                <el-input v-model="travelAdd.tdescription" autocomplete="off" placeholder="若不填写，则为空" style="width: 400px;" @input="handleAddNull" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addTravelShow = false">取消</el-button>
-                <el-button type="primary" @click="insert">确认</el-button>
+                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -121,7 +121,7 @@
 <script setup>
 import travelApi from '@/api/travelApi';
 import { ElLoading, ElMessage } from 'element-plus';
-import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 
 //存放所有路线的数组
 const tarvelList = ref([]);
@@ -179,6 +179,57 @@ const travelUpdate = ref({
     tprogress: '',
     tdescription: ''
 });
+
+
+// ---------非空校验开始------------------
+//添加的确认按钮状态
+const addButtonDisabled = ref(true);
+// 定义表单引用
+const addFormRef = ref(null);
+//验证规则
+const state = reactive({
+    rules: {
+        tlocation: [
+            { required: true, message: '请输入院系名称', trigger: 'blur' },
+        ],
+        tstart: [
+            { required: true, message: '请输入部门地址', trigger: 'blur' },
+        ],
+        tend: [
+            { required: true, message: '请输入部门地址', trigger: 'blur' },
+        ]
+    }
+});
+// 处理添加数据的方法
+const handleAddNull = async () => {
+    const formEl = addFormRef.value; // 获取 el-form 实例
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            addButtonDisabled.value = false;
+        } else {
+            addButtonDisabled.value = true;
+        }
+    });
+};
+// 处理修改数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例  
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {       
+            updateButtonDisabled.value = false;
+        } else {
+            updateButtonDisabled.value = true;
+        }
+    });
+};
+// ---------非空校验结束------------------
+
 
 //修改方法模态款
 function selectByTid(tid) {
