@@ -10,13 +10,7 @@
                     <el-table-column prop="eincome" label="总收入" align="center" width="100px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="warning" @click="selectByEid(scope.row.cid)">费用变更</el-button>
-                            <!-- <el-popconfirm title="你确定要变更吗?" confirm-button-text="确认" cancel-button-text="取消"
-                                @confirm="updateEid(scope.row.eid)">
-                                <template #reference>
-                                    
-                                </template>
-</el-popconfirm> -->
+                            <el-button size="small" type="warning" @click="selectByEid(scope.row.eid)">费用变更</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -48,13 +42,10 @@
     </el-row>
 
     <!-- 修改费用的对话框开始 -->
-    <el-dialog v-model="updateDialogShow" title="修改院系" width="500">
-        <el-form :model="departmentUpdate" :rules="state.rules" ref="updateFormRef">
-            <el-form-item label="院系名称" label-width="18%" prop="dname">
-                <el-input v-model="departmentUpdate.dname" autocomplete="off" @input="handleUpdateNull" />
-            </el-form-item>
-            <el-form-item label="院系位置" label-width="18%" prop="dlocation">
-                <el-input v-model="departmentUpdate.dlocation" autocomplete="off" @input="handleUpdateNull" />
+    <el-dialog v-model="updateDialogShow" title="修改费用" width="500">
+        <el-form :model="expendUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="每月费用" label-width="18%" prop="esalary">
+                <el-input v-model="expendUpdate.esalary" autocomplete="off" @input="handleUpdateNull" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -70,7 +61,7 @@
 
 <script setup>
 import expendApi from '@/api/expendApi';
-import { ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
 //保存护理费用
 const expendList = ref([]);
@@ -90,6 +81,8 @@ const expendUpdate = ref({
 function selectByEid(eid) {
     expendApi.selectById(eid)
         .then(resp => {
+            console.log(resp);
+
             expendUpdate.value = resp.data;
             //显示对话框
             updateDialogShow.value = true;
@@ -104,8 +97,48 @@ function selectAll() {
 }
 
 function update() {
-
+    expendApi.update(expendUpdate.value)
+        .then()
 }
+
+// ---------非空校验开始------------------
+//修改的确认按钮状态
+const updateButtonDisabled = ref(false);
+// 定义表单引用
+const updateFormRef = ref(null);
+//验证规则
+const state = reactive({
+    rules: {
+        esalary: [
+            { required: true, message: '费用不能为空', trigger: 'blur' },
+        ]
+    }
+});
+// 处理修改数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例  
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            updateButtonDisabled.value = false;
+        } else {
+            updateButtonDisabled.value = true;
+        }
+    });
+};
+
+// 监听 updateDialogShow 的变化(刷新表单修改验证)
+watch(updateDialogShow, (newValue) => {
+  if (!newValue) {
+    // 当对话框关闭时，刷新页面
+    window.location.reload();
+  }
+});
+// ---------非空校验结束------------------
+
+
 selectAll();
 </script>
 

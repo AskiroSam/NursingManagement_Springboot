@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“计算出每个等级的总费用和人数”">
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/bean/Expend.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/bean/Expend.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/ExpendView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/ExpendView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +196,7 @@
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
-      <workItem from="1725764006925" duration="12252000" />
+      <workItem from="1725764006925" duration="13516000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />

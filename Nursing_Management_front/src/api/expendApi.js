@@ -8,6 +8,10 @@ const expendApi = {
     //查询所有
     selectAll() {
         return service.get('/admin/expend');
+    },
+    //更新
+    update() {
+        return service.put('/admin/expend');
     }
 };
 
