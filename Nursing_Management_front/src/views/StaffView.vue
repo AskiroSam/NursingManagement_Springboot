@@ -63,38 +63,38 @@
 
     <!-- 添加员工的对话框开始 -->
     <el-dialog v-model="addDialogShow" title="添加员工" width="500">
-        <el-form>
-            <el-form-item label="工号:" label-width="18%">
-                <el-input v-model="staffAdd.sno" autocomplete="off" style="width: 300px" />
+        <el-form :model="staffAdd" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="工号:" label-width="18%" prop="sno">
+                <el-input v-model="staffAdd.sno" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="姓名:" label-width="18%">
-                <el-input v-model="staffAdd.sname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="姓名:" label-width="18%" prop="sname">
+                <el-input v-model="staffAdd.sname" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="年龄:" label-width="18%">
-                <el-input v-model="staffAdd.sage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="年龄:" label-width="18%" prop="sage">
+                <el-input v-model="staffAdd.sage" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="性别:" label-width="18%">
-                <el-radio-group v-model="staffAdd.sgender" style="width: 300px">
+            <el-form-item label="性别:" label-width="18%" prop="sgender">
+                <el-radio-group v-model="staffAdd.sgender" style="width: 300px" @change="handleAddNull">
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="入职时间:" label-width="18%">
+            <el-form-item label="入职时间:" label-width="18%" prop="sentrydate">
                 <el-date-picker v-model="staffAdd.sentrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
-                    value-format="YYYY-MM-DD" style="width: 300px" />
+                    value-format="YYYY-MM-DD" style="width: 300px" @change="handleAddNull" />
             </el-form-item>
-            <el-form-item label="基本工资:" label-width="18%">
-                <el-input v-model="staffAdd.ssalary" autocomplete="off" style="width: 300px" />
+            <el-form-item label="基本工资:" label-width="18%" prop="ssalary">
+                <el-input v-model="staffAdd.ssalary" autocomplete="off" style="width: 300px" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="院系:" label-width="18%">
+            <el-form-item label="院系:" label-width="18%" prop="did">
                 <el-select v-model="staffAdd.did" placeholder="请选择院系" size="large" style="width: 300px">
                     <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
-                        :value="department.did" />
+                        :value="department.did" @click="handleAddNull" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="头像:" label-width="18%">
-                <el-upload class="avatar-uploader" action="http://localhost:8080/admin/upload" name="pic"
-                    :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+            <el-form-item label="头像:" label-width="18%" prop="savatar">
+                <el-upload class="avatar-uploader" action="http://localhost:8080/admin/upload" name="pic" :headers="headers"
+                    :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload" @change="handleAddNull">
                     <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                     <el-icon v-else class="avatar-uploader-icon">
                         <Plus />
@@ -105,7 +105,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="insert">确认</el-button>
+                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -155,7 +155,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import staffApi from '@/api/staffApi';
 import departmentApi from '@/api/departmentApi';
 import { ElLoading, ElMessage } from 'element-plus';
@@ -174,6 +174,14 @@ import {
 const sname = ref('');
 const sgender = ref('');
 const ssalary = ref('');
+
+//上传图片使用的token
+const headers = computed(() => {
+    let token = sessionStorage.getItem('token');
+    return {
+        token
+    }
+})
 
 //分页信息
 const pageInfo = ref({
@@ -248,6 +256,70 @@ const staffUpdate = ref({
     savatar: ''
 })
 
+
+// ---------非空校验开始------------------
+//添加的确认按钮状态
+const addButtonDisabled = ref(true);
+// 定义表单引用
+const addFormRef = ref(null);
+//验证规则
+const state = reactive({
+    rules: {
+        sno: [
+            { required: true, message: '请输入工号', trigger: 'blur' },
+        ],
+        sname: [
+            { required: true, message: '请输入姓名', trigger: 'blur' },
+        ],
+        sage: [
+            { required: true, message: '请输入年龄', trigger: 'blur' },
+        ],
+        sgender: [
+            { required: true, message: '请输入性别', trigger: 'blur' },
+        ],
+        sentrydate: [
+            { required: true, message: '请输入入职日期', trigger: 'blur' },
+        ],
+        ssalary: [
+            { required: true, message: '请输入基本工资', trigger: 'blur' },
+        ],
+        did: [
+            { required: true, message: '请选择部门', trigger: 'blur' },
+        ],
+        savatar: [
+            { required: true, message: '请上传头像', trigger: 'blur' },
+        ],
+    }
+});
+// 处理添加数据的方法
+const handleAddNull = async () => {
+    const formEl = addFormRef.value; // 获取 el-form 实例
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            addButtonDisabled.value = false;
+        } else {
+            addButtonDisabled.value = true;
+        }
+    });
+};
+// 处理修改数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例  
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {       
+            updateButtonDisabled.value = false;
+        } else {
+            updateButtonDisabled.value = true;
+        }
+    });
+};
+// ---------非空校验结束------------------
 
 //分页查询
 function selectByPage(pageNum) {
