@@ -29,35 +29,35 @@
     <el-dialog v-model="addDialogShow" title="添加院系" width="500">
         <el-form :model="departmentAdd" :rules="state.rules" ref="addFormRef">
             <el-form-item label="院系名称" label-width="18%" prop="dname">
-                <el-input v-model="departmentAdd.dname" autocomplete="off" @input="handleInsert" />
+                <el-input v-model="departmentAdd.dname" autocomplete="off" @input="handleAddNull" />
             </el-form-item>
-            <el-form-item label="院系位置" label-width="18%" prop="dlocation" @input="handleInsert">
-                <el-input v-model="departmentAdd.dlocation" autocomplete="off" />
+            <el-form-item label="院系位置" label-width="18%" prop="dlocation" >
+                <el-input v-model="departmentAdd.dlocation" autocomplete="off" @input="handleAddNull" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="addDialogShow = false">取消</el-button>
-                <el-button type="primary" :disabled="isButtonDisabled" @click="insert">确认</el-button>
+                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
             </div>
         </template>
     </el-dialog>
     <!-- 添加院系的对话框结束 -->
 
     <!-- 修改院系的对话框开始 -->
-    <el-dialog v-model="updateDialogShow" title="添加院系" width="500">
-        <el-form>
-            <el-form-item label="院系名称" label-width="18%">
-                <el-input v-model="departmentUpdate.dname" autocomplete="off" />
+    <el-dialog v-model="updateDialogShow" title="修改院系" width="500">
+        <el-form :model="departmentUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="院系名称" label-width="18%" prop="dname">
+                <el-input v-model="departmentUpdate.dname" autocomplete="off" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="院系位置" label-width="18%">
-                <el-input v-model="departmentUpdate.dlocation" autocomplete="off" />
+            <el-form-item label="院系位置" label-width="18%" prop="dlocation">
+                <el-input v-model="departmentUpdate.dlocation" autocomplete="off" @input="handleUpdateNull" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" :disabled="updateButtonDisabled" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -68,7 +68,7 @@
 <script setup>
 import departmentApi from '@/api/departmentApi';
 import { ElMessage } from 'element-plus';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { ElLoading } from 'element-plus'
 
 
@@ -92,10 +92,14 @@ const departmentUpdate = ref({
     dlocation: ''
 });
 
+// ---------非空校验开始------------------
 //添加的确认按钮状态
-const isButtonDisabled = ref(true);
+const addButtonDisabled = ref(true);
+//修改的确认按钮状态
+const updateButtonDisabled = ref(false);
 // 定义表单引用
 const addFormRef = ref(null);
+const updateFormRef = ref(null);
 //验证规则
 const state = reactive({
     rules: {
@@ -107,20 +111,35 @@ const state = reactive({
         ]
     }
 });
-// 处理插入数据的方法
-const handleInsert = async () => {
+// 处理添加数据的方法
+const handleAddNull = async () => {
     const formEl = addFormRef.value; // 获取 el-form 实例
     if (!formEl) return;
 
     // 验证表单
     await formEl.validate((valid, fields) => {
         if (valid) {
-            isButtonDisabled.value = false;
+            addButtonDisabled.value = false;
         } else {
-            isButtonDisabled.value = true;
+            addButtonDisabled.value = true;
         }
     });
 };
+// 处理修改数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例  
+    if (!formEl) return;
+
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {       
+            updateButtonDisabled.value = false;
+        } else {
+            updateButtonDisabled.value = true;
+        }
+    });
+};
+// ---------非空校验结束------------------
 
 //添加方法
 function insert() {
@@ -158,6 +177,13 @@ function insert() {
 }
 
 
+// 监听 updateDialogShow 的变化(刷新表单修改验证)
+watch(updateDialogShow, (newValue) => {
+  if (!newValue) {
+    // 当对话框关闭时，刷新页面
+    window.location.reload();
+  }
+});
 //修改方法模态款
 function selectByDid(did) {
     departmentApi.selectById(did)
