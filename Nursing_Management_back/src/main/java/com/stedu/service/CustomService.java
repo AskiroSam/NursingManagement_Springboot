@@ -13,7 +13,7 @@ public interface CustomService {
 
     boolean insert(Custom c) throws MyException;
 
-    boolean update(Custom c);
+    boolean update(Custom c) throws MyException;
 
     boolean delete(Integer cid);
 

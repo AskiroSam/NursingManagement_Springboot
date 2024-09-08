@@ -66,7 +66,7 @@ public class CustomController {
     }
 
     @PutMapping
-    public RespBean update(@RequestBody Custom custom){
+    public RespBean update(@RequestBody Custom custom) throws MyException {
         customService.update(custom);
         return RespBean.ok("修改成功");
     }

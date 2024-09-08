@@ -97,8 +97,10 @@
                     @blur="handleAddFamilyNull" />
             </el-form-item>
             <el-form-item label="家属性别:" label-width="18%" prop="fgender" :error="errors.fgender">
-                <el-input v-model="familyAdd.fgender" autocomplete="off" style="width: 300px"
-                    @blur="handleAddFamilyNull" />
+                <el-radio-group v-model="familyAdd.fgender" style="width: 300px" @input="handleAddFamilyNull">
+                    <el-radio value="男" size="large">男</el-radio>
+                    <el-radio value="女" size="large">女</el-radio>
+                </el-radio-group>
             </el-form-item>
             <el-form-item label="家属手机:" label-width="18%" prop="fphone" :error="errors.fphone">
                 <el-input v-model="familyAdd.fphone" autocomplete="off" style="width: 300px"
@@ -249,7 +251,7 @@ const customAdd = ref({
 const familyAdd = ref({
     fname: '',
     fage: '',
-    fgender: '',
+    fgender: '男',
     fphone: '',
     cid: ''
 })
@@ -547,28 +549,34 @@ function insert() {
 function update() {
     customApi.update(customUpdate.value)
         .then(resp => {
+            if (resp.code == 10000) {
+                familyApi.update(familyUpdate.value)
+                    .then(resp => {
+                        if (resp.code == 10000) {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'success',
+                                duration: 1200
+                            });
 
-            familyApi.update(familyUpdate.value)
-                .then(resp => {
-                    if (resp.code == 10000) {
-                        ElMessage({
-                            message: resp.msg,
-                            type: 'success',
-                            duration: 1200
-                        });
-
-                        //隐藏
-                        updateDialogShow.value = false;
-                        selectByPage(1);
-                    } else {
-                        ElMessage({
-                            message: resp.msg,
-                            type: 'error',
-                            duration: 1200
-                        });
-                    }
-                })
-
+                            //隐藏
+                            updateDialogShow.value = false;
+                            selectByPage(1);
+                        } else {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'error',
+                                duration: 1200
+                            });
+                        }
+                    })
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
         });
 }
 

@@ -35,7 +35,11 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public boolean update(Custom c) {
+    public boolean update(Custom c) throws MyException {
+        // 验证手机号是否为11位
+        if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
+            throw new MyException("手机号必须是11位数字");
+        }
         return customMapper.update(c) == 1;
     }
 

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.stedu.bean.Custom;
 import com.stedu.bean.RespBean;
 import com.stedu.bean.Staff;
+import com.stedu.exception.MyException;
 import com.stedu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,7 @@ public class StaffController {
     }
 
     @PostMapping
-    public RespBean insert(@RequestBody Staff staff) {
+    public RespBean insert(@RequestBody Staff staff) throws MyException {
         staffService.insert(staff);
         return RespBean.ok("添加成功");
     }

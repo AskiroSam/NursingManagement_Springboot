@@ -1,6 +1,7 @@
 package com.stedu.service.impl;
 
 import com.stedu.bean.Staff;
+import com.stedu.exception.MyException;
 import com.stedu.mapper.StaffMapper;
 import com.stedu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,12 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public boolean insert(Staff staff) {
+    public boolean insert(Staff staff) throws MyException {
         staff.setSstate(1);
+        // 验证手机号是否为11位
+        if (staff.getSno() == null ||!staff.getSno().matches("\\d{5}")) {
+            throw new MyException("工号必须是5位数字");
+        }
         return staffMapper.insert(staff) == 1;
     }
 
