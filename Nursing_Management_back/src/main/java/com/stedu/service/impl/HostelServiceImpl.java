@@ -15,6 +15,11 @@ public class HostelServiceImpl implements HostelService {
     private HostelMapper hostelMapper;
 
     @Override
+    public List<Hostel> selectByPage(String hno, String dname) {
+        return hostelMapper.selectByPage(hno, dname);
+    }
+
+    @Override
     public boolean insert(Hostel hostel) throws MyException {
         return hostelMapper.insert(hostel) == 1;
     }

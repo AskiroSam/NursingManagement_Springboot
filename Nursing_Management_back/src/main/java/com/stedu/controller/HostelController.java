@@ -1,5 +1,7 @@
 package com.stedu.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.stedu.bean.Custom;
 import com.stedu.bean.Hostel;
 import com.stedu.bean.RespBean;
@@ -7,6 +9,7 @@ import com.stedu.exception.MyException;
 import com.stedu.service.CustomService;
 import com.stedu.service.HostelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,11 +25,28 @@ public class HostelController {
     private HostelService hostelService;
     @Autowired
     private CustomService customService;
+    @Value("${pageSize}")
+    private Integer pageSize;
+
+    //@GetMapping
+    //public RespBean selectAll() {
+    //    List<Hostel> hostelList = hostelService.selectAll();
+    //    return RespBean.ok("", hostelList);
+    //}
 
     @GetMapping
-    public RespBean selectAll() {
-        List<Hostel> hostelList = hostelService.selectAll();
-        return RespBean.ok("", hostelList);
+    public RespBean selectByPage(Integer pageNum, String hno, String dname) {
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<Hostel> hostelList = hostelService.selectByPage(hno, dname);
+        System.out.println(hostelList);
+
+        PageInfo<Hostel> pageInfo = new PageInfo<>(hostelList);
+
+        return RespBean.ok("查询成功", pageInfo);
     }
 
     @PostMapping

@@ -11,6 +11,8 @@ public interface HostelMapper {
 
     List<Hostel> selectAll();
 
+    List<Hostel> selectByPage(@Param("hno") String hno,@Param("dname") String dname);
+
     Hostel selectByHid(Integer hid);
 
     //获取某个宿舍下的所有客户

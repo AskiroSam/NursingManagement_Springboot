@@ -30,5 +30,25 @@
     <select id="selectCidByHid" resultType="java.lang.Integer">
         SELECT `cid` FROM `hostel_custom` WHERE `hid`=#{hid}
     </select>
+    <resultMap id="hostelMap" type="hostel">
+        <result column="hid" property="hid" />
+        <result column="hno" property="hno" />
+        <result column="did" property="did" />
+        <association column="did" property="department" javaType="department" select="com.stedu.mapper.DepartmentMapper.selectByDid" />
+    </resultMap>
+    <select id="selectByPage" resultMap="hostelMap">
+        SELECT h.*, d.dname
+        FROM `hostel` h
+        LEFT JOIN `department` d ON h.did = d.did
+        <where>
+            <if test="hno != null and hno.length > 0">
+                AND h.`hno` LIKE CONCAT('%', #{hno}, '%')
+            </if>
+            <if test="dname != null and dname.length > 0">
+                AND d.`dname` LIKE CONCAT('%', #{dname}, '%')
+            </if>
+        </where>
+        ORDER BY h.`hno` ASC
+    </select>
 
 </mapper>

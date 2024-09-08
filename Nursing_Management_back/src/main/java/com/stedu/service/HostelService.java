@@ -1,11 +1,14 @@
 package com.stedu.service;
 
+import com.stedu.bean.Custom;
 import com.stedu.bean.Hostel;
 import com.stedu.exception.MyException;
 
 import java.util.List;
 
 public interface HostelService {
+
+    List<Hostel> selectByPage(String cname, String dname);
 
     boolean insert(Hostel hostel) throws MyException;
 
