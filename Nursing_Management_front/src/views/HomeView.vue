@@ -69,6 +69,14 @@
                   <Bicycle />
                 </el-icon>出行管理</el-menu-item>
             </el-sub-menu>
+            <el-menu-item index="/expend">
+              <template #title>
+                <el-icon>
+                  <Coin />
+                </el-icon>
+                <span>费用管理</span>
+              </template>
+            </el-menu-item>
             <el-menu-item index="/index">
               <template #title>
                 <el-icon>

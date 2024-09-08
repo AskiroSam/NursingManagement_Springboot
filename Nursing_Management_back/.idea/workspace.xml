@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“家属修改数据校验”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/CustomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/CustomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/CustomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/CustomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/CustomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/CustomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/CustomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/CustomServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/CustomServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“员工参数校验”">
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +198,7 @@
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
-      <workItem from="1725764006925" duration="4544000" />
+      <workItem from="1725764006925" duration="7419000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -413,7 +408,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725783972161</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="“员工参数校验”">
+      <option name="closed" value="true" />
+      <created>1725786063055</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1725786063055</updated>
+    </task>
+    <task id="LOCAL-00028" summary="“员工参数校验”">
+      <option name="closed" value="true" />
+      <created>1725786072667</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1725786072667</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +469,8 @@
     <MESSAGE value="“实现Excel的导入导出”" />
     <MESSAGE value="“修改Excel的导入导出”" />
     <MESSAGE value="“家属修改数据校验”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“家属修改数据校验”" />
+    <MESSAGE value="“员工参数校验”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“员工参数校验”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

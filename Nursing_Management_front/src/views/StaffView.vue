@@ -387,8 +387,8 @@ function insert() {
     })
     staffApi.insert(staffAdd.value)
         .then(resp => {
+            loading.close();
             if (resp.code == 10000) {
-                loading.close();
                 ElMessage({
                     message: "员工添加成功",
                     type: 'success',
@@ -413,7 +413,7 @@ function insert() {
                 departmentApi.selectAll();
             } else {
                 ElMessage({
-                    message: "提交失败，请重试",
+                    message: resp.msg,
                     type: 'error',
                     duration: 1200
                 });
