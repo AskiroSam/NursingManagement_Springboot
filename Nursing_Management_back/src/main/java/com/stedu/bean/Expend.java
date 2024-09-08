@@ -17,5 +17,10 @@ public class Expend {
 
     private BigDecimal esalary;
 
+    private Integer enumber;
+
+    private Long eincome;
+
+    //一对多查询出客户费用的信息
     private List<Custom> customList;
 }

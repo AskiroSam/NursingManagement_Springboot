@@ -4,6 +4,9 @@
     <update id="update" parameterType="expend">
         UPDATE `expend` SET `esalary`=#{esalary} WHERE `eid`=#{eid}
     </update>
+    <update id="updateExpend" parameterType="expend">
+        UPDATE `expend` SET `enumber`=#{enumber}, `eincome`=#{eincome} WHERE `eid`=#{eid}
+    </update>
     <select id="selectByEid" resultType="expend">
         SELECT * FROM `expend` WHERE `eid`=#{eid}
     </select>
@@ -15,5 +18,10 @@
     </resultMap>
     <select id="selectAll" resultMap="expendMap">
         SELECT * FROM `expend`
+    </select>
+    <select id="selectTotal" resultType="long">
+        SELECT SUM(esalary * enumber)
+        FROM `expend`
+        WHERE eid = #{eid}
     </select>
 </mapper>
