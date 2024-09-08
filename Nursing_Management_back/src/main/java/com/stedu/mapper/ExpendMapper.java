@@ -16,4 +16,6 @@ public interface ExpendMapper {
 
     void updateExpend(@Param("enumber") Integer enumber, @Param("eid") Integer eid, @Param("eincome") Long eincome);
 
+
+
 }

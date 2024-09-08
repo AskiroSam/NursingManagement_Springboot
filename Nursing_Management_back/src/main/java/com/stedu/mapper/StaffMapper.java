@@ -1,9 +1,11 @@
 package com.stedu.mapper;
 
 import com.stedu.bean.Custom;
+import com.stedu.bean.Expend;
 import com.stedu.bean.Family;
 import com.stedu.bean.Staff;
 import org.apache.ibatis.annotations.Param;
+import org.apache.poi.hpsf.Decimal;
 
 import java.util.List;
 
@@ -23,4 +25,5 @@ public interface StaffMapper {
     List<Staff> selectByDid(Integer did);
 
 
+    Long selectTotal();
 }
