@@ -47,4 +47,7 @@
         </where>
         ORDER BY `sstate` ASC
     </select>
+    <select id="selectTotal" resultType="long">
+        SELECT SUM(ssalary) FROM `staff`;
+    </select>
 </mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stedu.mapper.PayoutMapper">
+    <update id="updatePayout" parameterType="payout">
+        UPDATE `payout` SET `pnumber`=#{pnumber}, `pout`=#{pout} WHERE `pid`=#{pid}
+    </update>
+    <select id="selectTotal" resultType="long">
+        SELECT SUM(pnumber * pout)
+        FROM `payout`
+        WHERE pid = #{pid}
+    </select>
+    <select id="selectByPid" resultType="payout">
+        SELECT * FROM `payout` WHERE `pid`=#{pid}
+    </select>
+    <select id="selectAll" resultType="payout">
+        SELECT * FROM `payout`
+    </select>
+</mapper>

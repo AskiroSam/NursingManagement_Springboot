@@ -20,20 +20,21 @@
         <el-col :span="12">
             <el-card style="opacity: 0.9;" shadow="always">
                 <div style="text-align: center; margin-bottom: 15px; opacity: 0.7;">员工支出</div>
-                <el-table :data="expendList" border style="width: 100%">
-                    <el-table-column prop="egrade" label="护理等级" align="center" />
-                    <el-table-column prop="esalary" label="等级费用" align="center" />
-                    <el-table-column prop="enumber" label="人数" align="center" width="100px" />
-                    <el-table-column prop="eincome" label="总收入" align="center" width="100px" />
+                <el-table :data="payoutList" border style="width: 100%">
+                    <el-table-column prop="pnumber" label="员工总数" align="center" />
+                    <el-table-column prop="pout" label="需支付总工资" align="center" />
                     <el-table-column label="操作" align="center">
-                        <template #default="scope">
-                            <el-button size="small" type="warning" @click="selectByEid(scope.row.eid)">费用变更</el-button>
-                        </template>
+                        <el-badge is-dot class="item">
+                            <el-button title="发布" class="share-button" :icon="Share" 
+                            type="primary"
+                            @click="putShow" 
+                            style="height: 30px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
+                        </el-badge>
                     </el-table-column>
                 </el-table>
             </el-card>
         </el-col>
-        
+
     </el-row>
 
     <!-- 修改费用的对话框开始 -->
@@ -56,12 +57,15 @@
 
 <script setup>
 import expendApi from '@/api/expendApi';
+import payoutApi from '@/api/payoutApi';
+import { Share } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 import { reactive, ref, watch } from 'vue';
 
 //保存护理费用
 const expendList = ref([]);
-//保存
+//保存员工支出
+const payoutList = ref([]);
 //修改模态款显示状态
 const updateDialogShow = ref(false);
 
@@ -80,9 +84,10 @@ function selectByEid(eid) {
         .then(resp => {
             expendUpdate.value = resp.data;
             //显示对话框
-            updateDialogShow.value = true;          
+            updateDialogShow.value = true;
         })
 }
+//发布模态框
 
 
 function selectAll() {
@@ -90,6 +95,11 @@ function selectAll() {
         .then(resp => {
             expendList.value = resp.data;
         })
+    payoutApi.selectAll()
+        .then(resp => {
+            payoutList.value = resp.data;
+        })
+
 }
 
 //修改方法
@@ -97,7 +107,7 @@ function update() {
     expendApi.update(expendUpdate.value)
         .then(resp => {
             console.log(expendUpdate.value);
-            
+
             if (resp.code == 10000) {
                 ElMessage({
                     message: resp.msg,
@@ -148,12 +158,12 @@ const handleUpdateNull = async () => {
 
 // 监听 updateDialogShow 的变化(刷新表单修改验证)
 watch(updateDialogShow, (newValue) => {
-  if (!newValue) {
-    // 当对话框关闭时，刷新页面
-    setTimeout(() => {
-      window.location.reload();
-    }, 500); // 1000 毫秒（1秒）的延时
-  }
+    if (!newValue) {
+        // 当对话框关闭时，刷新页面
+        setTimeout(() => {
+            window.location.reload();
+        }, 500); // 1000 毫秒（1秒）的延时
+    }
 });
 // ---------非空校验结束------------------
 
@@ -177,5 +187,9 @@ selectAll();
 .grid-content {
     border-radius: 4px;
     min-height: 36px;
+}
+.item {
+  margin-top: 10px;
+  margin-right: 40px;
 }
 </style>
