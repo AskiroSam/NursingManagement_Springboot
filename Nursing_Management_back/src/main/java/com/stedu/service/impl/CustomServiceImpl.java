@@ -62,4 +62,9 @@ public class CustomServiceImpl implements CustomService {
     public boolean updateFid(Integer cid, Integer fid) {
         return customMapper.updateFid(cid, fid) == 1;
     }
+
+    @Override
+    public List<Custom> selectByHid(Integer hid) {
+        return customMapper.selectByHid(hid);
+    }
 }

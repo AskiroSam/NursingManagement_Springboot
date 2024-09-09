@@ -24,4 +24,6 @@ public interface CustomService {
 
     boolean updateFid(Integer cid, Integer fid);
 
+    List<Custom> selectByHid(Integer hid);
+
 }

@@ -2,6 +2,7 @@ package com.stedu.mapper;
 
 import com.stedu.bean.Custom;
 import com.stedu.bean.Department;
+import com.stedu.bean.Hostel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,4 +26,6 @@ public interface CustomMapper {
     List<Custom> sclectByDid(Integer did);
 
     int updateFid(@Param("cid") Integer cid, @Param("fid") Integer fid);
+
+    List<Custom> selectByHid(Integer hid);
 }

@@ -28,8 +28,10 @@
                     </el-table-column>
                 </el-table>
                 <el-row class="row-bg" justify="center">
-                    <el-pagination background layout="prev, pager, next" :total="pageInfo.total"
-                        :page-size="pageInfo.pageSize" @change="selectByPage" style="margin-top: 20px;" />
+                    <el-pagination background layout="prev, pager, next" 
+                         :current-page="pageInfo.pageNum" 
+                         :page-count="pageInfo.pages"
+                         @update:current-page="selectByPage" style="margin-top: 20px;" />
                 </el-row>
 
             </el-card>
@@ -104,8 +106,9 @@ const customUpdate = ref({
 const fname = ref('');
 //分页信息
 const pageInfo = ref({
-    total: 0,
-    pageInfo: 0
+    pages: 0,
+    pageInfo: 0,
+    pageNum: 0
 })
 
 //删除对话框显示状态

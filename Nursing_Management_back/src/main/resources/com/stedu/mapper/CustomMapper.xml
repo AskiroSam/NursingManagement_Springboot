@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stedu.mapper.CustomMapper">
     <insert id="insert" parameterType="custom" useGeneratedKeys="true" keyProperty="cid">
-        INSERT INTO `custom`(`cname`, `cage`, `cgender`, `cphone`, `centrydate`, `cstate`, `caddress`, `did`, `fid`, `eid`)
-        VALUES (#{cname}, #{cage}, #{cgender}, #{cphone}, #{centrydate}, #{cstate}, #{caddress}, #{did}, #{fid}, #{eid})
+        INSERT INTO `custom`(`cname`, `cage`, `cgender`, `cphone`, `centrydate`, `cstate`, `caddress`, `did`, `fid`, `eid`, `hid`)
+        VALUES (#{cname}, #{cage}, #{cgender}, #{cphone}, #{centrydate}, #{cstate}, #{caddress}, #{did}, #{fid}, #{eid}, #{hid})
     </insert>
     <update id="update" parameterType="custom">
         UPDATE `custom` SET
@@ -31,9 +31,11 @@
         <result column="did" property="did" />
         <result column="fid" property="fid" />
         <result column="eid" property="eid" />
+        <result column="hid" property="hid" />
         <association column="did" property="department" javaType="department" select="com.stedu.mapper.DepartmentMapper.selectByDid" />
         <association column="fid" property="family" javaType="family" select="com.stedu.mapper.FamilyMapper.selectByFid" />
         <association column="eid" property="expend" javaType="expend" select="com.stedu.mapper.ExpendMapper.selectByEid" />
+        <association column="hid" property="hostel" javaType="hostel" select="com.stedu.mapper.HostelMapper.selectByHid" />
     </resultMap>
     <select id="selectByPage" resultMap="customMap">
         SELECT * FROM `custom`
@@ -61,5 +63,8 @@
     </select>
     <select id="selectByEid" resultType="custom">
         SELECT * FROM `custom` WHERE `eid`=#{eid}
+    </select>
+    <select id="selectByHid" resultType="custom">
+        SELECT * FROM `custom` WHERE `hid`=#{hid}
     </select>
 </mapper>

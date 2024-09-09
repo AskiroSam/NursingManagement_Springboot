@@ -30,22 +30,28 @@ public class HostelServiceImpl implements HostelService {
 
         for (Hostel hostel : hostels) {
 
-            List<Integer> hDnumberList = hostelMapper.selectCidByHid(hostel.getHid());
-            if (hDnumberList == null) {
-                hDnumberList = new ArrayList<>();
+            //List<Integer> hDnumberList = hostelMapper.selectCidByHid(hostel.getHid());
+            //if (hDnumberList == null) {
+            //    hDnumberList = new ArrayList<>();
+            //}
+            //
+            //int count = 0;
+            //for (Integer cid : hDnumberList) {
+            //    Custom custom = customMapper.selectByCid(cid);
+            //    if (custom != null && custom.getCstate() == 2) {
+            //        continue;
+            //    }
+            //    count++;
+            //
+            //}
+            //
+            //hostel.setDnumber(count);
+            List<Custom> customsList = customMapper.selectByHid(hostel.getHid());
+            if (customsList == null) {
+                customsList = new ArrayList<>();
             }
-
-            int count = 0;
-            for (Integer cid : hDnumberList) {
-                Custom custom = customMapper.selectByCid(cid);
-                if (custom != null && custom.getCstate() == 2) {
-                    continue;
-                }
-                count++;
-
-            }
-
-            hostel.setDnumber(count);
+            int size = customsList.size();
+            hostel.setDnumber(size);
 
             //更新数据库
             hostelMapper.updateDnumber(hostel.getDnumber(), hostel.getHid());

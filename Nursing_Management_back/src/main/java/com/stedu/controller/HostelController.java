@@ -71,6 +71,11 @@ public class HostelController {
         //获取已经分配完的信息
         List<Integer> cids = hostelService.selectCidByHid(hid);
 
+        //// 过滤掉已分配的客户
+        //List<Map<String, Object>> availableCustomList = customList.stream()
+        //        .filter(e -> !cids.contains(e.get("key")))
+        //        .collect(Collectors.toList());
+
         //设置返回两个值
         Map<Object, Object> map = new HashMap<>();
         map.put("allCustom", customList);

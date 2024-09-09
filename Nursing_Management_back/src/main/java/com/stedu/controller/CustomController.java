@@ -77,6 +77,12 @@ public class CustomController {
         return RespBean.ok("", c);
     }
 
+    @GetMapping("/hostel/{hid}")
+    public RespBean selectByHid(@PathVariable("hid") Integer hid) {
+        List<Custom> customs = customService.selectByHid(hid);
+        return RespBean.ok("", customs);
+    }
+
     @PutMapping("/updateFid")
     public RespBean updateFid(@RequestParam Integer cid, @RequestParam Integer fid) {
         boolean success = customService.updateFid(cid, fid);

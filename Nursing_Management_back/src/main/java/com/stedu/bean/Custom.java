@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.util.Date;
 
@@ -42,5 +43,9 @@ public class Custom {
     private Integer eid;
     //护理花费
     private Expend expend;
+
+    //宿舍
+    private Integer hid;
+    private Hostel hostel;
 
 }

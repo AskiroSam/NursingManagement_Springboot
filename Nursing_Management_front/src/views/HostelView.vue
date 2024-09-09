@@ -22,8 +22,6 @@
                     <el-table-column prop="dnumber" label="宿舍人数" align="center" width="150px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-button size="small" type="success"
-                                @click="showSetHostelDialog(scope.row.hid);">分配客户</el-button>
                             <el-popconfirm title="你确定要停用该宿舍吗(停用后将会在此删除)?" confirm-button-text="确认"
                                 cancel-button-text="取消" @confirm="deleteByHid(scope.row.hid);">
                                 <template #reference>
@@ -43,18 +41,6 @@
         </el-col>
     </el-row>
 
-    <!-- 分配客户的对话框开始 -->
-    <el-dialog v-model="setHostelDialogShow" title="分配客户">
-        <!-- data：数据源  v-model：选中项绑定值 -->
-        <el-transfer v-model="selectCids" :data="allCustom" :titles="['待分配客户', '已分配客户']" />
-        <template #footer>
-            <div class="dialog-footer">
-                <el-button @click="setHostelDialogShow = false">取消</el-button>
-                <el-button id="customCommit" type="primary" @click="insertHidAndCid">确认</el-button>
-            </div>
-        </template>
-    </el-dialog>
-    <!-- 分配客户的对话框结束 -->
 
     <!-- 添加宿舍的对话框开始 -->
     <el-dialog v-model="addHostelShow" title="添加宿舍" width="500" style="width: 600px;">
@@ -98,20 +84,6 @@ const pageInfo = ref({
     pageNum: 0
 })
 
-//分配客户的对话框
-const setHostelDialogShow = ref(false);
-//所有在宿舍客户的信息
-const allCustom = ref([]);
-
-//宿舍列表
-const hostelList = ref([]);
-//部门信息
-const departmentList = ref([]);
-
-//被选中的客户的cid
-const selectCids = ref([]);
-//需要分配客户的宿舍id
-const hostelSelectHid = ref(0);
 
 
 //添加宿舍的信息
@@ -126,47 +98,7 @@ const hostelUpdate = ref({
     did: ''
 })
 
-//查询所有在院客户的信息并显示分配客户的对话框
-function showSetHostelDialog(hid) {
-    //查询所有在院客户的信息
-    hostelApi.allCustom(hid)
-        .then(resp => {
 
-            // 获取所有客户数据和当前宿舍已分配的客户数据
-            const allCustomData = resp.data.allCustom;
-            const selectCidsData = resp.data.selectCids;
-
-            // 获取当前宿舍ID
-            const currentHostelId = hid;
-            // allCustom.value = resp.data.allCustom;\
-
-            // 已分配客户无法再分配到别的宿舍，需要先移出当前宿舍重新分配
-            allCustom.value = resp.data.allCustom.map(custom => ({
-                ...custom,
-                disabled: selectCids.value.includes(custom.key) // 设置已分配的客户为禁用
-            }));
-            selectCids.value = resp.data.selectCids;
-            hostelSelectHid.value = hid;
-            setHostelDialogShow.value = true;
-            console.log(allCustom.value);
-            console.log(selectCids.value);
-
-        })
-}
-
-//分配客户的方法
-function insertHidAndCid() {
-    hostelApi.insertHidAndCid(hostelSelectHid.value, selectCids.value)
-        .then(resp => {
-            if (resp.code == 10000) {
-                ElMessage.success(resp.msg);
-                setHostelDialogShow.value = false;
-                selectByPage();
-            } else {
-                ElMessage.error(resp.msg);
-            }
-        });
-}
 //停用宿舍
 function deleteByHid(hid) {
     hostelApi.delete(hid)

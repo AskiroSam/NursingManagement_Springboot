@@ -49,10 +49,8 @@
                     </el-table-column>
                 </el-table>
                 <el-row class="row-bg" justify="center">
-                    <el-pagination background layout="prev, pager, next" 
-                    :current-page="pageInfo.pageNum" 
-                    :page-count="pageInfo.pages"
-                    @update:current-page="selectByPage" style="margin-top: 20px;" />
+                    <el-pagination background layout="prev, pager, next" :current-page="pageInfo.pageNum"
+                        :page-count="pageInfo.pages" @update:current-page="selectByPage" style="margin-top: 20px;" />
                 </el-row>
 
             </el-card>
@@ -113,6 +111,12 @@
                     <el-radio :value="1" size="large">一级</el-radio>
                     <el-radio :value="2" size="large">二级</el-radio>
                 </el-radio-group>
+            </el-form-item>
+            <el-form-item label="宿舍:" label-width="18%" prop="hid">
+                <el-select v-model="customAdd.hid" placeholder="请选择宿舍" size="large" style="width: 300px">
+                    <el-option v-for="(hostel, index) in hostelList" :key="index" :label="hostel.hno"
+                        :value="hostel.hid" @click="handleAddNull" />
+                </el-select>
             </el-form-item>
         </el-form>
         <template #footer>
@@ -193,6 +197,7 @@ import {
     Search,
     Star,
 } from '@element-plus/icons-vue'
+import hostelApi from '@/api/hostelApi';
 
 
 //搜索
@@ -247,7 +252,8 @@ const customAdd = ref({
     caddress: '',
     did: '',
     fid: '',
-    eid: 1
+    eid: 1,
+    hid: ''
 });
 
 //被添加家属的信息
@@ -271,7 +277,8 @@ const customUpdate = ref({
     caddress: '',
     did: '',
     fid: '',
-    eid: ''
+    eid: '',
+    hid: ''
 })
 
 //被修改家属的信息
@@ -286,6 +293,8 @@ const familyUpdate = ref({
 
 //所有部门
 const departmentList = ref([]);
+//所属有宿舍
+const hostelList = ref([]);
 //所有家属
 const familyList = ref([]);
 //添加对话框显示状态
@@ -352,13 +361,19 @@ const state = reactive({
         did: [
             { required: true, message: '请选择院系', trigger: 'blur' },
         ],
+        hid: [
+            { required: true, message: '请选择院系', trigger: 'blur' },
+        ]
 
     }
 });
+
+
 // 处理添加数据的方法
 const handleAddNull = async () => {
     const formEl = addFormRef.value; // 获取 el-form 实例
     if (!formEl) return;
+
 
     // 验证表单
     await formEl.validate((valid, fields) => {
@@ -369,6 +384,7 @@ const handleAddNull = async () => {
         }
     });
 };
+
 // 处理修改数据的方法
 const handleUpdateNull = async () => {
     const formEl = updateFormRef.value; // 获取 el-form 实例  
@@ -453,6 +469,10 @@ function showAddDialog() {
     familyApi.selectByPage()
         .then(resp => {
             familyList.value = resp.data.list;
+        })
+    hostelApi.selectByPage()
+        .then(resp => {
+            hostelList.value = resp.data.list;
         })
 }
 

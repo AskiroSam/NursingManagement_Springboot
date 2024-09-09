@@ -18,5 +18,9 @@ public class Hostel {
 
     private Integer dnumber;
 
+    private Integer cid;
+
+    private Custom custom;
+
 
 }

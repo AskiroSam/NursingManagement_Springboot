@@ -32,4 +32,6 @@ public interface HostelMapper {
 
     void updateDnumber(@Param("dnumber") Integer dnumber, @Param("hid") Integer hid);
 
+    List<Hostel> sclectByCid(Integer cid);
+
 }
