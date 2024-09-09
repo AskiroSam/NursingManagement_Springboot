@@ -7,6 +7,7 @@ import com.stedu.service.HostelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,7 +17,24 @@ public class HostelServiceImpl implements HostelService {
 
     @Override
     public List<Hostel> selectByPage(String hno, String dname) {
-        return hostelMapper.selectByPage(hno, dname);
+        List<Hostel> hostels = hostelMapper.selectByPage(hno, dname);
+
+        for (Hostel hostel : hostels) {
+
+            List<Integer> hDnumberList = hostelMapper.selectCidByHid(hostel.getHid());
+            if (hDnumberList == null) {
+                hDnumberList = new ArrayList<>();
+            }
+
+            int dnumber = hDnumberList.size();
+            hostel.setDnumber(dnumber);
+
+            //更新数据库
+            hostelMapper.updateDnumber(hostel.getDnumber(), hostel.getHid());
+
+        }
+
+        return hostels;
     }
 
     @Override

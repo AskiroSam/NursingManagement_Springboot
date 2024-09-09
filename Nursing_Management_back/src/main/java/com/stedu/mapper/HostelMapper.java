@@ -28,4 +28,6 @@ public interface HostelMapper {
 
     int update(Hostel hostel);
 
+    void updateDnumber(@Param("dnumber") Integer dnumber, @Param("hid") Integer hid);
+
 }

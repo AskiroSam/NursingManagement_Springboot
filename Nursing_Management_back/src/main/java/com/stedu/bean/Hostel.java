@@ -16,5 +16,7 @@ public class Hostel {
 
     private Department department;
 
+    private Integer dnumber;
+
 
 }

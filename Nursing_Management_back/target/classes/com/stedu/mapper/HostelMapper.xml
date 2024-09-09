@@ -15,6 +15,9 @@
     <update id="update">
         UPDATE `hostel` SET `hno`=#{hno}, `did`=#{did} WHERE `hid`=#{hid}
     </update>
+    <update id="updateDnumber">
+        UPDATE `hostel` SET `dnumber`=#{dnumber} WHERE `hid`=#{hid}
+    </update>
     <delete id="deleteCidAndHidByHid">
         DELETE FROM `hostel_custom` WHERE `hid`=#{hid}
     </delete>
@@ -34,6 +37,7 @@
         <result column="hid" property="hid" />
         <result column="hno" property="hno" />
         <result column="did" property="did" />
+        <result column="dnumber" property="dnumber"></result>
         <association column="did" property="department" javaType="department" select="com.stedu.mapper.DepartmentMapper.selectByDid" />
     </resultMap>
     <select id="selectByPage" resultMap="hostelMap">
