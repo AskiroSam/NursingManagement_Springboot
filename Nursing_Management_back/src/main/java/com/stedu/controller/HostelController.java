@@ -55,7 +55,7 @@ public class HostelController {
         return RespBean.ok("添加成功");
     }
 
-    @GetMapping("/allCusom/{hid}")
+    @GetMapping("/allCustom/{hid}")
     public RespBean allCustom(@PathVariable("hid") Integer hid) {
         List<Map<String, Object>> customList = customService.selectByPage(null, null, null)
                 .stream()

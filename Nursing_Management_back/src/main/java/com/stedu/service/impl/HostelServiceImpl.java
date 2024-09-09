@@ -1,7 +1,11 @@
 package com.stedu.service.impl;
 
+import com.stedu.bean.Custom;
+import com.stedu.bean.Department;
 import com.stedu.bean.Hostel;
 import com.stedu.exception.MyException;
+import com.stedu.mapper.CustomMapper;
+import com.stedu.mapper.DepartmentMapper;
 import com.stedu.mapper.HostelMapper;
 import com.stedu.service.HostelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,8 @@ import java.util.List;
 public class HostelServiceImpl implements HostelService {
     @Autowired
     private HostelMapper hostelMapper;
+    @Autowired
+    private CustomMapper customMapper;
 
     @Override
     public List<Hostel> selectByPage(String hno, String dname) {
@@ -26,8 +32,17 @@ public class HostelServiceImpl implements HostelService {
                 hDnumberList = new ArrayList<>();
             }
 
-            int dnumber = hDnumberList.size();
-            hostel.setDnumber(dnumber);
+            int count = 0;
+            for (Integer cid : hDnumberList) {
+                Custom custom = customMapper.selectByCid(cid);
+                if (custom != null && custom.getCstate() == 2) {
+                    continue;
+                }
+                count++;
+
+            }
+
+            hostel.setDnumber(count);
 
             //更新数据库
             hostelMapper.updateDnumber(hostel.getDnumber(), hostel.getHid());
