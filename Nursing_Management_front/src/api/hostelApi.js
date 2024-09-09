@@ -30,6 +30,17 @@ const hostelApi = {
     insert(hostel) {
         return service.post('/admin/hostel', hostel);
     },
+    //查询宿舍
+    selectByHid(hid) {
+        return service.get(`/admin/hostel/${hid}`);
+    },
+    //更新宿舍
+    update(hostel) {
+        return service.put('/admin/hostel', hostel)
+    },
+    selectByHno(hno) {
+        return service.get(`/admin/hostel/hno/${hno}`)
+    }
 };
 
 export default hostelApi;

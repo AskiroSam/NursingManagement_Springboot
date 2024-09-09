@@ -128,4 +128,10 @@ public class HostelController {
         Hostel hostel = hostelService.selectByHid(hid);
         return RespBean.ok("", hostel);
     }
+
+    @GetMapping("/hno/{hno}")
+    public RespBean selectByHno(@PathVariable("hno") String hno) {
+        Hostel hostel = hostelService.selectByHno(hno);
+        return RespBean.ok("", hostel);
+    }
 }

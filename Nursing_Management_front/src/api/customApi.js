@@ -36,6 +36,10 @@ const customApi = {
     //根据ID查询
     selectById(cid) {
         return service.get(`/admin/custom/${cid}`);
+    },
+    //查询宿舍中的成员
+    selectByHid(hid) {
+        return service.get(`/admin/custom/hostel/${hid}`);
     }
 };
 

@@ -15,7 +15,8 @@
                 `caddress`=#{caddress},
                 `did`=#{did},
                 `fid`=#{fid},
-                `eid`=#{eid}
+                `eid`=#{eid},
+                `hid`=#{hid}
         WHERE `cid`=#{cid}
     </update>
     <update id="setCstate" useGeneratedKeys="true" keyColumn="cid">

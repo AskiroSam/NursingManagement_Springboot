@@ -58,8 +58,6 @@
     </el-dialog>
     <!-- 添加宿舍的对话框结束 -->
 
-
-
     <!-- 查看成员的对话框开始 -->
     <el-dialog v-model="checkCustomShow" title="分配宿舍成员" width="500" style="width: 600px;">
         <el-table :data="customList" style="width: 100%">
@@ -67,27 +65,33 @@
             <el-table-column prop="cage" label="年龄" align="center" width="80" />
             <el-table-column prop="cgender" label="性别" align="center" width="80" />
             <el-table-column prop="cphone" label="手机号" align="center" width="160" />
-            <el-table-column label="操作"  width="80" align="center">
-                <el-button type="danger" :icon="Delete" circle />
+            <el-table-column label="操作" width="80" align="center">
+                <template #default="scope">
+                    <el-button type="primary" :icon="Edit" circle @click="showUpdateDialog(scope.row.cid)" />
+                </template>
             </el-table-column>
         </el-table>
     </el-dialog>
     <!-- 查看成员的对话框结束 -->
 
-    <!-- 分配成员的对话框开始 -->
-    <el-dialog v-model="checkCustomShow" title="分配宿舍成员" width="500" style="width: 600px;">
-        <el-table :data="customList" style="width: 100%">
-            <el-table-column prop="cname" label="姓名" width="120" align="center" />
-            <el-table-column prop="cage" label="年龄" align="center" width="80" />
-            <el-table-column prop="cgender" label="性别" align="center" width="80" />
-            <el-table-column prop="cphone" label="手机号" align="center" width="160" />
-            <el-table-column label="操作"  width="80" align="center">
-                <el-button type="danger" :icon="Delete" circle />
-            </el-table-column>
-        </el-table>
+    <!-- 修改宿舍的对话框开始 -->
+    <el-dialog v-model="updateCustomShow" title="修改宿舍" width="500" style="width: 600px;">
+        <el-form :model="hostelUpdate" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="当前宿舍：" label-width="18%">
+                <el-input v-model="hostelUpdate.hno" autocomplete="off" disabled style="width: 400px;" />
+            </el-form-item>
+            <el-form-item label="修改宿舍：" label-width="18%" prop="hno">
+                <el-input v-model="hostelUpdate.hno" autocomplete="off" style="width: 400px;" @change="findHid" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="updateCustomShow = false">取消</el-button>
+                <el-button type="primary" @click="update">确认</el-button>
+            </div>
+        </template>
     </el-dialog>
-    <!-- 分配成员的对话框结束 -->
-
+    <!-- 修改宿舍的对话框结束 -->
 
 
 </template>
@@ -99,12 +103,12 @@ import { ElLoading, ElMessage } from 'element-plus';
 import { computed, reactive, ref } from 'vue';
 //图标
 import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
+    Check,
+    Delete,
+    Edit,
+    Message,
+    Search,
+    Star,
 } from '@element-plus/icons-vue'
 
 //搜索
@@ -113,9 +117,10 @@ const dname = ref('');
 
 //添加宿舍对话框
 const addHostelShow = ref(false);
-//查看成员对话康
+//查看成员对话框
 const checkCustomShow = ref(false);
-//分配u成员对话康
+//修改成员的对话框
+const updateCustomShow = ref(false);
 
 //所有成员
 const customList = ref([]);
@@ -138,8 +143,25 @@ const hostelAdd = ref({
 })
 //修改宿舍的信息
 const hostelUpdate = ref({
+    hid: '',
     hno: '',
-    did: ''
+    did: '',
+    dname: ''
+})
+//修改宿舍的信息
+const customUpdate = ref({
+    cname: '',
+    cage: '',
+    cgender: '',
+    cphone: '',
+    centrydate: '',
+    caddress: '',
+    cgender: '',
+    did: '',
+    fid: '',
+    eid: '',
+    hid: '',
+    cid: ''
 })
 
 //查看宿舍成员的信息
@@ -148,8 +170,6 @@ function showDialog(hid) {
         .then(resp => {
             customList.value = resp.data;
             checkCustomShow.value = true;
-            console.log(customList.value);
-
         })
 }
 
@@ -208,6 +228,55 @@ function insert() {
             }
         });
 
+}
+//跟踪新宿舍号
+function findHid() {
+    hostelApi.selectByHno(hostelUpdate.value.hno)
+        .then(resp => {        
+            customUpdate.value.hid = resp.data.hid;                    
+        })
+}
+
+
+//查询客户的信息并显示修改对话框
+function showUpdateDialog(cid) {
+    customApi.selectById(cid)
+        .then(resp => {
+            customApi.selectById(cid)
+                .then(resp => {
+                    customUpdate.value = resp.data;
+                    console.log(customUpdate.value.hid); 
+                })
+            hostelUpdate.value.hid = resp.data.hid;
+            hostelApi.selectByHid(resp.data.hid)
+                .then(resp => {
+                    hostelUpdate.value = resp.data;
+                    updateCustomShow.value = true;
+                })
+        })
+}
+
+//修改宿舍方法
+function update() {
+    customApi.update(customUpdate.value)
+        .then(resp => {
+            if (resp.code == 10000) {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200
+                });
+                updateCustomShow.value = false;
+                checkCustomShow.value = false;
+                selectByPage();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
+            }
+        })
 }
 
 
