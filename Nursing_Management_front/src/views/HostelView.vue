@@ -24,8 +24,8 @@
                         <template #default="scope">
                             <el-button size="small" type="success"
                                 @click="showSetHostelDialog(scope.row.hid);">分配客户</el-button>
-                            <el-popconfirm title="你确定要停用该宿舍吗(停用后将会在此删除)?" confirm-button-text="确认" cancel-button-text="取消"
-                                @confirm="deleteByHid(scope.row.hid);">
+                            <el-popconfirm title="你确定要停用该宿舍吗(停用后将会在此删除)?" confirm-button-text="确认"
+                                cancel-button-text="取消" @confirm="deleteByHid(scope.row.hid);">
                                 <template #reference>
                                     <el-button size="small" type="danger">停用宿舍</el-button>
                                 </template>
@@ -58,12 +58,10 @@
     <el-dialog v-model="addHostelShow" title="添加宿舍" width="500" style="width: 600px;">
         <el-form :model="hostelAdd" :rules="state.rules" ref="addFormRef">
             <el-form-item label="宿舍号：" label-width="18%" prop="hno">
-                <el-input v-model="hostelAdd.hno" autocomplete="off" style="width: 400px;"
-                    @input="handleAddNull" />
+                <el-input v-model="hostelAdd.hno" autocomplete="off" style="width: 400px;" @input="handleAddNull" />
             </el-form-item>
             <el-form-item label="所属部门：" label-width="18%">
-                <el-input v-model="hostelAdd.dname" autocomplete="off" disabled
-                    style="width: 400px;" />
+                <el-input v-model="hostelAdd.dname" autocomplete="off" disabled style="width: 400px;" />
             </el-form-item>
         </el-form>
         <template #footer>
@@ -81,7 +79,7 @@
 <script setup>
 import hostelApi from '@/api/hostelApi';
 import { ElLoading, ElMessage } from 'element-plus';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 //搜索
 const hno = ref('');
@@ -130,13 +128,22 @@ function showSetHostelDialog(hid) {
     //查询所有在院客户的信息
     hostelApi.allCustom(hid)
         .then(resp => {
-            
-            allCustom.value = resp.data.allCustom;
+
+            // allCustom.value = resp.data.allCustom;
+            // 已分配客户无法再分配到别的宿舍，需要先移出当前宿舍重新分配
+            allCustom.value = resp.data.allCustom.map(custom => ({
+                ...custom,
+                disabled: selectCids.value.includes(custom.key) // 设置已分配的客户为禁用
+            }));
             selectCids.value = resp.data.selectCids;
             hostelSelectHid.value = hid;
             setHostelDialogShow.value = true;
+            console.log(allCustom.value);
+            console.log(selectCids.value);
+        
         })
 }
+
 //分配客户的方法
 function insertHidAndCid() {
     hostelApi.insertHidAndCid(hostelSelectHid.value, selectCids.value)
@@ -225,6 +232,21 @@ const handleAddNull = async () => {
     const formEl = addFormRef.value; // 获取 el-form 实例
     if (!formEl) return;
 
+    // 根据宿舍号的首位数字设置所属部门
+    const hnoFirstChar = hostelAdd.value.hno.charAt(0);
+    if (hnoFirstChar === '1') {
+        hostelAdd.value.dname = '护理中心'; // 修改为实际部门名
+        hostelAdd.value.did = 1;
+    } else if (hnoFirstChar === '2') {
+        hostelAdd.value.dname = '护理分院'; // 修改为实际部门名
+        hostelAdd.value.did = 2;
+    } else if (hnoFirstChar == '3') {
+        hostelAdd.value.dname = '药物院'; 
+        hostelAdd.value.did = 3;
+    } else {
+        hostelAdd.value.dname = ''; // 如果没有匹配的条件，可以清空
+    }
+
     // 验证表单
     await formEl.validate((valid, fields) => {
         if (valid) {
@@ -233,6 +255,8 @@ const handleAddNull = async () => {
             addButtonDisabled.value = true;
         }
     });
+    console.log(hostelAdd.value);
+    
 };
 
 // ---------非空校验结束------------------
