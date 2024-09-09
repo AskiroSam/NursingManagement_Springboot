@@ -21,6 +21,7 @@
                     <el-table-column prop="dnumber" label="宿舍人数" align="center" width="150px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
+                            <el-button size="small" type="success" @click="showDialog(scope.row.hid)">查看宿舍成员</el-button>
                             <el-popconfirm title="你确定要停用该宿舍吗(停用后将会在此删除)?" confirm-button-text="确认"
                                 cancel-button-text="取消" @confirm="deleteByHid(scope.row.hid);">
                                 <template #reference>
@@ -31,10 +32,8 @@
                     </el-table-column>
                 </el-table>
                 <el-row class="row-bg" justify="center">
-                    <el-pagination background layout="prev, pager, next" 
-                         :current-page="pageInfo.pageNum" 
-                         :page-count="pageInfo.pages"
-                         @update:current-page="selectByPage" style="margin-top: 20px;" />
+                    <el-pagination background layout="prev, pager, next" :current-page="pageInfo.pageNum"
+                        :page-count="pageInfo.pages" @update:current-page="selectByPage" style="margin-top: 20px;" />
                 </el-row>
             </el-card>
         </el-col>
@@ -62,31 +61,51 @@
 
 
     <!-- 查看成员的对话框开始 -->
-    <el-dialog v-model="checkCustomShow" title="添加宿舍" width="500" style="width: 600px;">
-        <el-form :model="hostelAdd" :rules="state.rules" ref="addFormRef">
-            <el-form-item label="宿舍号：" label-width="18%" prop="hno">
-                <el-input v-model="hostelAdd.hno" autocomplete="off" style="width: 400px;" @input="handleAddNull" />
-            </el-form-item>
-            <el-form-item label="所属部门：" label-width="18%">
-                <el-input v-model="hostelAdd.dname" autocomplete="off" disabled style="width: 400px;" />
-            </el-form-item>
-        </el-form>
-        <template #footer>
-            <div class="dialog-footer">
-                <el-button @click="addHostelShow = false">取消</el-button>
-                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
-            </div>
-        </template>
+    <el-dialog v-model="checkCustomShow" title="分配宿舍成员" width="500" style="width: 600px;">
+        <el-table :data="customList" style="width: 100%">
+            <el-table-column prop="cname" label="姓名" width="120" align="center" />
+            <el-table-column prop="cage" label="年龄" align="center" width="80" />
+            <el-table-column prop="cgender" label="性别" align="center" width="80" />
+            <el-table-column prop="cphone" label="手机号" align="center" width="160" />
+            <el-table-column label="操作"  width="80" align="center">
+                <el-button type="danger" :icon="Delete" circle />
+            </el-table-column>
+        </el-table>
     </el-dialog>
     <!-- 查看成员的对话框结束 -->
+
+    <!-- 分配成员的对话框开始 -->
+    <el-dialog v-model="checkCustomShow" title="分配宿舍成员" width="500" style="width: 600px;">
+        <el-table :data="customList" style="width: 100%">
+            <el-table-column prop="cname" label="姓名" width="120" align="center" />
+            <el-table-column prop="cage" label="年龄" align="center" width="80" />
+            <el-table-column prop="cgender" label="性别" align="center" width="80" />
+            <el-table-column prop="cphone" label="手机号" align="center" width="160" />
+            <el-table-column label="操作"  width="80" align="center">
+                <el-button type="danger" :icon="Delete" circle />
+            </el-table-column>
+        </el-table>
+    </el-dialog>
+    <!-- 分配成员的对话框结束 -->
+
 
 
 </template>
 
 <script setup>
+import customApi from '@/api/customApi';
 import hostelApi from '@/api/hostelApi';
 import { ElLoading, ElMessage } from 'element-plus';
 import { computed, reactive, ref } from 'vue';
+//图标
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue'
 
 //搜索
 const hno = ref('');
@@ -96,6 +115,10 @@ const dname = ref('');
 const addHostelShow = ref(false);
 //查看成员对话康
 const checkCustomShow = ref(false);
+//分配u成员对话康
+
+//所有成员
+const customList = ref([]);
 
 
 //分页信息
@@ -118,6 +141,17 @@ const hostelUpdate = ref({
     hno: '',
     did: ''
 })
+
+//查看宿舍成员的信息
+function showDialog(hid) {
+    customApi.selectByHid(hid)
+        .then(resp => {
+            customList.value = resp.data;
+            checkCustomShow.value = true;
+            console.log(customList.value);
+
+        })
+}
 
 
 //停用宿舍
