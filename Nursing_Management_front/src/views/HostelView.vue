@@ -34,8 +34,10 @@
                     </el-table-column>
                 </el-table>
                 <el-row class="row-bg" justify="center">
-                    <el-pagination background layout="prev, pager, next" :total="pageInfo.total"
-                        :page-size="pageInfo.pageSize" @change="selectByPage" style="margin-top: 20px;" />
+                    <el-pagination background layout="prev, pager, next" 
+                         :current-page="pageInfo.pageNum" 
+                         :page-count="pageInfo.pages"
+                         @update:current-page="selectByPage" style="margin-top: 20px;" />
                 </el-row>
             </el-card>
         </el-col>
@@ -91,8 +93,9 @@ const addHostelShow = ref(false);
 
 //分页信息
 const pageInfo = ref({
-    total: 0,
-    pageInfo: 0
+    pages: 0,
+    pageInfo: 0,
+    pageNum: 0
 })
 
 //分配客户的对话框
@@ -129,7 +132,14 @@ function showSetHostelDialog(hid) {
     hostelApi.allCustom(hid)
         .then(resp => {
 
-            // allCustom.value = resp.data.allCustom;
+            // 获取所有客户数据和当前宿舍已分配的客户数据
+            const allCustomData = resp.data.allCustom;
+            const selectCidsData = resp.data.selectCids;
+
+            // 获取当前宿舍ID
+            const currentHostelId = hid;
+            // allCustom.value = resp.data.allCustom;\
+
             // 已分配客户无法再分配到别的宿舍，需要先移出当前宿舍重新分配
             allCustom.value = resp.data.allCustom.map(custom => ({
                 ...custom,
@@ -140,7 +150,7 @@ function showSetHostelDialog(hid) {
             setHostelDialogShow.value = true;
             console.log(allCustom.value);
             console.log(selectCids.value);
-        
+
         })
 }
 
@@ -241,7 +251,7 @@ const handleAddNull = async () => {
         hostelAdd.value.dname = '护理分院'; // 修改为实际部门名
         hostelAdd.value.did = 2;
     } else if (hnoFirstChar == '3') {
-        hostelAdd.value.dname = '药物院'; 
+        hostelAdd.value.dname = '药物院';
         hostelAdd.value.did = 3;
     } else {
         hostelAdd.value.dname = ''; // 如果没有匹配的条件，可以清空
@@ -256,7 +266,7 @@ const handleAddNull = async () => {
         }
     });
     console.log(hostelAdd.value);
-    
+
 };
 
 // ---------非空校验结束------------------
