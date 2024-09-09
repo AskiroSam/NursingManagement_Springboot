@@ -132,6 +132,10 @@ public class HostelController {
     @GetMapping("/hno/{hno}")
     public RespBean selectByHno(@PathVariable("hno") String hno) {
         Hostel hostel = hostelService.selectByHno(hno);
+        if (hostel == null) {
+            return RespBean.error("部门不存在，请重新输入");
+        }
+
         return RespBean.ok("", hostel);
     }
 }

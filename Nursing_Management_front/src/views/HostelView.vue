@@ -232,8 +232,8 @@ function insert() {
 //跟踪新宿舍号
 function findHid() {
     hostelApi.selectByHno(hostelUpdate.value.hno)
-        .then(resp => {        
-            customUpdate.value.hid = resp.data.hid;                    
+        .then(resp => {
+            customUpdate.value.hid = resp.data.hid;
         })
 }
 
@@ -242,41 +242,53 @@ function findHid() {
 function showUpdateDialog(cid) {
     customApi.selectById(cid)
         .then(resp => {
-            customApi.selectById(cid)
-                .then(resp => {
-                    customUpdate.value = resp.data;
-                    console.log(customUpdate.value.hid); 
-                })
+            customUpdate.value = resp.data;
+            console.log(customUpdate.value.hid);
             hostelUpdate.value.hid = resp.data.hid;
-            hostelApi.selectByHid(resp.data.hid)
-                .then(resp => {
-                    hostelUpdate.value = resp.data;
-                    updateCustomShow.value = true;
-                })
+            return hostelApi.selectByHid(resp.data.hid);
         })
+        .then(resp => {
+            hostelUpdate.value = resp.data;
+            updateCustomShow.value = true;
+        })
+        .catch(error => {
+            console.error("Error loading data", error);
+        });
 }
 
 //修改宿舍方法
 function update() {
-    customApi.update(customUpdate.value)
+    hostelApi.selectByHno(hostelUpdate.value.hno)
         .then(resp => {
-            if (resp.code == 10000) {
-                ElMessage({
-                    message: resp.msg,
-                    type: 'success',
-                    duration: 1200
-                });
-                updateCustomShow.value = false;
-                checkCustomShow.value = false;
-                selectByPage();
-            } else {
+            if (resp.code != 10000) {
                 ElMessage({
                     message: resp.msg,
                     type: 'error',
                     duration: 1200
                 });
+            } else {
+                customApi.update(customUpdate.value)
+                    .then(resp => {
+                        if (resp.code == 10000) {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'success',
+                                duration: 1200
+                            });
+                            updateCustomShow.value = false;
+                            checkCustomShow.value = false;
+                            selectByPage();
+                        } else {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'error',
+                                duration: 1200
+                            });
+                        }
+                    })
             }
         })
+
 }
 
 
