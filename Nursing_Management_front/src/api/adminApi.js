@@ -12,6 +12,9 @@ const adminApi = {
     //客户年龄分布
     selectAgeCount() {
         return service.get('/admin/info/ageCount')
+    },
+    getLoginInfo() {
+        return service.get('/admin/info/adminInfo')
     }
 };
 

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成非空校验和参数校验”">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/interceptor/JwInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/interceptor/JwInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/interceptor/JwInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/interceptor/JwInterceptor.class" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“获取用户登录信息-服务器端”">
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,27 +49,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/work/JAVA/项目/Nursing_Management&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema.catalog&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/work/JAVA/项目/Nursing_Management",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "settings.json.schema.catalog",
+    "ts.external.directory.path": "E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
+    ]
   }
-}</component>
+}]]></component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.stedu.service.impl" />
@@ -198,7 +206,7 @@
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
       <workItem from="1725764006925" duration="30321000" />
-      <workItem from="1725842881413" duration="22562000" />
+      <workItem from="1725842881413" duration="25159000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -488,7 +496,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725858421587</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="“完成非空校验和参数校验”">
+      <option name="closed" value="true" />
+      <created>1725870204799</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1725870204799</updated>
+    </task>
+    <task id="LOCAL-00038" summary="“JWT刷新”">
+      <option name="closed" value="true" />
+      <created>1725870370266</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1725870370266</updated>
+    </task>
+    <task id="LOCAL-00039" summary="“获取用户登录信息-服务器端”">
+      <option name="closed" value="true" />
+      <created>1725871717940</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1725871717940</updated>
+    </task>
+    <task id="LOCAL-00040" summary="“获取用户登录信息-服务器端”">
+      <option name="closed" value="true" />
+      <created>1725871732488</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1725871732488</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,8 +549,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“定义删除路线方法，并加上非空验证”" />
-    <MESSAGE value="“修改多对多，解决为空报错问题”" />
     <MESSAGE value="“定于获取进度条的后端方法”" />
     <MESSAGE value="“实现进度条页面刷新”" />
     <MESSAGE value="“后端配置JWT”" />
@@ -534,7 +572,9 @@
     <MESSAGE value="“修改宿舍的selectByPage方法，来获取每个宿舍的分配人数”" />
     <MESSAGE value="“完成宿舍分分配”" />
     <MESSAGE value="“完成非空校验和参数校验”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完成非空校验和参数校验”" />
+    <MESSAGE value="“JWT刷新”" />
+    <MESSAGE value="“获取用户登录信息-服务器端”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“获取用户登录信息-服务器端”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

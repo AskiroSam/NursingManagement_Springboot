@@ -5,6 +5,7 @@
         <div>
           <img src="https://s21.ax1x.com/2024/09/05/pAZMVB9.png" style="width: 250px; margin-top: 12px;"></img>
         </div>
+        <span style="color: #ffffff; float: right; margin-top: -30px; margin-right: 150px;">欢迎: {{username}}</span>
         <el-button type="danger" round style="float: right; margin-top: -35px;"
           @click="deleteDialog = true">退出登录</el-button>
         <el-dialog v-model="deleteDialog" title="确认退出？" width="500" style="background-color: #ffffff; opacity: 0.9;">
@@ -114,10 +115,21 @@ import { ElMessage } from 'element-plus';
 import { ref } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
 
+const username = ref('');
+
 //退出对话框
 const deleteDialog = ref(false);
 //联系我对话框
 const EmailShow = ref(false);
+
+//获取已登录用户的信息
+function getLoginInfo() {
+  adminApi.getLoginInfo()
+    .then(resp => {
+      username.value = resp.data.username;
+    })
+}
+getLoginInfo();
 
 //退出
 function logout() {
@@ -147,6 +159,7 @@ import {
   Search,
   Star,
 } from '@element-plus/icons-vue'
+import adminApi from '@/api/adminApi';
 </script>
 
 <style scoped>
