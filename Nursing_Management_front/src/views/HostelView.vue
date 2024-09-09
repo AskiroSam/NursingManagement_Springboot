@@ -1,5 +1,4 @@
 <template>
-
     <el-row>
         <el-col :span="15">
             <el-card style="opacity: 0.9;">
@@ -41,7 +40,6 @@
         </el-col>
     </el-row>
 
-
     <!-- 添加宿舍的对话框开始 -->
     <el-dialog v-model="addHostelShow" title="添加宿舍" width="500" style="width: 600px;">
         <el-form :model="hostelAdd" :rules="state.rules" ref="addFormRef">
@@ -62,6 +60,27 @@
     <!-- 添加宿舍的对话框结束 -->
 
 
+
+    <!-- 查看成员的对话框开始 -->
+    <el-dialog v-model="checkCustomShow" title="添加宿舍" width="500" style="width: 600px;">
+        <el-form :model="hostelAdd" :rules="state.rules" ref="addFormRef">
+            <el-form-item label="宿舍号：" label-width="18%" prop="hno">
+                <el-input v-model="hostelAdd.hno" autocomplete="off" style="width: 400px;" @input="handleAddNull" />
+            </el-form-item>
+            <el-form-item label="所属部门：" label-width="18%">
+                <el-input v-model="hostelAdd.dname" autocomplete="off" disabled style="width: 400px;" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="addHostelShow = false">取消</el-button>
+                <el-button type="primary" :disabled="addButtonDisabled" @click="insert">确认</el-button>
+            </div>
+        </template>
+    </el-dialog>
+    <!-- 查看成员的对话框结束 -->
+
+
 </template>
 
 <script setup>
@@ -75,6 +94,8 @@ const dname = ref('');
 
 //添加宿舍对话框
 const addHostelShow = ref(false);
+//查看成员对话康
+const checkCustomShow = ref(false);
 
 
 //分页信息

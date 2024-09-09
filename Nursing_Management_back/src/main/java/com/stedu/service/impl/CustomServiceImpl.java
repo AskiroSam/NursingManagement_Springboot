@@ -31,6 +31,11 @@ public class CustomServiceImpl implements CustomService {
         if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
             throw new MyException("手机号必须是11位数字");
         }
+        List<Custom> customs = customMapper.selectByHid(c.getHid());
+        if (customs.size() >= 6) {
+            throw new MyException("宿舍最多有6人，请选择其他宿舍");
+        }
+
         return customMapper.insert(c) == 1;
     }
 

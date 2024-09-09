@@ -545,6 +545,7 @@ function insert() {
                                             cid: ''
                                         }
                                         selectByPage(1);
+                                        hostelApi.selectByPage();
                                         //刷新部门人数
                                         departmentApi.selectAll();
                                     } else {

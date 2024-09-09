@@ -60,7 +60,7 @@
                 </el-icon>院系部门</el-menu-item>
                 <el-menu-item index="/hostel"><el-icon>
                   <Van />
-                </el-icon>宿舍分配</el-menu-item>
+                </el-icon>宿舍查看</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="4">
               <template #title>

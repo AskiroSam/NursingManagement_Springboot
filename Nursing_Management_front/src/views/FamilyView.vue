@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-col :span="17">
+        <el-col :span="20">
             <el-card style="opacity: 0.9;">
                 <el-form :inline="true" class="demo-form-inline">
                     <el-form-item style="float: right;">
@@ -8,12 +8,12 @@
                     </el-form-item>
                 </el-form>
                 <el-table :data="pageInfo.list" border style="width: 100%">
-                    <el-table-column prop="fid" label="ID" align="center" width="60px" />
-                    <el-table-column prop="fname" label="姓名" align="center" width="120px" />
-                    <el-table-column prop="fage" label="年龄" align="center" width="70px" />
-                    <el-table-column prop="fgender" label="性别" align="center" width="70px" />
-                    <el-table-column prop="fphone" label="手机号" align="center" width="200px" />
-                    <el-table-column prop="custom.cname" label="家人" align="center" width="150px" />
+                    <el-table-column prop="fid" label="ID" align="center" width="80px" />
+                    <el-table-column prop="fname" label="姓名" align="center" width="150px" />
+                    <el-table-column prop="fage" label="年龄" align="center" width="100px" />
+                    <el-table-column prop="fgender" label="性别" align="center" width="100px" />
+                    <el-table-column prop="fphone" label="手机号" align="center" width="250px" />
+                    <el-table-column prop="custom.cname" label="家人" align="center" width="200px" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
                             <el-button size="small" type="success"
