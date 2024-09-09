@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Component
 public class JwInterceptor implements HandlerInterceptor {
@@ -30,7 +31,15 @@ public class JwInterceptor implements HandlerInterceptor {
         RespBean respBean = null;
         try {
             //解析JWT，如果出现问题会抛出异常
-            JwtUtils.parseJwtToMap(token);
+            Map<String, Object> map = JwtUtils.parseJwtToMap(token);
+
+            //生成新的JWT
+            String jwt = JwtUtils.generateJwt(map);
+            //将JWT放入response的响应头中
+            response.setHeader("token", jwt);
+            //暴露请求头token
+            response.setHeader("Access-Control-Expose-Headers", "token");
+
             return true;
         } catch (SignatureVerificationException e) {
             respBean = RespBean.error("无效签名");
