@@ -54,5 +54,8 @@
         </where>
         ORDER BY h.`hno` ASC
     </select>
+    <select id="selectByHno" resultType="hostel">
+        SELECT * FROM `hostel` WHERE `hno`=#{hno}
+    </select>
 
 </mapper>

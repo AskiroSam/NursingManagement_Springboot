@@ -15,6 +15,8 @@ public interface HostelMapper {
 
     Hostel selectByHid(Integer hid);
 
+    Hostel selectByHno(String hno);
+
     //获取某个宿舍下的所有客户
     List<Integer> selectCidByHid(Integer hid);
 

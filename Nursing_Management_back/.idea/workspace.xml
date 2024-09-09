@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“编写宿舍多对多后端”">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/stedu/OlderSystemApplicationTests.java" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成非空校验和参数校验”">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/HostelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/mapper/HostelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/HostelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/HostelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/HostelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/HostelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/HostelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/stedu/mapper/HostelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/HostelMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/HostelMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/mapper/HostelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/mapper/HostelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/HostelServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/HostelServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HostelView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HostelView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +95,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.OlderSystemApplicationTests.test10">
+  <component name="RunManager" selected="Spring Boot.OlderSystemApplication">
     <configuration name="OlderSystemApplicationTests2.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="older_system" />
       <extension name="coverage">
@@ -169,9 +176,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test10" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test09" />
-        <item itemvalue="Spring Boot.OlderSystemApplication" />
         <item itemvalue="JUnit.OlderSystemApplicationTests.test04" />
         <item itemvalue="JUnit.OlderSystemApplicationTests2.test02" />
       </list>
@@ -196,7 +203,8 @@
       <workItem from="1725492794202" duration="28361000" />
       <workItem from="1725580081553" duration="37486000" />
       <workItem from="1725670622757" duration="39499000" />
-      <workItem from="1725764006925" duration="27514000" />
+      <workItem from="1725764006925" duration="30321000" />
+      <workItem from="1725842881413" duration="12094000" />
     </task>
     <task id="LOCAL-00001" summary="“首次提交项目”">
       <option name="closed" value="true" />
@@ -454,7 +462,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725813716770</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="“修改宿舍多对多后端MyBatis”">
+      <option name="closed" value="true" />
+      <created>1725815761916</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1725815761916</updated>
+    </task>
+    <task id="LOCAL-00034" summary="“修改宿舍的selectByPage方法，来获取每个宿舍的分配人数”">
+      <option name="closed" value="true" />
+      <created>1725850621519</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1725850621519</updated>
+    </task>
+    <task id="LOCAL-00035" summary="“完成宿舍分分配”">
+      <option name="closed" value="true" />
+      <created>1725853696419</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1725853696420</updated>
+    </task>
+    <task id="LOCAL-00036" summary="“完成非空校验和参数校验”">
+      <option name="closed" value="true" />
+      <created>1725858421587</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1725858421587</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,10 +515,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“添加路线出行多对多映射，员工与路线，客户与路线”" />
-    <MESSAGE value="“完成多对多service层”" />
-    <MESSAGE value="“完成多对多Controller层的查询”" />
-    <MESSAGE value="“完成多对多客户表的添加”" />
     <MESSAGE value="“定义删除路线方法，并加上非空验证”" />
     <MESSAGE value="“修改多对多，解决为空报错问题”" />
     <MESSAGE value="“定于获取进度条的后端方法”" />
@@ -500,7 +536,11 @@
     <MESSAGE value="“计算员工的人数和工资和”" />
     <MESSAGE value="“设置路线最大可分配数量”" />
     <MESSAGE value="“编写宿舍多对多后端”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“编写宿舍多对多后端”" />
+    <MESSAGE value="“修改宿舍多对多后端MyBatis”" />
+    <MESSAGE value="“修改宿舍的selectByPage方法，来获取每个宿舍的分配人数”" />
+    <MESSAGE value="“完成宿舍分分配”" />
+    <MESSAGE value="“完成非空校验和参数校验”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“完成非空校验和参数校验”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

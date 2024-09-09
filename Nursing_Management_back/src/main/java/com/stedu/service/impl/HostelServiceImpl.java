@@ -60,9 +60,11 @@ public class HostelServiceImpl implements HostelService {
         // 假设要验证的字段是 hostel 对象的 hno 属性
         String hno = hostel.getHno();
 
-        // 验证 hno 是否为 4 位整数
+        // 验证 hno 是否为 4 位整数 并且名字不能重复
         if (hno == null || !hno.matches("\\d{4}")) {
-            throw new MyException("hno 必须是 4 位整数");
+            throw new MyException("宿舍号必须是4位整数");
+        } else if (hostelMapper.selectByHno(hno) != null) {
+            throw new MyException("该宿舍已经存在");
         }
 
         return hostelMapper.insert(hostel) == 1;
@@ -80,6 +82,11 @@ public class HostelServiceImpl implements HostelService {
     @Override
     public Hostel selectByHid(Integer hid) {
         return hostelMapper.selectByHid(hid);
+    }
+
+    @Override
+    public Hostel selectByHno(String hno) {
+        return hostelMapper.selectByHno(hno);
     }
 
     @Override

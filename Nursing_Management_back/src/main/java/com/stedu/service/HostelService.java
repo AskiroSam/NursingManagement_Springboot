@@ -16,6 +16,8 @@ public interface HostelService {
 
     Hostel selectByHid(Integer hid);
 
+    Hostel selectByHno(String hno);
+
     List<Hostel> selectAll();
 
     //获取某个宿舍的所有客户的id

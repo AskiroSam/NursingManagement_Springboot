@@ -80,7 +80,7 @@
 
 <script setup>
 import hostelApi from '@/api/hostelApi';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
 
 //搜索
@@ -130,6 +130,7 @@ function showSetHostelDialog(hid) {
     //查询所有在院客户的信息
     hostelApi.allCustom(hid)
         .then(resp => {
+            
             allCustom.value = resp.data.allCustom;
             selectCids.value = resp.data.selectCids;
             hostelSelectHid.value = hid;
@@ -176,7 +177,7 @@ function insert() {
         text: '加载中',
         background: 'rgba(0, 0, 0, 0.7)',
     })
-    travelApi.insert(travelAdd.value)
+    hostelApi.insert(hostelAdd.value)
         .then(resp => {
             loading.close();
             if (resp.code == 10000) {
@@ -186,14 +187,14 @@ function insert() {
                     duration: 1200
                 });
 
-                addTravelShow.value = false;
-                travelAdd.value = {
+                addHostelShow.value = false;
+                hostelAdd.value = {
                     tlocation: '',
                     tstart: '',
                     tend: '',
                     tdescription: ''
                 }
-                selectAll();
+                selectByPage();
             } else {
                 ElMessage({
                     message: resp.msg,
