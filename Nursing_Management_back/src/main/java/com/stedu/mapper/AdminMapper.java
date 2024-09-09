@@ -15,4 +15,6 @@ public interface AdminMapper {
     List<Map<String,Object>> selectDnameAndCount();
 
     List<Map<String,Object>> selectAgeCount();
+
+    Admin selectById(Integer id);
 }

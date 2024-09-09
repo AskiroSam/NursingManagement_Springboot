@@ -101,4 +101,9 @@ public class AdminServiceImpl implements AdminService {
         return resultList;
     }
 
+    @Override
+    public Admin selectById(Integer id) {
+        return adminMapper.selectById(id);
+    }
+
 }

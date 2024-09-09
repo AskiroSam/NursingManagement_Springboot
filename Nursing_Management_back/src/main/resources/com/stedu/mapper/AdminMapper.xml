@@ -10,4 +10,7 @@
     <select id="selectAgeCount" resultType="map">
         SELECT * FROM `custom` ORDER BY `cage` DESC;
     </select>
+    <select id="selectById" resultType="admin">
+        SELECT * FROM `admin` WHERE `id`=#{id};
+    </select>
 </mapper>
