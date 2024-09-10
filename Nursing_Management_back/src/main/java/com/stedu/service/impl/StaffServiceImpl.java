@@ -7,6 +7,7 @@ import com.stedu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -41,11 +42,32 @@ public class StaffServiceImpl implements StaffService {
         if (staff.getSno() == null ||!staff.getSno().matches("\\d{5}")) {
             throw new MyException("工号必须是5位数字");
         }
+        // 验证年龄是否为最多4位整数
+        if (staff.getSage() < 0 || staff.getSage() > 999) {
+            throw new MyException("年龄必须是3位整数");
+        }
+
+        // 验证薪资不能超过20000
+        BigDecimal minAge = BigDecimal.ZERO;
+        BigDecimal maxAge = new BigDecimal("20000");
+        if (staff.getSsalary() == null || staff.getSsalary().compareTo(minAge) < 0 || staff.getSsalary().compareTo(maxAge) > 0) {
+            throw new MyException("薪资不得大于20000");
+        }
         return staffMapper.insert(staff) == 1;
     }
 
     @Override
-    public boolean update(Staff staff) {
+    public boolean update(Staff staff) throws MyException {
+        // 验证年龄是否为最多4位整数
+        if (staff.getSage() < 0 || staff.getSage() > 999) {
+            throw new MyException("年龄必须是3位整数");
+        }
+        // 验证薪资不能超过20000
+        BigDecimal minAge = BigDecimal.ZERO;
+        BigDecimal maxAge = new BigDecimal("20000");
+        if (staff.getSsalary() == null || staff.getSsalary().compareTo(minAge) < 0 || staff.getSsalary().compareTo(maxAge) > 0) {
+            throw new MyException("薪资不得大于20000");
+        }
         return staffMapper.update(staff) == 1;
     }
 

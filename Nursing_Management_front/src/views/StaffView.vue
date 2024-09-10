@@ -115,40 +115,40 @@
 
     <!-- 修改员工的对话框开始 -->
     <el-dialog v-model="updateDialogShow" title="修改员工" width="500">
-        <el-form>
-            <el-form-item label="工号:" label-width="18%">
+        <el-form :model="staffUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="工号:" label-width="18%" prop="sno">
                 <el-input v-model="staffUpdate.sno" autocomplete="off" style="width: 300px" disabled />
             </el-form-item>
-            <el-form-item label="姓名:" label-width="18%">
-                <el-input v-model="staffUpdate.sname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="姓名:" label-width="18%" prop="sname">
+                <el-input v-model="staffUpdate.sname" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="年龄:" label-width="18%">
-                <el-input v-model="staffUpdate.sage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="年龄:" label-width="18%" prop="sage">
+                <el-input v-model="staffUpdate.sage" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="性别:" label-width="18%">
-                <el-radio-group v-model="staffUpdate.sgender" style="width: 300px">
+            <el-form-item label="性别:" label-width="18%" prop="sgender">
+                <el-radio-group v-model="staffUpdate.sgender" style="width: 300px" @input="handleUpdateNull">
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="入职时间:" label-width="18%">
+            <el-form-item label="入职时间:" label-width="18%" prop="sentrydate">
                 <el-date-picker v-model="staffUpdate.sentrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
-                    value-format="YYYY-MM-DD" style="width: 300px" />
+                    value-format="YYYY-MM-DD" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="基本工资:" label-width="18%">
-                <el-input v-model="staffUpdate.ssalary" autocomplete="off" style="width: 300px" />
+            <el-form-item label="基本工资:" label-width="18%" prop="ssalary">
+                <el-input v-model="staffUpdate.ssalary" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="院系:" label-width="18%">
+            <el-form-item label="院系:" label-width="18%" prop="did">
                 <el-select v-model="staffUpdate.did" placeholder="请选择院系" size="large" style="width: 300px">
                     <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
-                        :value="department.did" />
+                        :value="department.did" @input="handleUpdateNull" />
                 </el-select>
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" :disabled="updateButtonDisabled" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -263,8 +263,11 @@ const staffUpdate = ref({
 // ---------非空校验开始------------------
 //添加的确认按钮状态
 const addButtonDisabled = ref(true);
+//修改的确认按钮状态
+const updateButtonDisabled = ref(false);
 // 定义表单引用
 const addFormRef = ref(null);
+const updateFormRef = ref(null);
 //验证规则
 const state = reactive({
     rules: {

@@ -42,19 +42,19 @@
     <el-dialog v-model="updateDialogShow" title="修改家属" width="500">
         <el-form :model="familyUpdate" :rules="state.rules" ref="updateFormRef">
             <el-form-item label="姓名:" label-width="18%" prop="fname">
-                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
+                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="年龄:" label-width="18%" prop="fage">
-                <el-input v-model="familyUpdate.fage" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
+                <el-input v-model="familyUpdate.fage" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="性别:" label-width="18%" prop="fgender">
-                <el-radio-group v-model="familyUpdate.fgender" style="width: 300px" @input="handleUpdateNull">
+                <el-radio-group v-model="familyUpdate.fgender" style="width: 300px" @blur="handleUpdateNull">
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="手机号:" label-width="18%" prop="fphone">
-                <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
+                <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="亲人:" label-width="18%" prop="cname">
                 <el-input v-model="customUpdate.cname"  autocomplete="off" style="width: 300px" @input="isNullUpdateCustom" />
@@ -149,6 +149,7 @@ const handleUpdateNull = async () => {
     await formEl.validate((valid, fields) => {
         if (valid) {
             updateDisabled.value = false;
+            isNullUpdateCustom();
         } else {
             updateDisabled.value = true;
         }

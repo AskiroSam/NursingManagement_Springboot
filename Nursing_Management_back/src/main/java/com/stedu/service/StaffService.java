@@ -17,7 +17,7 @@ public interface StaffService {
 
     boolean insert(Staff staff) throws MyException;
 
-    boolean update(Staff staff);
+    boolean update(Staff staff) throws MyException;
 
     boolean delete(Integer sid);
 }

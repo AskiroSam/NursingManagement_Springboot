@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善客户的参数检验&quot;">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1a22ba3604f74bd8b980a8c5cd2b5166_CFAEA011527866D62B89D2CC56A9895F.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/7af60081240b45b89ddb34fa4c1a8c79_117a4935539d371d901fa4c0b260519b.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/8fb4959465b14ee1a6577c76ac63dc5c_117a4935539d371d901fa4c0b260519b.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/StaffServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/StaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/StaffServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/StaffServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +216,7 @@
       <workItem from="1725670622757" duration="39499000" />
       <workItem from="1725764006925" duration="30321000" />
       <workItem from="1725842881413" duration="45851000" />
-      <workItem from="1725927772658" duration="23468000" />
+      <workItem from="1725927772658" duration="25947000" />
     </task>
     <task id="LOCAL-00002" summary="“新增员工的方法”">
       <option name="closed" value="true" />

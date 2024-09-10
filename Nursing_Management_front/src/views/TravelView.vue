@@ -93,17 +93,17 @@
 
     <!-- 修改路线的对话框开始 -->
     <el-dialog v-model="updateDialogShow" title="添加院系" width="500">
-        <el-form>
-            <el-form-item label="目的地：" label-width="18%">
-                <el-input v-model="travelUpdate.tlocation" autocomplete="off" />
+        <el-form :model="travelUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="目的地：" label-width="18%" prop="tlocation">
+                <el-input v-model="travelUpdate.tlocation" autocomplete="off" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="出发时间：" label-width="18%">
+            <el-form-item label="出发时间：" label-width="18%" prop="tstart">
                 <el-time-select v-model="travelUpdate.tstart" style="width: 300px" start="06:00" step="00:15"
-                    end="23:30" placeholder="请选择时间" />
+                    end="23:30" placeholder="请选择时间" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="返回时间：" label-width="18%">
+            <el-form-item label="返回时间：" label-width="18%" prop="tend">
                 <el-time-select v-model="travelUpdate.tend" style="width: 300px" start="06:00" step="00:15" end="23:30"
-                    placeholder="请选择时间" />
+                    placeholder="请选择时间" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="路线描述：" label-width="18%">
                 <el-input v-model="travelUpdate.tdescription" autocomplete="off" />
@@ -112,7 +112,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" :disabled="updateButtonDisabled" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -189,8 +189,11 @@ const travelUpdate = ref({
 // ---------非空校验开始------------------
 //添加的确认按钮状态
 const addButtonDisabled = ref(true);
+//修改的确认按钮状态
+const updateButtonDisabled = ref(false);
 // 定义表单引用
 const addFormRef = ref(null);
+const updateFormRef = ref(null);
 //验证规则
 const state = reactive({
     rules: {

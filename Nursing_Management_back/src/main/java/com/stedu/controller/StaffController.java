@@ -56,7 +56,7 @@ public class StaffController {
     }
 
     @PutMapping
-    public RespBean update(@RequestBody Staff staff){
+    public RespBean update(@RequestBody Staff staff) throws MyException {
         staffService.update(staff);
         return RespBean.ok("修改成功");
     }
