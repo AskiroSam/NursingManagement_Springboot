@@ -51,9 +51,6 @@ const router = createRouter({
         }, {
           path: '/hostel',
           component: HostelView
-        }, {
-          path: '/excel',
-          component: ExcelView
         }
       ]
     },{

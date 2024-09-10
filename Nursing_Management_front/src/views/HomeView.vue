@@ -81,14 +81,6 @@
                 <span>费用管理</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="/excel">
-              <template #title>
-                <el-icon>
-                  <Tickets />
-                </el-icon>
-                <span>Excel上传</span>
-              </template>
-            </el-menu-item>
             <el-menu-item index="/index">
               <template #title>
                 <el-icon>

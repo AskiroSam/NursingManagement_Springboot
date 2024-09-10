@@ -6,10 +6,9 @@
                     <el-form-item>
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
                         <el-button type="warning" plain @click="exportData">Excel导出</el-button>
-                        <div style="background-color: white; margin-left: 20px;">
-                            <!-- 上传按钮 -->
-                            <input type="file" @change="handleFileChange" accept=".xls,.xlsx" />
-                            <button @click="uploadFile" :disabled="!selectedFile">上传</button>
+                        <div>
+                            <input type="file" ref="fileInput" style="display: none" @change="handleFileChange" />
+                            <el-button type="success" @click="triggerFileInput" style="margin-left: 10px;" plain>Excel导入</el-button>
                         </div>
                     </el-form-item>
                     <el-form-item style="float: right;">
@@ -218,37 +217,43 @@ const pageInfo = ref({
 });
 
 // -------Excel----------------------------------------------------
-// 定义一个ref来存储所选的文件
+//导入Excel
+// 定义一个 ref 来存储所选的文件
 const selectedFile = ref(null)
-// 处理文件更改事件
-function handleFileChange(event) {
+  const fileInput = ref(null)
+  
+  // 处理文件更改事件
+  function handleFileChange(event) {
     const file = event.target.files[0]
     if (file) {
-        selectedFile.value = file
+      selectedFile.value = file
+      importData(file) // 文件选择后立即导入
     }
-}
-// 上传文件的函数
-async function uploadFile() {
-    if (!selectedFile.value) {
-        alert('请选择一个文件!')
-        return
-    }
-
+  }
+  
+  // 触发文件选择对话框
+  function triggerFileInput() {
+    fileInput.value.click()
+  }
+  
+  // 导入文件的函数
+  async function importData(file) {
     const formData = new FormData()
-    formData.append('file', selectedFile.value)
-
+    formData.append('file', file)
+  
     try {
-        const response = await axios.post('/excel/importCustom', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        alert('文件上传成功: ' + response.data)
+      const response = await axios.post('http://localhost:8080/excel/importCustom', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'token': 'headers.token' // 替换成实际的 token
+        }
+      })
+      ElMessage.success('文件导入成功')
     } catch (error) {
-        alert('文件上传失败: ' + error.message)
+      ElMessage.error('文件导入失败，请稍后再试')
+      console.error('文件导入失败:', error)
     }
-}
-
+  }
 
 // 导出Excel
 function exportData() {
@@ -663,4 +668,5 @@ function deleteCustom(cid) {
 selectByPage(1);
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
