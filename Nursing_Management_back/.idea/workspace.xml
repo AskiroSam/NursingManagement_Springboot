@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完成薪资表的Excel的导出&quot;">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/FamilyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/FamilyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/FamilyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/FamilyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/FamilyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/FamilyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/FamilyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/FamilyController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/FamilyService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/FamilyServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/FamilyServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/CustomView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/CustomView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/HomeView.vue" afterDir="false" />
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善客户的参数检验&quot;">
+      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/FamilyView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,15 +207,7 @@
       <workItem from="1725670622757" duration="39499000" />
       <workItem from="1725764006925" duration="30321000" />
       <workItem from="1725842881413" duration="45851000" />
-      <workItem from="1725927772658" duration="19166000" />
-    </task>
-    <task id="LOCAL-00001" summary="“首次提交项目”">
-      <option name="closed" value="true" />
-      <created>1725451429887</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1725451429887</updated>
+      <workItem from="1725927772658" duration="23468000" />
     </task>
     <task id="LOCAL-00002" summary="“新增员工的方法”">
       <option name="closed" value="true" />
@@ -608,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725948229952</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="“完善客户的参数检验&quot;">
+      <option name="closed" value="true" />
+      <created>1725956779894</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1725956779896</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +622,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“多条件模糊查询后端”" />
     <MESSAGE value="“员工多条件模糊查询后端”" />
     <MESSAGE value="“实现Excel的导入导出”" />
     <MESSAGE value="“修改Excel的导入导出”" />
@@ -654,7 +646,8 @@
     <MESSAGE value="“完成后端Excel的导入并修改数据库&quot;" />
     <MESSAGE value="“完成前端Excel的导入&quot;" />
     <MESSAGE value="“完成薪资表的Excel的导出&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完成薪资表的Excel的导出&quot;" />
+    <MESSAGE value="“完善客户的参数检验&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="“完善客户的参数检验&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

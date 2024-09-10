@@ -39,31 +39,31 @@
     </el-row>
 
     <!-- 修改客户的对话框开始 -->
-    <el-dialog v-model="updateDialogShow" title="修改客户" width="500">
-        <el-form>
-            <el-form-item label="姓名:" label-width="18%">
-                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" />
+    <el-dialog v-model="updateDialogShow" title="修改家属" width="500">
+        <el-form :model="familyUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="姓名:" label-width="18%" prop="fname">
+                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="年龄:" label-width="18%">
-                <el-input v-model="familyUpdate.fage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="年龄:" label-width="18%" prop="fage">
+                <el-input v-model="familyUpdate.fage" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="性别:" label-width="18%">
-                <el-radio-group v-model="familyUpdate.fgender" style="width: 300px">
+            <el-form-item label="性别:" label-width="18%" prop="fgender">
+                <el-radio-group v-model="familyUpdate.fgender" style="width: 300px" @input="handleUpdateNull">
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="手机号:" label-width="18%">
-                <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" />
+            <el-form-item label="手机号:" label-width="18%" prop="fphone">
+                <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="亲人:" label-width="18%">
-                <el-input v-model="customUpdate.cname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="亲人:" label-width="18%" prop="cname">
+                <el-input v-model="customUpdate.cname"  autocomplete="off" style="width: 300px" @input="isNullUpdateCustom" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" :disabled="updateDisabled" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -74,7 +74,7 @@
 <script setup>
 import familyApi from '@/api/familyApi';
 import customApi from '@/api/customApi';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 
 //被修改家属的信息
@@ -116,6 +116,67 @@ const updateDialogShow = ref(false);
 
 //所有客户
 const customList = ref([]);
+
+
+
+// ---------------------参数校验-----------------------
+//修改的确认按钮状态
+const updateDisabled = ref(false);
+//定义表单引用
+const updateFormRef = ref(null);
+//验证规则
+const state = reactive({
+    rules: {
+        fname: [
+            { required: true, message: '请输入名称', trigger: 'blur' },
+        ],
+        fage: [
+            { required: true, message: '请输入年龄', trigger: 'blur' },
+        ],
+        fgender: [
+            { required: true, message: '请输入性别', trigger: 'blur' },
+        ],
+        fphone: [
+            { required: true, message: '请输入手机号', trigger: 'blur' },
+        ]
+    }
+});
+// 处理添加数据的方法
+const handleUpdateNull = async () => {
+    const formEl = updateFormRef.value; // 获取 el-form 实例
+    if (!formEl) return;
+    // 验证表单
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            updateDisabled.value = false;
+        } else {
+            updateDisabled.value = true;
+        }
+    });
+
+};
+
+function isNullUpdateCustom() {
+    if (customUpdate.value.cname) {
+        updateDisabled.value = false; 
+    } else {
+        updateDisabled.value = true;
+        ElMessage({
+            message: '客户姓名不能为空',
+            type: 'error',
+            duration: 1200,
+        })
+    }
+    
+    
+}
+//-----------------------------------------------------
+
+
+
+
+
+
 
 //分页查询
 function selectByPage(pageNum) {
