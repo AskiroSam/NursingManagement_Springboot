@@ -37,24 +37,26 @@
             </el-card>
         </el-col>
         <el-col :span="12">
-            <el-card style="opacity: 0.9;" shadow="always">
+            <el-card style="opacity: 0.9; height: 200px;" shadow="always">
                 <div style="text-align: center; margin-bottom: 15px; opacity: 0.7;">员工支出</div>
                 <el-table :data="payoutList" border style="width: 100%">
                     <el-table-column prop="pnumber" label="员工总数" align="center" />
                     <el-table-column prop="pout" label="需支付总工资" align="center" />
                     <el-table-column label="操作" align="center">
                         <template #default="scope">
-                            <el-badge class="item">
+                            <!-- <el-badge class="item">
                                 <el-button title="发布" class="share-button" :icon="Share" type="primary"
                                     @click="putShow(scope.row.pid)"
                                     style="height: 50px; margin-left: 40px; margin-bottom: 25px; width: 100px;" />
-                            </el-badge>
+                            </el-badge> -->
+                            <el-button type="warning"  @click="exportData" style="height: 50px; margin-left: 0px; margin-bottom: 0px; width: 150px;">导出每个员工的薪资</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
             </el-card>
         </el-col>
     </el-row>
+    
 
 
     <!-- 修改费用的对话框开始 -->
@@ -100,15 +102,50 @@ import { ElMessage } from 'element-plus';
 import { reactive, ref, watch } from 'vue';
 import dayjs from 'dayjs'
 import { Calendar } from '@element-plus/icons-vue'
+import axios from 'axios';
 
-// --------------------------------------------------
+// -------------时间插件-------------------------------------
 const value = ref(Date.now() + 1000 * 60 * 60 * 7)
 const value1 = ref(Date.now() + 1000 * 60 * 60 * 24 * 2)
 const value2 = ref(dayjs().add(1, 'month').startOf('month'))
 function reset() {
     value1.value = Date.now() + 1000 * 60 * 60 * 24 * 2
 }
-// -------------------------------------------------------
+// -------------时间插件------------------------------------------
+
+
+
+// ------------工资Excel导出------------------------------------
+// 导出Excel
+function exportData() {
+    // 根据搜索条件构建 URL
+    const url = `http://localhost:8080/excel/exportStaffSalary`;
+
+    axios.get(url, {
+        responseType: 'blob', // 确保响应类型为 blob
+        headers: {
+            'token': 'headers.token' // 替换成实际的 token
+        }
+    })
+        .then(response => {
+            // 创建一个下载链接并触发下载
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'customsSalary.xlsx'); // 指定下载文件名
+            document.body.appendChild(link);
+            link.click();
+
+            // 清理临时链接
+            document.body.removeChild(link);
+        })
+        .catch(error => {
+            // 错误处理
+            ElMessage.error('导出 Excel 失败，请稍后再试');
+            console.error('导出 Excel 失败:', error);
+        });
+}
+//-----------工资Excel导出-----------------------------------------------
 
 
 
@@ -144,14 +181,14 @@ function selectByEid(eid) {
             updateDialogShow.value = true;
         })
 }
-//发布模态框
-function putShow(pid) {
-    payoutApi.selectById(pid)
-        .then(resp => {
-            payoutSee.value = resp.data;
-            putOutShow.value = true;
-        })
-}
+// //发布模态框
+// function putShow(pid) {
+//     payoutApi.selectById(pid)
+//         .then(resp => {
+//             payoutSee.value = resp.data;
+//             putOutShow.value = true;
+//         })
+// }
 
 
 function selectAll() {
@@ -193,16 +230,16 @@ function update() {
         })
 }
 
-//发布方法
-function push() {
-    ElMessage({
-        message: '发布成功',
-        type: 'success',
-        duration: 1200
-    });
-    putOutShow.value = false;
+// //发布方法
+// function push() {
+//     ElMessage({
+//         message: '发布成功',
+//         type: 'success',
+//         duration: 1200
+//     });
+//     putOutShow.value = false;
 
-}
+// }
 
 // ---------非空校验开始------------------
 //修改的确认按钮状态
