@@ -146,6 +146,60 @@ public class excelPortController {
         }
     }
 
+    //导出员工工资表
+    @GetMapping("/exportStaffSalary")
+    public void exportDataStaffSalary(@RequestParam(required = false) String sname,@RequestParam(required = false) String sgender,@RequestParam(required = false) String ssalary, HttpServletResponse response) throws IOException {
+        // 创建ExcelWriter
+        ExcelWriter writer = ExcelUtil.getWriter();
+
+        // 查询主表数据
+        List<Staff> staffList;
+        if (StringUtils.isEmpty(sname) && StringUtils.isEmpty(sgender) && StringUtils.isEmpty(ssalary)) {
+            staffList = staffService.selectAll();
+        } else {
+            staffList = staffService.selectByPage(sname, sgender, ssalary);
+        }
+
+        // 过滤掉离职员工（sstate = 2）
+        staffList = staffList.stream().filter(staff -> staff.getSstate() != 2).collect(Collectors.toList());
+
+        // 补充数据
+        List<StaffDTO> customDTOList = staffList.stream().map(custom -> {
+            StaffDTO dto = new StaffDTO();
+            dto.setSid(custom.getSid());
+            dto.setSno(custom.getSno());
+            dto.setSname(custom.getSname());
+            dto.setSsalary(String.valueOf(custom.getSsalary()));
+            return dto;
+        }).collect(Collectors.toList());
+
+        // 过滤不需要的列，只保留指定的字段
+        writer.addHeaderAlias("sid", "员工编号");   // 设置别名
+        writer.addHeaderAlias("sno", "工号");      // 设置别名
+        writer.addHeaderAlias("sname", "姓名");     // 设置别名
+        writer.addHeaderAlias("ssalary", "薪资");   // 设置别名
+
+        // 设置只输出设置了别名的字段
+        writer.setOnlyAlias(true);
+
+        // 将数据写入Excel
+        writer.write(customDTOList, true);
+
+        // 设置响应头
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=staffs.xlsx");
+
+        // 获取输出流
+        try (ServletOutputStream outputStream = response.getOutputStream()) {
+            // 将Excel内容写入输出流
+            writer.flush(outputStream, true);
+        } finally {
+            // 确保writer关闭
+            writer.close();
+        }
+    }
+
+    //导入Custom
     @PostMapping("/importCustom")
     public ResponseEntity<String> importDataCustom(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
