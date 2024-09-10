@@ -135,37 +135,37 @@
 
     <!-- 修改客户的对话框开始 -->
     <el-dialog v-model="updateDialogShow" title="修改客户" width="500">
-        <el-form>
-            <el-form-item label="姓名:" label-width="18%">
-                <el-input v-model="customUpdate.cname" autocomplete="off" style="width: 300px" />
+        <el-form :model="customUpdate" :rules="state.rules" ref="updateFormRef">
+            <el-form-item label="姓名:" label-width="18%" prop="cname">
+                <el-input v-model="customUpdate.cname" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="年龄:" label-width="18%">
-                <el-input v-model="customUpdate.cage" autocomplete="off" style="width: 300px" />
+            <el-form-item label="年龄:" label-width="18%" prop="cage">
+                <el-input v-model="customUpdate.cage" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="性别:" label-width="18%">
-                <el-radio-group v-model="customUpdate.cgender" style="width: 300px">
+            <el-form-item label="性别:" label-width="18%" prop="cgender">
+                <el-radio-group v-model="customUpdate.cgender" style="width: 300px" @input="handleUpdateNull" >
                     <el-radio value="男" size="large">男</el-radio>
                     <el-radio value="女" size="large">女</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="手机号:" label-width="18%">
-                <el-input v-model="customUpdate.cphone" autocomplete="off" style="width: 300px" />
+            <el-form-item label="手机号:" label-width="18%" prop="cphone">
+                <el-input v-model="customUpdate.cphone" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="入院时间:" label-width="18%">
+            <el-form-item label="入院时间:" label-width="18%" prop="centrydate">
                 <el-date-picker v-model="customUpdate.centrydate" type="date" placeholder="请选择入职日期" format="YYYY-MM-DD"
-                    value-format="YYYY-MM-DD" style="width: 300px" />
+                    value-format="YYYY-MM-DD" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="家庭住址:" label-width="18%">
-                <el-input v-model="customUpdate.caddress" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家庭住址:" label-width="18%" prop="caddress">
+                <el-input v-model="customUpdate.caddress" autocomplete="off" style="width: 300px" @input="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="部门:" label-width="18%">
-                <el-select v-model="customUpdate.did" placeholder="请选择部门" size="large" style="width: 300px">
+            <el-form-item label="部门:" label-width="18%" prop="did">
+                <el-select v-model="customUpdate.did" placeholder="请选择部门" size="large" style="width: 300px" @input="handleUpdateNull">
                     <el-option v-for="(department, index) in departmentList" :key="index" :label="department.dname"
                         :value="department.did" :disabled="isDisabled(department)" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="家属:" label-width="18%">
-                <el-input v-model="familyUpdate.fname" autocomplete="off" style="width: 300px" />
+            <el-form-item label="家属:" label-width="18%" prop="fname" :error="errors.fname">
+                <el-input v-model="familyUpdate.fname" @input="isNullUpdateFamily" autocomplete="off" style="width: 300px"/>
             </el-form-item>
             <el-form-item label="护理等级:" label-width="18%">
                 <el-radio-group v-model="customUpdate.eid" style="width: 300px">
@@ -177,7 +177,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateDialogShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" :disabled="updateButtonDisabled" @click="update">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -388,10 +388,11 @@ const state = reactive({
     rules: {
         cname: [
             { required: true, message: '请输入名称', trigger: 'blur' },
-            { max: 5, message: '姓名不能超过五位', trigger: 'blur' }
+            // { max: 5, message: '姓名不能超过五位', trigger: 'blur' }
         ],
         cage: [
             { required: true, message: '请输入年龄', trigger: 'blur' },
+            // { max: 3, message: '年龄不能超过3位', trigger: 'blur' }
         ],
         cgender: [
             { required: true, message: '请输入性别', trigger: 'blur' },
@@ -434,11 +435,10 @@ const handleAddNull = async () => {
 // 处理修改数据的方法
 const handleUpdateNull = async () => {
     const formEl = updateFormRef.value; // 获取 el-form 实例  
-    if (!formEl) return;
+    if (!formEl) return;    
     // 验证表单
     await formEl.validate((valid, fields) => {
         if (valid) {
-
             updateButtonDisabled.value = false;
         } else {
             updateButtonDisabled.value = true;
@@ -488,6 +488,23 @@ function handleAddFamilyNull() {
 
     // 更新按钮的禁用状态
     addButtonDisabled.value = hasErrors;
+}
+
+function isNullUpdateFamily() {
+    console.log(familyUpdate.value.fname);
+    if (familyUpdate.value.fname) {
+        updateButtonDisabled.value = false;
+        
+    } else {
+        updateButtonDisabled.value = true;
+        ElMessage({
+            message: '家属姓名不能为空',
+            type: 'error',
+            duration: 1200,
+        })
+    }
+    
+    
 }
 // ---------非空校验结束------------------
 

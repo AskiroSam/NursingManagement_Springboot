@@ -51,6 +51,10 @@ public class FamilyServiceImpl implements FamilyService {
         if (f.getFphone() == null ||!f.getFphone().matches("\\d{11}")) {
             throw new MyException("手机号必须是11位数字");
         }
+        // 验证年龄是否为最多4位整数
+        if (f.getFage() < 0 || f.getFage() > 999) {
+            throw new MyException("年龄必须是3位整数");
+        }
         return familyMapper.update(f) == 1;
     }
 

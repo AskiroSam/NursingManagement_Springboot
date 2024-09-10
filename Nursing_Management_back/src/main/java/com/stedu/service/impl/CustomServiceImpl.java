@@ -36,6 +36,10 @@ public class CustomServiceImpl implements CustomService {
         if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
             throw new MyException("手机号必须是11位数字");
         }
+        // 验证年龄是否为最多4位整数
+        if (c.getCage() < 0 || c.getCage() > 999) {
+            throw new MyException("年龄必须是3位整数");
+        }
         List<Custom> customs = customMapper.selectByHid(c.getHid());
         if (customs.size() >= 6) {
             throw new MyException("宿舍最多有6人，请选择其他宿舍");
@@ -49,6 +53,10 @@ public class CustomServiceImpl implements CustomService {
         Hostel hostel = hostelMapper.selectByHid(c.getHid());
         if (hostel.getDnumber() >= 6) {
            throw new MyException("宿舍最多分配6个人,请重新分配");
+        }
+        // 验证年龄是否为最多4位整数
+        if (c.getCage() < 0 || c.getCage() > 999) {
+            throw new MyException("年龄必须是3位整数");
         }
         // 验证手机号是否为11位
         if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
