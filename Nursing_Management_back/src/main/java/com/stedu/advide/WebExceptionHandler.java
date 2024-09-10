@@ -24,7 +24,8 @@ public class WebExceptionHandler {
         BindingResult bindingResult = e.getBindingResult();
         StringBuilder sbf = new StringBuilder("校验失败 ");
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            sbf.append(fieldError.getField()).append("：").append(fieldError.getDefaultMessage()).append(", ");
+            //sbf.append(fieldError.getField()).append("：").append(fieldError.getDefaultMessage()).append(", ");
+            sbf.append("：").append(fieldError.getDefaultMessage()).append(", ");
         }
         String msg = sbf.toString();
         int i = msg.lastIndexOf(", ");

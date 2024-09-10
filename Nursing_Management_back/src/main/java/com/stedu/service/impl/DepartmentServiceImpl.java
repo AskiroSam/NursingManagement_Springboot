@@ -9,6 +9,7 @@ import com.stedu.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentMapper departmentMapper;
 
     @Override
-    public boolean insert(Department d) throws MyException {
+    public boolean insert(@Valid Department d) throws MyException {
         if (departmentMapper.selectByDname(d.getDname()) != null) {
             throw new MyException("该部门已经存在，无法重复添加");
         }

@@ -50,4 +50,7 @@
     <select id="selectTotal" resultType="long">
         SELECT SUM(ssalary) FROM `staff`;
     </select>
+    <select id="selectBySno" resultType="com.stedu.bean.Staff">
+        SELECT * FROM `staff` WHERE `sno`=#{sno}
+    </select>
 </mapper>

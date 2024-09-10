@@ -92,10 +92,10 @@
     <!-- 添加路线的对话框结束 -->
 
     <!-- 修改路线的对话框开始 -->
-    <el-dialog v-model="updateDialogShow" title="添加院系" width="500">
+    <el-dialog v-model="updateDialogShow" title="修改路线" width="600">
         <el-form :model="travelUpdate" :rules="state.rules" ref="updateFormRef">
-            <el-form-item label="目的地：" label-width="18%" prop="tlocation">
-                <el-input v-model="travelUpdate.tlocation" autocomplete="off" @blur="handleUpdateNull" />
+            <el-form-item label="目的地：" label-width="18%"  prop="tlocation">
+                <el-input v-model="travelUpdate.tlocation" style="width: 300px" autocomplete="off" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="出发时间：" label-width="18%" prop="tstart">
                 <el-time-select v-model="travelUpdate.tstart" style="width: 300px" start="06:00" step="00:15"
@@ -106,7 +106,7 @@
                     placeholder="请选择时间" @blur="handleUpdateNull" />
             </el-form-item>
             <el-form-item label="路线描述：" label-width="18%">
-                <el-input v-model="travelUpdate.tdescription" autocomplete="off" />
+                <el-input v-model="travelUpdate.tdescription" style="width: 300px" autocomplete="off" />
             </el-form-item>
         </el-form>
         <template #footer>

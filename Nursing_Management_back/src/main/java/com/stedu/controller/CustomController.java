@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class CustomController {
     }
 
     @PostMapping
-    public RespBean insert(@RequestBody Custom custom) throws MyException {
+    public RespBean insert(@RequestBody @Valid Custom custom) throws MyException {
         boolean result = customService.insert(custom);
         //校准家属表
         if (result) {
@@ -66,7 +67,7 @@ public class CustomController {
     }
 
     @PutMapping
-    public RespBean update(@RequestBody Custom custom) throws MyException {
+    public RespBean update(@RequestBody @Valid Custom custom) throws MyException {
         customService.update(custom);
         return RespBean.ok("修改成功");
     }

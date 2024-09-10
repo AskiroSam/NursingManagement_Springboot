@@ -192,6 +192,9 @@ const pageInfo = ref({
     pageNum: 0
 })
 
+
+
+// ----------------Excel----------------------------------------
 // 导出Excel
 function exportData() {
     // 根据搜索条件构建 URL
@@ -221,6 +224,9 @@ function exportData() {
         console.error('导出 Excel 失败:', error);
     });
 }
+// ----------------Excel----------------------------------------
+
+
 
 //员工列表
 const staffList = ref([]);
@@ -416,7 +422,7 @@ function insert() {
                 imageUrl.value = '';
                 selectByPage(1);
                 //刷新部门人数
-                departmentApi.selectAll();
+                departmentApi.selectAll();                
             } else {
                 ElMessage({
                     message: resp.msg,
@@ -442,6 +448,12 @@ function update() {
                 selectByPage(1);
                 //刷新部门人数
                 departmentApi.selectAll();
+            } else {
+                ElMessage({
+                    message: resp.msg,
+                    type: 'error',
+                    duration: 1200
+                });
             }
         })
 }

@@ -3,6 +3,7 @@ package com.stedu.service.impl;
 import com.stedu.bean.Custom;
 import com.stedu.bean.Department;
 import com.stedu.bean.Family;
+import com.stedu.bean.Hostel;
 import com.stedu.exception.MyException;
 import com.stedu.mapper.CustomMapper;
 import com.stedu.mapper.FamilyMapper;
@@ -55,6 +56,7 @@ public class FamilyServiceImpl implements FamilyService {
         if (f.getFage() < 0 || f.getFage() > 999) {
             throw new MyException("年龄必须是3位整数");
         }
+
         return familyMapper.update(f) == 1;
     }
 

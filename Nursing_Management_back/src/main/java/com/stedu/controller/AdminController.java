@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
 
 @CrossOrigin
@@ -21,7 +22,7 @@ public class AdminController {
     //登录
     @ResponseBody
     @PostMapping("/login")
-    public RespBean login(String username, String password) throws MyException {
+    public RespBean login(@Valid String username, String password) throws MyException {
         Admin admin = adminService.login(username, password);
         //登录成功之后，生成JWT发送给前端
         HashMap<String, Object> map = new HashMap<>();

@@ -22,4 +22,5 @@ public interface FamilyMapper {
     List<Family> sclectByCid(Integer cid);
 
     Integer getFamilyId(String family);
+
 }

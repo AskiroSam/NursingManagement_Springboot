@@ -8,6 +8,7 @@ import com.stedu.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class AdminServiceImpl implements AdminService {
     public AdminMapper adminMapper;
 
     @Override
-    public Admin login(String username, String password) throws MyException {
+    public Admin login(@Valid String username, String password) throws MyException {
         Admin admin = adminMapper.SelectByUsername(username);
         //用户名怕非空判断
         if (admin == null) {

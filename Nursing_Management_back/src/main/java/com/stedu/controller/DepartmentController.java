@@ -6,8 +6,10 @@ import com.stedu.bean.RespBean;
 import com.stedu.exception.MyException;
 import com.stedu.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin
@@ -18,7 +20,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping
-    public RespBean insert(@RequestBody Department department) throws MyException {
+    public RespBean insert(@RequestBody @Valid Department department) throws MyException {
         String dname = department.getDname();
         System.out.println(dname);
         String dlocation = department.getDlocation();

@@ -24,6 +24,7 @@ public interface StaffMapper {
 
     List<Staff> selectByDid(Integer did);
 
+    Staff selectBySno(String sno);
 
     Long selectTotal();
 }

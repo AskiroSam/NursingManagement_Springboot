@@ -9,6 +9,7 @@ import com.stedu.service.CustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public boolean insert(Custom c) throws MyException {
+    public boolean insert(@Valid Custom c) throws MyException {
         c.setCstate(1);
         // 验证手机号是否为11位
         if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
@@ -49,7 +50,7 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public boolean update(Custom c) throws MyException {
+    public boolean update(@Valid Custom c) throws MyException {
         Hostel hostel = hostelMapper.selectByHid(c.getHid());
         if (hostel.getDnumber() >= 6) {
            throw new MyException("宿舍最多分配6个人,请重新分配");

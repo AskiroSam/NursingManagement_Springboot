@@ -56,9 +56,9 @@
             <el-form-item label="手机号:" label-width="18%" prop="fphone">
                 <el-input v-model="familyUpdate.fphone" autocomplete="off" style="width: 300px" @blur="handleUpdateNull" />
             </el-form-item>
-            <el-form-item label="亲人:" label-width="18%" prop="cname">
+            <!-- <el-form-item label="亲人:" label-width="18%" prop="cname">
                 <el-input v-model="customUpdate.cname"  autocomplete="off" style="width: 300px" @input="isNullUpdateCustom" />
-            </el-form-item>
+            </el-form-item> -->
         </el-form>
         <template #footer>
             <div class="dialog-footer">
@@ -87,19 +87,19 @@ const familyUpdate = ref({
     cid: ''
 })
 
-//被修改客户的信息
-const customUpdate = ref({
-    cid: '',
-    cname: '',
-    cage: '',
-    cgender: '',
-    cphone: '',
-    centrydate: '',
-    caddress: '',
-    did: '',
-    fid: '',
-    eid: ''
-})
+// //被修改客户的信息
+// const customUpdate = ref({
+//     cid: '',
+//     cname: '',
+//     cage: '',
+//     cgender: '',
+//     cphone: '',
+//     centrydate: '',
+//     caddress: '',
+//     did: '',
+//     fid: '',
+//     eid: ''
+// })
 
 
 //搜索
@@ -114,8 +114,8 @@ const pageInfo = ref({
 //删除对话框显示状态
 const updateDialogShow = ref(false);
 
-//所有客户
-const customList = ref([]);
+// //所有客户
+// const customList = ref([]);
 
 
 
@@ -157,25 +157,21 @@ const handleUpdateNull = async () => {
 
 };
 
-function isNullUpdateCustom() {
-    if (customUpdate.value.cname) {
-        updateDisabled.value = false; 
-    } else {
-        updateDisabled.value = true;
-        ElMessage({
-            message: '客户姓名不能为空',
-            type: 'error',
-            duration: 1200,
-        })
-    }
+// function isNullUpdateCustom() {
+//     if (customUpdate.value.cname) {
+//         updateDisabled.value = false; 
+//     } else {
+//         updateDisabled.value = true;
+//         ElMessage({
+//             message: '客户姓名不能为空',
+//             type: 'error',
+//             duration: 1200,
+//         })
+//     }
     
     
-}
+// }
 //-----------------------------------------------------
-
-
-
-
 
 
 
@@ -186,54 +182,80 @@ function selectByPage(pageNum) {
             pageInfo.value = resp.data;
         })
 }
-//获取所有用户的信息
-function selectByPage2(pageNum) {
-    customApi.selectByPage(pageNum)
-        .then(resp => {
-            customList.value = resp.data.list;
-        })
-}
+// //获取所有用户的信息
+// function selectByPage2(pageNum) {
+//     customApi.selectByPage(pageNum)
+//         .then(resp => {
+//             customList.value = resp.data.list;
+//         })
+// }
 
 //查询所有家属并显示修改对话框
 function showUpdateDialog(fid) {
     familyApi.selectById(fid)
         .then(resp => {
             familyUpdate.value = resp.data;
+            updateDialogShow.value = true
 
-            customApi.selectById(resp.data.cid)
-                .then(resp => {
-                    customUpdate.value = resp.data
-                    updateDialogShow.value = true
-                })
+            // customApi.selectById(resp.data.cid)
+            //     .then(resp => {
+            //         customUpdate.value = resp.data
+            //         updateDialogShow.value = true
+            //     })
 
         })
 }
+
+
+// //修改家属
+// function update() {
+//     familyApi.update(familyUpdate.value)
+//         .then(resp => {
+//             if (resp.code == 10000) {
+//                 customApi.update(customUpdate.value)
+//                     .then(resp => {
+//                         if (resp.code == 10000) {
+//                             ElMessage({
+//                                 message: resp.msg,
+//                                 type: 'success',
+//                                 duration: 1200
+//                             });
+
+//                             //隐藏
+//                             updateDialogShow.value = false;
+//                             selectByPage(1);
+//                         } else {
+//                             ElMessage({
+//                                 message: resp.msg,
+//                                 type: 'error',
+//                                 duration: 1200
+//                             });
+//                         }
+//                     })
+//             } else {
+//                 ElMessage({
+//                     message: resp.msg,
+//                     type: 'error',
+//                     duration: 1200
+//                 });
+//             }
+
+
+//         })
+// }
 
 //修改家属
 function update() {
     familyApi.update(familyUpdate.value)
         .then(resp => {
             if (resp.code == 10000) {
-                customApi.update(customUpdate.value)
-                    .then(resp => {
-                        if (resp.code == 10000) {
-                            ElMessage({
-                                message: resp.msg,
-                                type: 'success',
-                                duration: 1200
-                            });
-
-                            //隐藏
-                            updateDialogShow.value = false;
-                            selectByPage(1);
-                        } else {
-                            ElMessage({
-                                message: resp.msg,
-                                type: 'error',
-                                duration: 1200
-                            });
-                        }
-                    })
+                ElMessage({
+                    message: resp.msg,
+                    type: 'success',
+                    duration: 1200,
+                });
+                updateDialogShow.value = false;
+                selectByPage(1);
             } else {
                 ElMessage({
                     message: resp.msg,
@@ -263,7 +285,7 @@ function deleteFamily(fid) {
 }
 
 selectByPage(1);
-selectByPage2(1);
+// selectByPage2(1);
 </script>
 
 <style scoped></style>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin
@@ -44,7 +45,7 @@ public class StaffController {
     }
 
     @PostMapping
-    public RespBean insert(@RequestBody Staff staff) throws MyException {
+    public RespBean insert(@RequestBody @Valid Staff staff) throws MyException {
         staffService.insert(staff);
         return RespBean.ok("添加成功");
     }
@@ -56,7 +57,7 @@ public class StaffController {
     }
 
     @PutMapping
-    public RespBean update(@RequestBody Staff staff) throws MyException {
+    public RespBean update(@RequestBody @Valid Staff staff) throws MyException {
         staffService.update(staff);
         return RespBean.ok("修改成功");
     }
