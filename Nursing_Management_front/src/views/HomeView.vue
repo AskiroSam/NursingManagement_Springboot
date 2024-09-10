@@ -59,7 +59,7 @@
                   <School />
                 </el-icon>院系部门</el-menu-item>
                 <el-menu-item index="/hostel"><el-icon>
-                  <Van />
+                  <House />
                 </el-icon>宿舍管理</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="4">
@@ -84,7 +84,7 @@
             <el-menu-item index="/index">
               <template #title>
                 <el-icon>
-                  <House />
+                  <LocationFilled />
                 </el-icon>
                 <span>返回首页</span>
               </template>

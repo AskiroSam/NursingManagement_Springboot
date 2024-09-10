@@ -38,7 +38,7 @@ public class FamilyController {
     }
 
     @PostMapping
-    public RespBean insert(@RequestBody Family family) {
+    public RespBean insert(@RequestBody Family family) throws MyException {
         boolean result = familyService.insert(family);
         //校准客户表
         if (result) {

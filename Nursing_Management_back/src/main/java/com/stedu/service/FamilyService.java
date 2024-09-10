@@ -11,7 +11,7 @@ public interface FamilyService {
 
     List<Family> selectAll();
 
-    boolean insert(Family f);
+    boolean insert(Family f) throws MyException;
 
     boolean update(Family f) throws MyException;
 

@@ -32,7 +32,16 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Override
-    public boolean insert(Family f) {
+    public boolean insert(Family f) throws MyException {
+        if (f.getFname() == null) {
+            throw new MyException("家属名不能为空");
+        }
+        if (f.getFage() == null) {
+            throw new MyException("家属年龄不能为空");
+        }
+        if (f.getFphone() == null ||!f.getFphone().matches("\\d{11}")) {
+            throw new MyException("手机号必须是11位数字");
+        }
         return familyMapper.insert(f) == 1;
     }
 

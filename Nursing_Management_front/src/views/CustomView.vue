@@ -8,7 +8,8 @@
                         <el-button type="warning" plain @click="exportData">Excel导出</el-button>
                         <div>
                             <input type="file" ref="fileInput" style="display: none" @change="handleFileChange" />
-                            <el-button type="success" @click="triggerFileInput" style="margin-left: 10px;" plain>Excel导入</el-button>
+                            <el-button type="success" @click="triggerFileInput" style="margin-left: 10px;"
+                                plain>Excel导入</el-button>
                         </div>
                     </el-form-item>
                     <el-form-item style="float: right;">
@@ -220,40 +221,40 @@ const pageInfo = ref({
 //导入Excel
 // 定义一个 ref 来存储所选的文件
 const selectedFile = ref(null)
-  const fileInput = ref(null)
-  
-  // 处理文件更改事件
-  function handleFileChange(event) {
+const fileInput = ref(null)
+
+// 处理文件更改事件
+function handleFileChange(event) {
     const file = event.target.files[0]
     if (file) {
-      selectedFile.value = file
-      importData(file) // 文件选择后立即导入
+        selectedFile.value = file
+        importData(file) // 文件选择后立即导入
     }
-  }
-  
-  // 触发文件选择对话框
-  function triggerFileInput() {
+}
+
+// 触发文件选择对话框
+function triggerFileInput() {
     fileInput.value.click()
-  }
-  
-  // 导入文件的函数
-  async function importData(file) {
+}
+
+// 导入文件的函数
+async function importData(file) {
     const formData = new FormData()
     formData.append('file', file)
-  
+
     try {
-      const response = await axios.post('http://localhost:8080/excel/importCustom', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'token': 'headers.token' // 替换成实际的 token
-        }
-      })
-      ElMessage.success('文件导入成功')
+        const response = await axios.post('http://localhost:8080/excel/importCustom', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'token': 'headers.token' // 替换成实际的 token
+            }
+        })
+        ElMessage.success('文件导入成功')
     } catch (error) {
-      ElMessage.error('文件导入失败，请稍后再试')
-      console.error('文件导入失败:', error)
+        ElMessage.error('文件导入失败，请稍后再试')
+        console.error('文件导入失败:', error)
     }
-  }
+}
 
 // 导出Excel
 function exportData() {
@@ -387,6 +388,7 @@ const state = reactive({
     rules: {
         cname: [
             { required: true, message: '请输入名称', trigger: 'blur' },
+            { max: 5, message: '姓名不能超过五位', trigger: 'blur' }
         ],
         cage: [
             { required: true, message: '请输入年龄', trigger: 'blur' },
@@ -413,31 +415,30 @@ const state = reactive({
     }
 });
 
-
 // 处理添加数据的方法
 const handleAddNull = async () => {
     const formEl = addFormRef.value; // 获取 el-form 实例
     if (!formEl) return;
-
-
     // 验证表单
     await formEl.validate((valid, fields) => {
         if (valid) {
-            // addButtonDisabled.value = false;
+            addButtonDisabled.value = false;
+            handleAddFamilyNull();
         } else {
             addButtonDisabled.value = true;
         }
     });
+
 };
 
 // 处理修改数据的方法
 const handleUpdateNull = async () => {
     const formEl = updateFormRef.value; // 获取 el-form 实例  
     if (!formEl) return;
-
     // 验证表单
     await formEl.validate((valid, fields) => {
         if (valid) {
+
             updateButtonDisabled.value = false;
         } else {
             updateButtonDisabled.value = true;
@@ -476,6 +477,7 @@ function handleAddFamilyNull() {
         errors.fphone = '家属手机不能为空';
         hasErrors = true;
     } else if (!/^\d{11}$/.test(familyAdd.value.fphone.trim())) {
+        errors.fphone = '手机号必须是11位数字';
         ElMessage({
             message: '手机号必须是11位数字',
             type: 'error',
@@ -542,6 +544,7 @@ function showUpdateDialog(cid) {
 
 //添加方法
 function insert() {
+    handleAddFamilyNull();
     const loading = ElLoading.service({
         lock: true,
         text: '加载中',
@@ -602,6 +605,12 @@ function insert() {
                                     }
                                 })
 
+                        } else {
+                            ElMessage({
+                                message: resp.msg,
+                                type: 'error',
+                                duration: 1200
+                            });
                         }
                     })
             } else {
@@ -668,5 +677,4 @@ function deleteCustom(cid) {
 selectByPage(1);
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
