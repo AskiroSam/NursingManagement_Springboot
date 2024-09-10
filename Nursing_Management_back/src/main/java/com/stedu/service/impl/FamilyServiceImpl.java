@@ -66,4 +66,9 @@ public class FamilyServiceImpl implements FamilyService {
         return familys.stream()
                 .collect(Collectors.toMap(Family::getFid, Family::getFname));
     }
+
+    @Override
+    public Integer getFamilyId(String family) {
+        return familyMapper.getFamilyId(family);
+    }
 }

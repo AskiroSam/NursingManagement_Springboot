@@ -1,8 +1,10 @@
 package com.stedu.service.impl;
 
 import com.stedu.bean.Custom;
+import com.stedu.bean.Hostel;
 import com.stedu.exception.MyException;
 import com.stedu.mapper.CustomMapper;
+import com.stedu.mapper.HostelMapper;
 import com.stedu.service.CustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import java.util.List;
 public class CustomServiceImpl implements CustomService {
     @Autowired
     private CustomMapper customMapper;
+    @Autowired
+    private HostelMapper hostelMapper;
+
 
     @Override
     public List<Custom> selectByPage(String cname, String cgender, String caddress) {
@@ -41,6 +46,10 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public boolean update(Custom c) throws MyException {
+        Hostel hostel = hostelMapper.selectByHid(c.getHid());
+        if (hostel.getDnumber() >= 6) {
+           throw new MyException("宿舍最多分配6个人,请重新分配");
+        }
         // 验证手机号是否为11位
         if (c.getCphone() == null ||!c.getCphone().matches("\\d{11}")) {
             throw new MyException("手机号必须是11位数字");
@@ -71,5 +80,10 @@ public class CustomServiceImpl implements CustomService {
     @Override
     public List<Custom> selectByHid(Integer hid) {
         return customMapper.selectByHid(hid);
+    }
+
+    @Override
+    public void saveAll(List<Custom> customList) {
+         customMapper.saveAll(customList);
     }
 }

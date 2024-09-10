@@ -38,4 +38,7 @@
     <select id="sclectByCid" resultType="family">
         SELECT * FROM `family` WHERE `cid`=#{cid}
     </select>
+    <select id="getFamilyId" resultType="java.lang.Integer">
+        SELECT `fid` FROM `family` WHERE `fname`=#{fname}
+    </select>
 </mapper>

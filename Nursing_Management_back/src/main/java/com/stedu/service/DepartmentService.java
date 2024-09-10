@@ -20,5 +20,6 @@ public interface DepartmentService {
     // 获取部门映射
     Map<Integer, String> getDepartmentMap();
 
-
+    //Excel导入
+    Integer getDepartmentId(String department);
 }

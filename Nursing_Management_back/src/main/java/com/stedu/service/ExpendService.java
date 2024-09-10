@@ -15,4 +15,7 @@ public interface ExpendService {
 
     // 获取部门映射
     Map<Integer, String> getExpendMap();
+
+    //Excel导入
+    Integer getExpendId(String expend);
 }

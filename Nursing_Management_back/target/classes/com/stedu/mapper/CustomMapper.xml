@@ -5,6 +5,13 @@
         INSERT INTO `custom`(`cname`, `cage`, `cgender`, `cphone`, `centrydate`, `cstate`, `caddress`, `did`, `fid`, `eid`, `hid`)
         VALUES (#{cname}, #{cage}, #{cgender}, #{cphone}, #{centrydate}, #{cstate}, #{caddress}, #{did}, #{fid}, #{eid}, #{hid})
     </insert>
+    <insert id="saveAll">
+        INSERT INTO `custom`(`cid`, `cname`, `cage`, `cgender`, `cphone`, `centrydate`, `cstate`, `caddress`, `did`, `fid`, `eid`, `hid`)
+        VALUES
+        <foreach collection="customList" item="custom" separator=",">
+            (#{custom.cid}, #{custom.cname}, #{custom.cage}, #{custom.cgender}, #{custom.cphone}, #{custom.centrydate}, #{custom.cstate}, #{custom.caddress}, #{custom.did}, #{custom.fid}, #{custom.eid}, #{custom.hid})
+        </foreach>
+    </insert>
     <update id="update" parameterType="custom">
         UPDATE `custom` SET
                 `cname`=#{cname},

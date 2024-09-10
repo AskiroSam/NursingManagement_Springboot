@@ -10,6 +10,7 @@ import LoginView from '@/views/LoginView.vue'
 import TestView from '@/views/TestView.vue'
 import ExpendView from '@/views/ExpendView.vue'
 import HostelView from '@/views/HostelView.vue'
+import ExcelView from '@/views/ExcelView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,9 @@ const router = createRouter({
         }, {
           path: '/hostel',
           component: HostelView
+        }, {
+          path: '/excel',
+          component: ExcelView
         }
       ]
     },{

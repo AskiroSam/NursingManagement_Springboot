@@ -80,14 +80,14 @@
             <el-form-item label="当前宿舍：" label-width="18%">
                 <el-input v-model="hostelUpdate.hno" autocomplete="off" disabled style="width: 400px;" />
             </el-form-item>
-            <el-form-item label="修改宿舍：" label-width="18%" prop="hno">
+            <el-form-item label="修改宿舍：" label-width="18%" prop="hno" @input="handleAddNull" >
                 <el-input v-model="hostelUpdate.hno" autocomplete="off" style="width: 400px;" @change="findHid" />
             </el-form-item>
         </el-form>
         <template #footer>
             <div class="dialog-footer">
                 <el-button @click="updateCustomShow = false">取消</el-button>
-                <el-button type="primary" @click="update">确认</el-button>
+                <el-button type="primary" @click="update" :disabled="addButtonDisabled">确认</el-button>
             </div>
         </template>
     </el-dialog>
@@ -302,6 +302,7 @@ const state = reactive({
     rules: {
         hno: [
             { required: true, message: '请输入4位宿舍号', trigger: 'blur' },
+            
         ]
     }
 });
@@ -336,6 +337,7 @@ const handleAddNull = async () => {
     console.log(hostelAdd.value);
 
 };
+
 
 // ---------非空校验结束------------------
 

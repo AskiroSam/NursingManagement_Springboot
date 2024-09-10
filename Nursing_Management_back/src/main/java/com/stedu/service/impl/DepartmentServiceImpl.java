@@ -107,4 +107,9 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .collect(Collectors.toMap(Department::getDid, Department::getDname));
     }
 
+    @Override
+    public Integer getDepartmentId(String dname) {
+        return departmentMapper.getDepartmentId(dname);
+    }
+
 }

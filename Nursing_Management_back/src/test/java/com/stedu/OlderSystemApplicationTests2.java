@@ -2,19 +2,22 @@ package com.stedu;
 
 
 import com.stedu.Util.JwtUtils;
+import com.stedu.bean.Custom;
 import com.stedu.service.AdminService;
+import com.stedu.service.CustomService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootTest
 class OlderSystemApplicationTests2 {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CustomService customService;
+
     @Test
     public void test01() {
         HashMap<String, Object> map = new HashMap<>();
@@ -37,6 +40,25 @@ class OlderSystemApplicationTests2 {
     @Test
     public void test03() {
         adminService.selectAgeCount();
+    }
+
+    @Test
+    public void testSaveSingleData() {
+        Custom custom = new Custom();
+        custom.setCid(69);
+        custom.setCname("张三");
+        custom.setCage(30);
+        custom.setCgender("男");
+        custom.setCphone("1234567890");
+        custom.setCentrydate(new Date());
+        custom.setCstate(1);
+        custom.setCaddress("某地");
+        custom.setDid(1);
+        custom.setFid(2);
+        custom.setEid(3);
+
+        List<Custom> customList = Collections.singletonList(custom);
+        customService.saveAll(customList);
     }
 
 }

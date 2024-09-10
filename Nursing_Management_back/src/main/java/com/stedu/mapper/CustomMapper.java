@@ -28,4 +28,6 @@ public interface CustomMapper {
     int updateFid(@Param("cid") Integer cid, @Param("fid") Integer fid);
 
     List<Custom> selectByHid(Integer hid);
+
+    void saveAll(@Param("customList") List<Custom> customList);
 }

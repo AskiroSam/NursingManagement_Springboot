@@ -20,4 +20,6 @@ public interface FamilyMapper {
     int delete(Integer fid);
 
     List<Family> sclectByCid(Integer cid);
+
+    Integer getFamilyId(String family);
 }

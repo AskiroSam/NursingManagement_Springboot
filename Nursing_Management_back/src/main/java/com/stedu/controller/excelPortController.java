@@ -7,11 +7,15 @@ import com.stedu.service.*;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -68,6 +72,7 @@ public class excelPortController {
             dto.setDepartment(departmentMap.getOrDefault(custom.getDid(), "未知"));
             dto.setFamily(familyMap.getOrDefault(custom.getFid(), "未知"));
             dto.setExpend(expendMap.getOrDefault(custom.getEid(), "未知"));
+            dto.setHid(custom.getHid());
             return dto;
         }).collect(Collectors.toList());
 
@@ -140,4 +145,52 @@ public class excelPortController {
             writer.close();
         }
     }
+
+    @PostMapping("/importCustom")
+    public ResponseEntity<String> importDataCustom(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("上传的文件为空");
+        }
+
+        // 输出文件信息用于调试
+        System.out.println("文件名: " + file.getOriginalFilename());
+        System.out.println("文件大小: " + file.getSize());
+        System.out.println("内容类型: " + file.getContentType());
+
+        try (InputStream inputStream = file.getInputStream()) {
+            // 使用 Hutool 解析 Excel 文件
+            List<CustomDTO> customDTOList = ExcelUtil.getReader(inputStream).readAll(CustomDTO.class);
+
+            // 将 CustomDTO 列表转换为 Custom 实体类并保存
+            List<Custom> customList = customDTOList.stream().map(dto -> {
+                Custom custom = new Custom();
+                custom.setCid(dto.getCid());
+                custom.setCname(dto.getCname());
+                custom.setCage(dto.getCage());
+                custom.setCgender(dto.getCgender());
+                custom.setCphone(dto.getCphone());
+                custom.setCentrydate(dto.getCentrydate());
+                custom.setCstate(dto.getCstate());
+                custom.setCaddress(dto.getCaddress());
+                custom.setDid(departmentService.getDepartmentId(dto.getDepartment())); // 将部门名称转换为 ID
+                custom.setFid(familyService.getFamilyId(dto.getFamily())); // 将家属名称转换为 ID
+                custom.setEid(expendService.getExpendId(dto.getExpend())); // 将消费等级名称转换为 ID
+                custom.setHid(dto.getHid());
+                return custom;
+            }).collect(Collectors.toList());
+            System.out.println(customList);
+
+            customService.saveAll(customList); // 批量保存到数据库
+
+
+            return ResponseEntity.ok("文件导入成功！");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("文件导入失败: 文件读取错误");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("文件导入失败: " + e.getMessage());
+        }
+    }
+
 }

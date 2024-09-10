@@ -30,4 +30,7 @@
     <select id="selectByDname" resultType="department">
         SELECT * FROM `department` WHERE `dname`=#{dname}
     </select>
+    <select id="getDepartmentId" resultType="java.lang.Integer">
+        SELECT `did` FROM `department` WHERE `dname`=#{dname}
+    </select>
 </mapper>

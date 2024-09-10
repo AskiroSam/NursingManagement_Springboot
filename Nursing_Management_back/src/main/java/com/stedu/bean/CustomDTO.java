@@ -21,4 +21,5 @@ public class CustomDTO {
     private String department;
     private String family;
     private String expend;
+    private Integer hid;
 }

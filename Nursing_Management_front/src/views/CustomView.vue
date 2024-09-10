@@ -6,6 +6,11 @@
                     <el-form-item>
                         <el-button plain type="primary" @click="showAddDialog">添加</el-button>
                         <el-button type="warning" plain @click="exportData">Excel导出</el-button>
+                        <div style="background-color: white; margin-left: 20px;">
+                            <!-- 上传按钮 -->
+                            <input type="file" @change="handleFileChange" accept=".xls,.xlsx" />
+                            <button @click="uploadFile" :disabled="!selectedFile">上传</button>
+                        </div>
                     </el-form-item>
                     <el-form-item style="float: right;">
                         <el-button :icon="Search" circle style="margin-right: 5px;" />
@@ -212,6 +217,39 @@ const pageInfo = ref({
     pageNum: 0
 });
 
+// -------Excel----------------------------------------------------
+// 定义一个ref来存储所选的文件
+const selectedFile = ref(null)
+// 处理文件更改事件
+function handleFileChange(event) {
+    const file = event.target.files[0]
+    if (file) {
+        selectedFile.value = file
+    }
+}
+// 上传文件的函数
+async function uploadFile() {
+    if (!selectedFile.value) {
+        alert('请选择一个文件!')
+        return
+    }
+
+    const formData = new FormData()
+    formData.append('file', selectedFile.value)
+
+    try {
+        const response = await axios.post('/excel/importCustom', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        alert('文件上传成功: ' + response.data)
+    } catch (error) {
+        alert('文件上传失败: ' + error.message)
+    }
+}
+
+
 // 导出Excel
 function exportData() {
     // 根据搜索条件构建 URL
@@ -220,7 +258,7 @@ function exportData() {
     axios.get(url, {
         responseType: 'blob', // 确保响应类型为 blob
         headers: {
-            'token': 'your_token_here' // 替换成实际的 token
+            'token': 'headers.token' // 替换成实际的 token
         }
     })
         .then(response => {
@@ -241,6 +279,8 @@ function exportData() {
             console.error('导出 Excel 失败:', error);
         });
 }
+// -------Excel----------------------------------------------------
+
 
 //被添加客户信息
 const customAdd = ref({

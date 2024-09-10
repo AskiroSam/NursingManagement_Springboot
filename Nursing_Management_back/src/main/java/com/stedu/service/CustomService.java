@@ -26,4 +26,5 @@ public interface CustomService {
 
     List<Custom> selectByHid(Integer hid);
 
+    void saveAll(List<Custom> customList);
 }

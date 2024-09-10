@@ -68,4 +68,9 @@ public class ExpendServiceImpl implements ExpendService {
         return expends.stream()
                 .collect(Collectors.toMap(Expend::getEid, Expend::getEgrade));
     }
+
+    @Override
+    public Integer getExpendId(String expend) {
+        return expendMapper.getExpendId(expend);
+    }
 }

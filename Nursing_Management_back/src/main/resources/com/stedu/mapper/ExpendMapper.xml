@@ -24,4 +24,7 @@
         FROM `expend`
         WHERE eid = #{eid}
     </select>
+    <select id="getExpendId" resultType="java.lang.Integer">
+        SELECT `eid` FROM `expend` WHERE `egrade`=#{egrade}
+    </select>
 </mapper>

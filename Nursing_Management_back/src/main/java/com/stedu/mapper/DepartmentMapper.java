@@ -23,4 +23,6 @@ public interface DepartmentMapper {
     Department selectByDname(String dname);
 
     void updateDepartment(@Param("personnum") Integer personnum, @Param("did") Integer did);
+
+    Integer getDepartmentId(String department);
 }
