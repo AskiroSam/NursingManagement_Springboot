@@ -114,7 +114,9 @@ import router from '@/router';
 import { ElMessage } from 'element-plus';
 import { ref } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
+import { useTokenStore } from '@/stores/token';
 
+const tokenStore = useTokenStore();
 const username = ref('');
 
 //退出对话框
@@ -138,7 +140,8 @@ function logout() {
     duration: 1200,
     onClose: () => { //提示信息消失时间回调
       //删除sessionStorage中的token
-      sessionStorage.removeItem('token');
+      // sessionStorage.removeItem('token');
+      tokenStore.$reset();
       //跳转到登录页
       router.push('/login');
     }

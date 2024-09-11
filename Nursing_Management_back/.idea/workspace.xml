@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“完善客户的参数检验&quot;">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1a22ba3604f74bd8b980a8c5cd2b5166_CFAEA011527866D62B89D2CC56A9895F.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/7af60081240b45b89ddb34fa4c1a8c79_117a4935539d371d901fa4c0b260519b.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/8fb4959465b14ee1a6577c76ac63dc5c_117a4935539d371d901fa4c0b260519b.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/controller/StaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/StaffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stedu/service/impl/StaffServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/controller/StaffController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/StaffService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/StaffServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stedu/service/impl/StaffServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/views/StaffView.vue" afterDir="false" />
-    </list>
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -216,15 +205,11 @@
       <workItem from="1725670622757" duration="39499000" />
       <workItem from="1725764006925" duration="30321000" />
       <workItem from="1725842881413" duration="45851000" />
-      <workItem from="1725927772658" duration="25947000" />
-    </task>
-    <task id="LOCAL-00002" summary="“新增员工的方法”">
-      <option name="closed" value="true" />
-      <created>1725503562535</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1725503562535</updated>
+      <workItem from="1725927772658" duration="36056000" />
+      <workItem from="1726043973686" duration="130000" />
+      <workItem from="1726046308989" duration="23000" />
+      <workItem from="1726051037215" duration="2522000" />
+      <workItem from="1726058537687" duration="1706000" />
     </task>
     <task id="LOCAL-00003" summary="“修正了StaffMapper，来获取部门数据”">
       <option name="closed" value="true" />
@@ -610,7 +595,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725956779896</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;">
+      <option name="closed" value="true" />
+      <created>1725985335844</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1725985335846</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +624,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“员工多条件模糊查询后端”" />
     <MESSAGE value="“实现Excel的导入导出”" />
     <MESSAGE value="“修改Excel的导入导出”" />
     <MESSAGE value="“家属修改数据校验”" />
@@ -656,7 +648,8 @@
     <MESSAGE value="“完成前端Excel的导入&quot;" />
     <MESSAGE value="“完成薪资表的Excel的导出&quot;" />
     <MESSAGE value="“完善客户的参数检验&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="“完善客户的参数检验&quot;" />
+    <MESSAGE value="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -26,7 +26,9 @@ import router from '@/router';
 import { color } from 'echarts';
 import { ElMessage } from 'element-plus';
 import { reactive, ref } from 'vue';
+import { useTokenStore } from '@/stores/token';
 
+const tokenStore = useTokenStore();
 
 const admin = ref({
     username: '',
@@ -79,8 +81,12 @@ function login() {
                     duration: 1200,
                     onClose: () => {
                         //保存JWT到sessionStorage
-                        sessionStorage.setItem('token', resp.data);                        
-                        //跳转到后台首页
+                        // sessionStorage.setItem('token', resp.data);    
+                              
+                        //将jwt保存在tokenStore中
+                        tokenStore.update(resp.data);
+                        
+;                       //跳转到后台首页
                         router.push('/index');
                     }
                 });

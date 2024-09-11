@@ -11,6 +11,7 @@ import TestView from '@/views/TestView.vue'
 import ExpendView from '@/views/ExpendView.vue'
 import HostelView from '@/views/HostelView.vue'
 import ExcelView from '@/views/ExcelView.vue'
+import { useTokenStore } from '@/stores/token'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,9 +75,16 @@ router.beforeEach((to, from) => {
   if (to.path == '/login') {
     return true;
   } else {
+    
     //判断sessionStorage中是否有token
-    if (!sessionStorage.getItem('token')) {
-      return "/login";
+    // if (!sessionStorage.getItem('token')) {
+    //   return "/login";
+    // } else {
+    //   return true;
+    // }
+    const tokenStore = useTokenStore();
+    if (!tokenStore.tokenStr) {
+        return "/login";
     } else {
       return true;
     }

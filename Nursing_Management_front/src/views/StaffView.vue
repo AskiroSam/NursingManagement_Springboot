@@ -162,6 +162,9 @@ import staffApi from '@/api/staffApi';
 import departmentApi from '@/api/departmentApi';
 import { ElLoading, ElMessage } from 'element-plus';
 import axios from 'axios';
+import { useTokenStore } from '@/stores/token';
+
+const tokenStore = useTokenStore();
 //图标
 import {
     Check,
@@ -179,7 +182,8 @@ const ssalary = ref('');
 
 //上传图片使用的token
 const headers = computed(() => {
-    let token = sessionStorage.getItem('token');
+    // let token = sessionStorage.getItem('token');
+    let token = tokenStore.tokenStr;
     return {
         token
     }
