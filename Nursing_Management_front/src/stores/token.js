@@ -21,4 +21,10 @@ export const useTokenStore = defineStore("token", () => {
     } 
 
     return {token, tokenStr, update, $reset};
+}, {
+    persist: {
+        key: 'token',
+        storage: sessionStorage,
+        paths: ['token']
+    }
 })
