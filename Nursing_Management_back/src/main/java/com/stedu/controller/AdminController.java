@@ -1,7 +1,9 @@
 package com.stedu.controller;
 
 
+import cn.hutool.captcha.LineCaptcha;
 import com.stedu.Util.JwtUtils;
+import com.stedu.Util.RedisUtil;
 import com.stedu.bean.Admin;
 import com.stedu.bean.RespBean;
 import com.stedu.exception.MyException;
@@ -11,16 +13,20 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
 public class AdminController {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     //登录
-    @ResponseBody
+
     @PostMapping("/login")
     public RespBean login(@Valid String username, String password) throws MyException {
         Admin admin = adminService.login(username, password);
@@ -33,7 +39,7 @@ public class AdminController {
     }
 
     //注销
-    @ResponseBody
+
     @GetMapping("/logout")
     public RespBean logout(HttpSession session) {
         //让session失效
@@ -44,5 +50,26 @@ public class AdminController {
         return RespBean.ok("退出成功");
     }
 
+    //验证码
+    @GetMapping("/captcha")
+    public RespBean captcha() throws IOException {
+        //生成验证码对象
+        LineCaptcha captcha = new LineCaptcha(120, 38, 4, 20);
+        //获取验证码的文本
+        String code = captcha.getCode();
+        //生成唯一的ID
+        String captchaId = UUID.randomUUID().toString().replace("-", "");
+        //获取验证码的文本保存在Redis中
+        redisUtil.set(captchaId, code);
 
+        //Base64图片 - 字符串(前端拿到后可以转换为图片)
+        String captchaImageBase64Data = captcha.getImageBase64Data();
+        //将captchaId和验证码的图片发送给浏览器
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("captchaId", captchaId);
+        map.put("captchaImageBase64Data", captchaImageBase64Data);
+
+        return  RespBean.ok("", map);
+
+    }
 }
