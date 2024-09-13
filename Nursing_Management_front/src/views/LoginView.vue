@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="height: 300px;">
         <h1 style="margin-bottom: 30px; opacity: 0.8">用户登录</h1>
         <el-form ref="form" label-width="85px" :model="admin" :rules="state.rules">
             <el-form-item label="用户名" :style="{ width: '450px', height: 'auto' }" prop="username">
@@ -9,6 +9,12 @@
             <el-form-item label="密码" :style="{ width: '450px', height: 'auto' }" prop="password">
                 <el-input type="password" v-model="admin.password"
                     :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }" @blur="handleLoginNull"></el-input>
+            </el-form-item>
+            <el-form-item label="验证码" :style="{ width: '450px', height: 'auto' }" prop="password">
+                <el-input type="text" v-model="admin.captcha"
+                    :style="{ backgroundColor: 'black', color: 'white', opacity: 0.8 }" @blur="handleLoginNull">
+                </el-input>
+                <el-image style="width: 120px; height: 38px; margin-top: 20px; margin-left: 105px;" :src="captchaImageBase64Data" @click=getCaptcha />
             </el-form-item>
             <el-form-item style="text-align: center; width: 700px; margin-top: 30px; margin-left: 150px;">
                 <el-button type="primary"
@@ -32,8 +38,11 @@ const tokenStore = useTokenStore();
 
 const admin = ref({
     username: '',
-    password: ''
-})
+    password: '',
+    captchaId: '',
+    captcha: ''
+});
+const captchaImageBase64Data = ref('');
 
 // ---------非空校验开始------------------
 //登录按钮状态
@@ -96,6 +105,15 @@ function login() {
         });
 
 }
+
+function getCaptcha() {
+    adminApi.captcha()
+        .then(resp => {
+            admin.value.captchaId = resp.data.captchaId;
+            captchaImageBase64Data.value = resp.data.captchaImageBase64Data;
+        });
+}
+getCaptcha();
 </script>
 
 <style>

@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;">
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nursing_Management_front/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Nursing_Management_front/src/main.js" afterDir="false" />
-    </list>
+    <list default="true" id="da064f4f-b78c-4dc9-8f1e-25f73d6c2d74" name="更改" comment="“修改登录方法&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,33 +47,34 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/work/JAVA/项目/Nursing_Management&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema.catalog&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "E:/work/JAVA/项目/Nursing_Management/Nursing_Management_back/src/main/java/com/stedu/config",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "settings.json.schema.catalog",
+    "ts.external.directory.path": "E:\\work\\JAVA\\IDEA\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ]
   }
-}</component>
+}]]></component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
   </component>
@@ -85,6 +82,10 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.stedu.service.impl" />
       <recent name="com.stedu.service,impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\JAVA\项目\Nursing_Management\Nursing_Management_back\src\main\java\com\stedu\config" />
+      <recent name="E:\work\JAVA\项目\Nursing_Management\Nursing_Management_back\src\main\java\com\stedu\Util" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.stedu.bean" />
@@ -214,38 +215,11 @@
       <workItem from="1726046308989" duration="23000" />
       <workItem from="1726051037215" duration="2522000" />
       <workItem from="1726058537687" duration="2303000" />
-    </task>
-    <task id="LOCAL-00003" summary="“修正了StaffMapper，来获取部门数据”">
-      <option name="closed" value="true" />
-      <created>1725505988236</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1725505988236</updated>
-    </task>
-    <task id="LOCAL-00004" summary="“为系部删除增加验证”">
-      <option name="closed" value="true" />
-      <created>1725517156687</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1725517156687</updated>
-    </task>
-    <task id="LOCAL-00005" summary="“添加路线出行多对多映射，员工与路线，客户与路线”">
-      <option name="closed" value="true" />
-      <created>1725521237960</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1725521237960</updated>
-    </task>
-    <task id="LOCAL-00006" summary="“完成多对多service层”">
-      <option name="closed" value="true" />
-      <created>1725521864295</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1725521864295</updated>
+      <workItem from="1726101115960" duration="60000" />
+      <workItem from="1726102694251" duration="11519000" />
+      <workItem from="1726155516844" duration="1884000" />
+      <workItem from="1726216138010" duration="3911000" />
+      <workItem from="1726235286219" duration="2375000" />
     </task>
     <task id="LOCAL-00007" summary="“完成多对多Controller层的查询”">
       <option name="closed" value="true" />
@@ -607,7 +581,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725985335846</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="“SQL脚本&quot;">
+      <option name="closed" value="true" />
+      <created>1726216330090</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1726216330090</updated>
+    </task>
+    <task id="LOCAL-00053" summary="“导入和配置Redis&quot;">
+      <option name="closed" value="true" />
+      <created>1726235845110</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1726235845110</updated>
+    </task>
+    <task id="LOCAL-00054" summary="“完成验证码方法，将字符串存入Redis，图片以Base64形式发送给前端&quot;">
+      <option name="closed" value="true" />
+      <created>1726236657995</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1726236657995</updated>
+    </task>
+    <task id="LOCAL-00055" summary="“修改登录方法&quot;">
+      <option name="closed" value="true" />
+      <created>1726237461706</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1726237461706</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,10 +634,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="“实现Excel的导入导出”" />
-    <MESSAGE value="“修改Excel的导入导出”" />
-    <MESSAGE value="“家属修改数据校验”" />
-    <MESSAGE value="“员工参数校验”" />
     <MESSAGE value="“计算出每个等级的总费用和人数”" />
     <MESSAGE value="“计算员工的人数和工资和”" />
     <MESSAGE value="“设置路线最大可分配数量”" />
@@ -653,7 +655,11 @@
     <MESSAGE value="“完成薪资表的Excel的导出&quot;" />
     <MESSAGE value="“完善客户的参数检验&quot;" />
     <MESSAGE value="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="“新增Hibernate-Validator参数校验，对家属的修改方法进行修改&quot;" />
+    <MESSAGE value="“SQL脚本&quot;" />
+    <MESSAGE value="“导入和配置Redis&quot;" />
+    <MESSAGE value="“完成验证码方法，将字符串存入Redis，图片以Base64形式发送给前端&quot;" />
+    <MESSAGE value="“修改登录方法&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="“修改登录方法&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

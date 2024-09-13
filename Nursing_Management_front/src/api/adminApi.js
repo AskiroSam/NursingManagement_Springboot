@@ -15,6 +15,9 @@ const adminApi = {
     },
     getLoginInfo() {
         return service.get('/admin/info/adminInfo')
+    },
+    captcha() {
+        return service.get('/captcha');
     }
 };
 
