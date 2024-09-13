@@ -2,6 +2,7 @@ package com.stedu.controller;
 
 
 import cn.hutool.captcha.LineCaptcha;
+import cn.hutool.core.util.IdUtil;
 import com.stedu.Util.JwtUtils;
 import com.stedu.Util.RedisUtil;
 import com.stedu.bean.Admin;
@@ -65,7 +66,7 @@ public class AdminController {
         //获取验证码的文本
         String code = captcha.getCode();
         //生成唯一的ID
-        String captchaId = UUID.randomUUID().toString().replace("-", "");
+        String captchaId = IdUtil.getSnowflakeNextIdStr();
         //获取验证码的文本保存在Redis中
         redisUtil.set(captchaId, code, 60);
 
