@@ -43,4 +43,6 @@ public class AdminController {
         //RespBean -> JSON -> 返回给了浏览器
         return RespBean.ok("退出成功");
     }
+
+
 }
