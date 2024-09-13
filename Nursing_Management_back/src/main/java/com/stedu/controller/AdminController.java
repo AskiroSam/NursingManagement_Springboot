@@ -26,9 +26,16 @@ public class AdminController {
     private RedisUtil redisUtil;
 
     //登录
-
     @PostMapping("/login")
-    public RespBean login(@Valid String username, String password) throws MyException {
+    public RespBean login(@Valid String username, String password, String captchaId, String captcha) throws MyException {
+        //判断验证码 - 和Redis中保存验证码的文本对比
+        String captchaRedis = (String)redisUtil.get(captchaId);
+        if (captchaRedis == null || (captchaRedis != null && !captchaRedis.equalsIgnoreCase(captcha))) {
+            return RespBean.error("验证码错误，请刷新后重新输入");
+        } else {
+
+        }
+
         Admin admin = adminService.login(username, password);
         //登录成功之后，生成JWT发送给前端
         HashMap<String, Object> map = new HashMap<>();
@@ -60,7 +67,7 @@ public class AdminController {
         //生成唯一的ID
         String captchaId = UUID.randomUUID().toString().replace("-", "");
         //获取验证码的文本保存在Redis中
-        redisUtil.set(captchaId, code);
+        redisUtil.set(captchaId, code, 60);
 
         //Base64图片 - 字符串(前端拿到后可以转换为图片)
         String captchaImageBase64Data = captcha.getImageBase64Data();
